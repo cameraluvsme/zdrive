@@ -1,0 +1,1329 @@
+/* -----------------------------------------
+
+  Goope Style / Obi
+  2011.08.08
+  paperboy&co.
+
+----------------------------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    }
+
+
+img {
+    border: none;
+    vertical-align: middle;
+    }
+
+br.clear {
+    font-size: 0;
+    line-height: 0;
+    clear: both;
+    }
+
+
+
+
+/* --------------------------------------
+    HTML再定義
+--------------------------------------- */
+
+body{
+    background:#333333 url(/img/common_bg/12.jpg) repeat  ;
+    color:#ffffff;
+    font-size:13px;
+    font-family:arial 'hiragino kaku gothic pro','ヒラギノ角ゴ pro w3','ＭＳ Ｐゴシック';
+    word-wrap: break-word;
+    }
+
+
+
+a:link {
+    color: #ffffff;
+    text-decoration: underline;
+    }
+a:visited {
+    color: #ffffff;
+    text-decoration: underline;
+    }
+a:hover {
+    color: #ffffff;
+    text-decoration: none;
+    }
+a:active {
+    color: #ffffff;
+    text-decoration: none;
+    outline: none;
+    position: relative;
+    top: 1px;
+    }
+
+
+/* ---------------------------------
+    レイアウト
+--------------------------------- */
+
+#wrapper {
+    }
+    #wrapper_inner {
+        }
+
+    #header {
+        padding: 20px;
+        width: 900px;
+        margin: 0 auto;
+        }
+        header_inner {
+            margin: 0;
+            }
+
+        #contents {
+            background: #fff;
+            color: #333;
+            margin-bottom: 20px;
+            padding: 40px 20px;
+            border-top: 1px solid #333333;
+            border-bottom: 1px solid #333333;
+            }
+            #contents a:link {
+                color: #333;
+                }
+            #contents a:visited {
+                color: #666;
+                }
+            #contents a:hover {
+                color: #000;
+                }
+            #contents a:active {
+                color: #000;
+                }
+
+
+        #main {
+            }
+            #main_inner {
+                margin: 0 auto;
+                width: 900px;
+                position: relative;
+                }
+
+        body#info #navi,
+        body#menu #navi,
+        body#photo #navi {
+            margin: 0;
+            width: 200px;
+            float: left;
+            position: absolute;
+            top: 47px;
+            left: 0px;
+            }
+            #navi_inner {
+                }
+
+
+        #sidebar {
+            margin-bottom: 20px;
+            }
+            #sidebar_inner {
+                margin: 0 10px;
+                }
+
+    #footer {
+        clear: both;
+        padding: 10px 0;
+        width: 900px;
+        margin: 0 auto;
+        }
+        #footer_inner {
+            }
+
+
+/* --------------------------------------
+    ヘッダー
+--------------------------------------- */
+
+.shop_title {
+    text-align: right;
+    }
+    .shop_rss {
+        width: 16px;
+        height: 16px;
+        float: right;
+        }
+    .shop_name {
+        margin: 0 10px 0 0;
+        float: right;
+        }
+    .shop_tel {
+        margin: 0 10px 0 0;
+        font-size: 12px;
+        float: right;
+        }
+
+.site_title {
+    clear: both;
+    float: left;
+    margin: 20px 0 0 0;
+    }
+    h1.site_logo {
+        font-size: 30px;
+        }
+        h1.site_logo a {
+            }
+    .site_description {
+        font-size: 12px;
+        margin: 10px 0 0 0;
+        }
+
+/* --------------------------------------
+    トップナビゲーション
+--------------------------------------- */
+
+#top_navi {
+width: 600px;
+    float: right;
+    margin: 20px 0 0 20px;
+    padding: 0;
+    height: 100%;
+    }
+    #top_navi a {
+        display: block;
+        background: #444444;
+        color: #ffffff;
+        margin: 3px;
+        padding: 10px 15px;
+        text-decoration: none;
+        float: left;
+        font-size: 11px;
+        -moz-border-radius-bottomleft: 5px;
+        -moz-border-radius-bottomright: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        }
+    #top_navi a:hover {
+        background: #333333;
+        color: #ffffff;
+        }
+
+    body#top #top_navi a.navi_top,
+    body#info #top_navi a.navi_info,
+    body#calendar #top_navi a.navi_calendar,
+    body#menu #top_navi a.navi_menu,
+    body#photo #top_navi a.navi_photo,
+    body#coupon #top_navi a.navi_coupon,
+    body#about #top_navi a.navi_about,
+  body#melmaga #top_navi a.navi_melmaga,
+  body#recruit #top_navi a.navi_recruit,
+  body#reservation #top_navi a.navi_reservation,
+    body#contact #top_navi a.navi_contact {
+        background: #333333;
+        color: #ffffff;
+        }
+
+    /* フリーページナビゲーション用 */
+
+
+/* --------------------------------------
+    サブナビゲーション
+--------------------------------------- */
+
+    #navi ul {
+        }
+        #navi ul li {
+            list-style-type: none;
+            margin: 10px 0;
+            text-align: right;
+            }
+        #navi ul li a {
+            height: 100%;
+            display: block;
+            padding: 10px 10px 10px 30px;
+            font-size: 11px;
+            text-decoration: none;
+            background-color: #444444;
+            color: #ffffff !important;
+            -moz-border-radius-bottomleft: 5px;
+            -moz-border-radius-bottomright: 5px;
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px;
+            }
+        #navi ul li a:hover {
+            background-color: #333333;
+            color: #ffffff;
+            }
+
+
+/* --------------------------------------
+    メイン
+--------------------------------------- */
+
+#main h2 {
+    font: 20px 'Georgia';
+    margin: 0 0 20px 0;
+    padding: 0 0 5px 0;
+    border-bottom: 1px solid #333333;
+    }
+
+
+/* --------------------------------------
+    #フッター
+--------------------------------------- */
+
+/* today */
+
+.today_area {
+    width: 200px;
+    float: left;
+    border: 1px solid #333333;
+    margin-right: 20px;
+    padding: 10px;
+    }
+
+    .today_title {
+        font-size: 12px;
+        font-weight: bolder;
+        text-align: center;
+        }
+
+    .today_schedule {
+        margin: 10px 0 0 0;
+        padding: 10px 0 0 0;
+        border-top: 1px solid #333333;
+        }
+        .today_schedule_title {
+            margin: 0 0 5px 0;
+            font-size: 12px;
+            }
+        .today_schedule_body {
+            font-size: 12px;
+            line-height: 18px;
+            }
+
+
+/* QRコード */
+
+.qr_area {
+    width: 150px;
+    float: left;
+    border: 1px solid #333333;
+    margin-right: 20px;
+    padding: 10px;
+    }
+
+    .qr_title {
+        font-size: 12px;
+        font-weight: bolder;
+        text-align: center;
+        margin: 0 0 10px 0;
+        }
+
+    .qr_img {
+        text-align: center;
+        }
+
+
+/* カウンター */
+
+.counter_area {
+    width: 150px;
+    float: left;
+    border: 1px solid #333333;
+    margin-right: 20px;
+    padding: 10px;
+    }
+    .counter_title {
+        font-size: 12px;
+        font-weight: bolder;
+        text-align: center;
+        margin: 0 0 10px 0;
+        }
+    .counter_today {
+        }
+        .counter_today span.num {
+            }
+    .counter_yesterday {
+        }
+        .counter_yesterday span.num {
+            }
+    .counter_total {
+        }
+        .counter_total span.num {
+            }
+
+/* ウィジェット */
+.parts_area {
+    width: 220px;
+    float: left;
+    padding: 10px;
+}
+
+/* コピーライト */
+.copyright {
+    margin: 0;
+    font-size: 11px;
+    padding: 10px 5px 5px 0;
+    }
+
+.powered {
+    margin: 0;
+    font-size:11px;
+    padding:10px 5px 5px 0;
+    }
+
+
+/* --------------------------------------
+    トップ
+--------------------------------------- */
+
+.slide_area {
+    float: left;
+    width: 520px;
+    }
+    .slideshow {
+        border: 10px solid #333333;
+        }
+
+.welcome_area {
+    float: right;
+    width: 360px;
+    }
+    .message {
+        font-size: 13px;
+        line-height: 20px;
+        margin: 0 0 40px 0;
+        }
+
+    .information_list ul {
+            margin: 0 0 0 20px;
+            }
+            .information_list ul li {
+                margin: 10px 0 0 0;
+                }
+
+
+/* --------------------------------------
+    インフォメーション
+--------------------------------------- */
+
+.info_area {
+    width: 650px;
+    float: right;
+    }
+
+    .info {
+        margin: 0 0 20px 0;
+        padding: 20px;
+        border: 1px solid #333333;
+        }
+
+        .info_date {
+            font-size: 11px;
+            margin: 0 0 10px 0;
+            }
+        .info_title {
+            font-size: 20px;
+            margin: 0 0 10px 0;
+            }
+        .info_body {
+            font-size: 14px;
+            line-height: 22px;
+            }
+            .info img {
+                float: right;
+                margin: 0 0 5px 5px;
+                padding: 3px;
+                border: 1px solid #333333;
+                }
+            .info img:hover {
+                border: 1px solid #666666;
+                }
+
+
+/* --------------------------------------
+    カレンダー
+--------------------------------------- */
+
+.calendar_area {
+    width: 500px;
+    float: left;
+    }
+
+    .calendar_header {
+        margin: 0 0 20px 0;
+        text-align: center;
+        }
+
+    .table_calendar {
+        }
+        .table_calendar th {
+            text-align: center;
+            font-size: 10px;
+            border-bottom: 1px solid #333333;
+            padding: 0 0 5px 0;
+            }
+            .table_calendar th.sun {
+                color: #ff3355;
+                }
+            .table_calendar th.sat {
+                color: #0066cc;
+                }
+        .table_calendar td {
+            border-bottom: 1px solid #333333;
+            border-left: 1px solid #333333;
+            width: 14%;
+            height: 70px;
+            text-align: center;
+            padding: 0 0 5px 0;
+            }
+            .table_calendar td:hover {
+                background: #eeeeee;
+                }
+                .table_calendar td img {
+                    padding: 2px;
+                    }
+                .table_calendar td img:hover {
+                    border: 2px solid #eeeeee;
+                    padding: 0;
+                    }
+
+            .table_calendar td.sun {
+                }
+            .table_calendar td.sat {
+                border-right: 1px solid #333333;
+                }
+            .table_calendar td p.day {
+                font-size: 14px;
+                line-height: 14px;
+                margin: 2px 5px 0 5px;
+                padding: 0;
+                text-align: right;
+                }
+                .table_calendar td.sun p.day {
+                    color: #ff3355;
+                    }
+                .table_calendar td.sat p.day {
+                    color: #0066cc;
+                    }
+
+.schedule_area {
+    width: 360px;
+    float: right;
+    }
+    .schedule {
+        margin: 0 0 20px 0;
+        }
+        .schedule_date {
+            font-size: 12px;
+            color: #666666;
+            margin: 0 0 10px 0;
+            padding: 0 0 5px 5px;
+            border-bottom: 1px solid #333333;
+            }
+        .schedule ul {
+            margin: 0 0 0 40px;
+            }
+            .schedule ul li {
+                margin: 5px 0;
+                font-size: 13px;
+                line-height: 20px;
+                }
+                .schedule_time {
+                    font-size: 12px;
+                    }
+                .schedule_title {
+                    font-size: 14px;
+                    }
+
+
+    .schedule_detail {
+        margin: 0 0 20px 0;
+        padding: 0 0 20px 0;
+        border-bottom: 1px solid #333333;
+        }
+
+        .schedule_detail_date {
+            font-size: 11px;
+            margin: 0 0 10px 0;
+            }
+        .schedule_detail_category {
+            font-size: 12px;
+            margin: 0 0 10px 0;
+            }
+        .schedule_detail_title {
+            font-size: 20px;
+            margin: 0 0 10px 0;
+            }
+        .schedule_detail_body {
+            font-size: 13px;
+            line-height: 20px;
+            }
+            .schedule_detail_body img {
+                float: right;
+                margin: 0 0 5px 5px;
+                padding: 3px;
+                border: 1px solid #333333;
+                }
+            .schedule_detail_body img:hover {
+                border: 1px solid #666666;
+                }
+
+
+/* --------------------------------------
+    メニュー
+--------------------------------------- */
+
+.menu_area {
+    width: 650px;
+    float: right;
+    }
+
+    .menu_list {
+        }
+
+    .menu_category {
+        margin: 0 0 10px 0;
+        padding: 0 0 5px 0;
+        border-bottom: 1px solid #333333;
+        font-size: 14px;
+        }
+
+    .menu {
+        margin: 0 0 20px 0;
+        padding: 30px;
+        border: 1px solid #333333;
+        }
+
+        .menu_title {
+            font-size: 16px;
+            font-weight: bolder;
+            line-height: 24px;
+
+            }
+        .menu_price {
+            float: right;
+            font-size: 20px;
+            font-weight: bolder;
+            line-height: 24px;
+            }
+        .menu_body {
+            clear: both;
+            font-size: 13px;
+            line-height: 22px;
+            width: 100%;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dotted #333333;
+            }
+            .menu_body img {
+                float: left;
+                margin: 0 10px 0 0;
+                padding: 3px;
+                border: 1px solid #333333;
+                }
+            .menu_photo img:hover {
+                border: 1px solid #666666;
+                }
+
+
+/* --------------------------------------
+    フォトギャラリー
+--------------------------------------- */
+
+.photo_area {
+    width: 650px;
+    float: right;
+    }
+
+    .album {
+        margin: 0 0 20px 0;
+        padding: 10px 0 10px 0px;
+        }
+
+    .album_title {
+        margin: 0 0 10px 0;
+        padding: 0 0 5px 0;
+        border-bottom: 1px solid #333333;
+        font-size: 14px;
+        }
+
+        .album img {
+            margin: 5px;
+            padding: 0;
+            border: 5px solid #333333;
+            }
+            .album img:hover {
+                border: 5px solid #666666;
+                }
+
+    .photo {
+        margin: 0 0 20px 0;
+        padding: 20px;
+        border-bottom: 1px solid #333333;
+        }
+
+        .photo_image {
+            margin: 0 0 5px 0;
+            text-align: center;
+            }
+            .photo_image img {
+                border: 1px solid #333333;
+                padding: 10px;
+                }
+            .photo_image img:hover {
+                border: 1px solid #666666;
+                }
+
+        .photo_date {
+            font-size: 10px;
+            margin: 0 0 0px 0;
+            text-align: right;
+            }
+
+        .photo_title {
+            font-size: 14px;
+            margin: 0 0 10px 0;
+            }
+
+        .photo_body {
+            font-size: 12px;
+            line-height: 20px;
+            }
+
+
+/* --------------------------------------
+    クーポン
+--------------------------------------- */
+
+.coupon_area {
+    }
+
+    .coupon {
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid #333333;
+        background: #fff;
+        }
+
+        .coupon_image {
+            }
+            .coupon_image img {
+                margin-bottom: 10px;
+                }
+
+        .coupon_qr {
+            width: 110px;
+            float: left;
+            }
+
+        .coupon_body {
+            }
+
+        .coupon_title {
+            margin-bottom: 10px;
+            font-size: 14px;
+            }
+
+        .coupon_body ul {
+            }
+            .coupon_body ul li {
+                list-style-type: none;
+                }
+            .coupon_body ul li span {
+                font-weight: bolder;
+                }
+
+
+/* --------------------------------------
+    店舗情報
+--------------------------------------- */
+
+.about_area {
+
+    }
+
+    .map {
+        width: 500px;
+        float: left;
+        border: 10px solid #333333;
+        }
+
+    .detail {
+        width: 360px;
+        float: right;
+        }
+
+        .table_detail {
+            border-top: 1px solid #333333;
+            }
+            .table_detail th {
+                text-align: right;
+                white-space: nowrap;
+                padding: 10px;
+                border-bottom: 1px solid #333333;
+                font-size: 11px;
+                }
+            .table_detail td {
+                padding: 10px;
+                border-bottom: 1px solid #333333;
+                border-left: 1px solid #333333;
+                }
+
+
+/* --------------------------------------
+    お問い合せ
+--------------------------------------- */
+
+body#contact .contact_area {
+    }
+
+    body#contact .contact_message {
+        width: 300px;
+        float: left;
+        color: red;
+        margin: 0 0 20px 0;
+        }
+
+  .parsonal_info {
+    line-height:130%;
+        width: 300px;
+        float: left;
+        }
+
+    body#contact form {
+        width: 500px;
+        float: right;
+        border: 1px solid #ccc;
+        padding: 20px;
+        }
+
+    fieldset {
+        margin: 0 0 10px 0;
+        border: none;
+        text-align: left;
+        }
+
+        legend {
+            margin: 0 0 5px 0;
+            font-size: 11px;
+            }
+
+        fieldset input {
+            margin: 0;
+            font-size: 14px;
+            border: 1px solid #333333;
+            padding: 5px;
+            }
+
+        fieldset textarea {
+            margin: 0;
+            font-size: 14px;
+            border: 1px solid #333333;
+            padding: 5px;
+            }
+
+        .contact_name {
+            width: 100px;
+            }
+        .contact_email {
+            width: 200px;
+            }
+        .contact_tel {
+            width: 200px;
+            }
+        .contact_body {
+            width: 400px;
+            height: 100px;
+            }
+
+        .button_area {
+            margin: 20px 0;
+            }
+            .button {
+                }
+
+
+/* --------------------------------------
+    予約ページ
+--------------------------------------- */
+.reservation_area {
+    margin: 0px 0px 10px 0px;
+    border: 0px;
+    padding:0px;
+    display: block;
+    clear: both;
+    overflow: hidden;
+    line-height: 17px;
+    }
+
+
+.reservation_message {
+    padding: 0px 0px 20px 10px;
+    font-size: 12px;
+    line-height: 30px;
+    color: red;
+    }
+
+.reservation_form {
+    margin: 0px;
+    padding: 0px 0px 0px 5px;
+}
+    .reservation_form .reservation_area label {
+        margin: 0px 0px 5px 0px;
+        }
+    .reservation_form .reservation_area input {
+        margin: 0px 5px 0px 0px;
+        font-size: 14px;
+        padding: 5px;
+        vertical-align: middle;
+        }
+
+    .reservation_form .reservation_area textarea {
+        margin: 0px;
+        font-size: 14px;
+        padding: 5px;
+        }
+    .reservation_form .reservation_name {
+        width: 100px;
+        margin: 0px;
+        padding: 0px;
+        }
+    .reservation_form .reservation_email {
+        width: 200px;
+        margin: 0px;
+        padding: 0px;
+        }
+    .reservation_form .reservation_tel {
+        width: 200px;
+        margin: 0px;
+        padding: 0px;
+        }
+    .reservation_form .reservation_memo {
+        width: 400px;
+        height: 100px;
+        margin: 0px;
+        padding: 0px;
+        }
+    .reservation_form .button_area {
+        text-align: center;
+        padding: 5px 0px;
+        }
+        .button {
+            }
+    .reservation_form .reservation_small {
+        width: 100px;
+        margin: 0px;
+        padding: 0px;
+        }
+    .reservation_form .reservation_medium {
+        width: 200px;
+        margin: 0px;
+        padding: 0px;
+        }
+    .reservation_form .reservation_large {
+        height: 100px;
+        width: 400px;
+        margin: 0px;
+        padding: 0px;
+        }
+
+.reservation_info .reservation_tel_number {
+    background: url(/img/menu/tel.gif) no-repeat 0 0;
+    font-family: Arial Black;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 3px 5px 5px 30px;
+    margin-top: 0px;
+}
+.reservation_info .reservation_tel_time {
+    border: 1px solid #DD6669;
+    padding: 10px;
+}
+.reservation_list .reservation_title {
+    font-size: 14px;
+    font-weight: bolder;
+    line-height: 24px;
+    padding: 10px 0;
+}
+
+
+/* --------------------------------------
+    pager
+--------------------------------------- */
+
+.pager {
+    text-align: center;
+    white-space: nowrap;
+    padding: 5px 0;
+    font-size: 16px;
+    line-height: 16px;
+    font-family: Arial;
+    width: 700px;
+    margin: 20px 0 0 290px;
+    }
+
+    .pager a {
+        margin: 0 2px;
+        padding: 3px 5px;
+        text-decoration: underline;
+        }
+        .pager a:hover {
+            text-decoration: none;
+            }
+
+    .pager a.next {
+        margin: 0 2px;
+        padding: 3px 5px;
+        text-decoration: none;
+        }
+        .pager a.next:hover {
+            text-decoration: none;
+            }
+
+    .pager a.chk {
+        margin: 0 2px;
+        padding: 3px 5px;
+        background: #222222;
+        color: #ffffff !important;
+        text-decoration: none;
+        }
+
+
+/*--------------------------------
+    AutoPagerize
+--------------------------------*/
+
+.autopagerize_page_element {
+    clear: both;
+    }
+
+#main hr {
+    border: none;
+    margin-top: 20px;
+    }
+.autopagerize_link {
+    margin-bottom: 20px;
+    }
+
+
+
+/*--------------------------------
+    Slide
+--------------------------------*/
+
+#mySlideshow {
+    width: 500px;
+    height: 300px;
+    z-index:5;
+    margin: 0 auto;
+    }
+
+.jdSlideshow {
+    display: none;
+    overflow: hidden;
+    position: relative;
+    }
+
+.jdSlideshow img {
+    border: 0;
+    margin: 0;
+    }
+
+.jdSlideshow .slideElement {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    background-repeat: no-repeat;
+    }
+
+.jdSlideshow .loadingElement {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #000;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url(/img/loading.gif);
+    }
+
+.jdSlideshow .slideInfoZone {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    margin: 0px;
+    left: 0;
+    bottom: 0;
+    height: 30px;
+    background: #333;
+    color: #fff;
+    text-indent: 0;
+    }
+
+.jdSlideshow .slideInfoZone div {
+    padding: 0;
+    font-size: 11px;
+    margin: 8px 10px 0 8px;
+    color: #fff;
+    }
+
+.jdSlideshow .slideInfoZone p {
+    padding: 0;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 8px 0 0 0;
+    color: #fff;
+    }
+
+.jdSlideshow a {
+    font-size: 100%;
+    text-decoration: none;
+    color: inherit;
+    }
+
+.jdSlideshow a.right, .jdSlideshow a.left {
+    position: absolute;
+    height: 100%;
+    width: 40%;
+    cursor: pointer;
+    z-index:10;
+    filter:alpha(opacity=20);
+    -moz-opacity:0.2;
+    -khtml-opacity: 0.2;
+    opacity: 0.2;
+    }
+
+* html .jdSlideshow a.right, * html .jdSlideshow a.left {
+    filter:alpha(opacity=50);
+    }
+
+.jdSlideshow a.right:hover, .jdSlideshow a.left:hover {
+    filter:alpha(opacity=80);
+    -moz-opacity:0.8;
+    -khtml-opacity: 0.8;
+    opacity: 0.8;
+    }
+
+
+
+/* --------------------------------------
+    tooltip
+--------------------------------------- */
+
+.hotspot {
+    cursor: pointer;
+    }
+
+#tt {
+    position: absolute;
+    display: block;
+    background: url(/img/tooltip/tt_left.gif) top left no-repeat;
+    }
+#tttop {
+    display: block;
+    height: 5px;
+    margin-left: 5px;
+    background: url(/img/tooltip/tt_top.gif) top right no-repeat;
+    overflow: hidden;
+    }
+#ttcont {
+    display: block;
+    padding: 2px 12px 3px 7px;
+    margin-left: 5px;
+    background: #ccc;
+    color: #333;
+    font-size: 10px;
+    line-height: 16px;
+    }
+    #ttcont div.schedule_title {
+        font-size: 13px;
+        }
+    #ttcont div.schedule_body {
+        font-size: 11px;
+        }
+
+#ttbot {
+    display: block;
+    height: 5px;
+    margin-left: 5px;
+    background: url(/img/tooltip/tt_bottom.gif) top right no-repeat;
+    overflow: hidden;
+    }
+
+
+
+/* --------------------------------------
+    thickbox
+--------------------------------------- */
+
+#TB_window {
+    font: 12px Arial, Helvetica, sans-serif;
+    color: #333333;
+    }
+
+#TB_secondLine {
+    font: 10px Arial, Helvetica, sans-serif;
+    color: #666666;
+    }
+
+#TB_overlay {
+    position: fixed;
+    z-index: 100;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    }
+
+.TB_overlayMacFFBGHack {
+    background: url(/img/bg/black_alpha_80.png);
+    }
+
+.TB_overlayBG {
+    background-color: #000000;
+    filter:alpha(opacity=80);
+    -moz-opacity: 0.80;
+    opacity: 0.80;
+    }
+
+* html #TB_overlay { /* ie6 hack */
+    position: absolute;
+    height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+    }
+
+#TB_window {
+    position: fixed;
+    background: url(/img/bg/black_alpha_50.png);
+    z-index: 10001;
+    display: none;
+    text-align: left;
+    top: 50%;
+    left: 50%;
+    -moz-border-radius-bottomleft: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    }
+
+* html #TB_window { /* ie6 hack */
+    position: absolute;
+    margin-top: expression(0 - parseInt(this.offsetHeight / 2) + (TBWindowMargin = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop) + 'px');
+    }
+
+#TB_window img#TB_Image {
+    display: block;
+    margin: 15px 0 0 15px;
+    border: 1px solid #fff;
+    }
+
+#TB_caption {
+    padding: 10px 20px;
+    float:left;
+    color: #fff;
+    font-size: 11px;
+    }
+    #TB_caption a {
+        color: #fff;
+        }
+
+#TB_closeWindow{
+    padding: 10px;
+    float:right;
+    }
+
+#TB_closeAjaxWindow{
+    padding: 7px 7px 5px 0;
+    margin-bottom: 1px;
+    text-align: right;
+    float: right;
+    }
+
+#TB_ajaxWindowTitle{
+    float: left;
+    padding: 7px 0 5px 10px;
+    margin-bottom: 1px;
+    }
+
+#TB_title{
+    background-color: #FFF;
+    height: 35px;
+    }
+
+#TB_ajaxContent{
+    clear: both;
+    padding: 2px 15px 15px 15px;
+    overflow: auto;
+    text-align: left;
+    line-height: 1.4em;
+        background-color: #ffffff;
+
+}
+
+#TB_ajaxContent.TB_modal{
+    padding: 15px;
+    }
+
+#TB_ajaxContent p{
+    padding: 5px 0px 5px 0px;
+    }
+
+#TB_load{
+    position: fixed;
+    display: none;
+    height: 13px;
+    width: 208px;
+    z-index: 103;
+    top: 50%;
+    left: 50%;
+    margin: -6px 0 0 -104px; /* -height/2 0 0 -width/2 */
+    }
+
+* html #TB_load { /* ie6 hack */
+    position: absolute;
+    margin-top: expression(0 - parseInt(this.offsetHeight / 2) + (TBWindowMargin = document.documentElement && document.documentElement.scrollTop || document.body.scrollTop) + 'px');
+    }
+
+#TB_HideSelect{
+    z-index: 99;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    border: none;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    }
+
+* html #TB_HideSelect { /* ie6 hack */
+    position: absolute;
+    height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+    }
+
+#TB_iframeContent{
+    clear: both;
+    border: none;
+    margin-bottom: -1px;
+    margin-top: 1px;
+    }
+
+
+/* --------------------------------------
+    For IE6
+--------------------------------------- */
+
+* html .info {
+    margin: 0 0 40px 0;
+    }
+
+* html .table_calendar td a.hotspot {
+    display: block;
+    width: 26px;
+    height: 26px;
+    border: 2px solid #eeeeee;
+    cursor: hand;
+    }
