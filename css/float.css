@@ -18,10 +18,12 @@ div{
     margin-left: 1.8%
     margin-bottom: 10px;
 }
-
+/*
 div:nth-of-type(3n){
     margin-right: 1.5%;
 }
+*/
+
 
 div:nth-of-type(3n + 1){
     clear: left;
