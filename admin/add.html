@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/sanitize.css">
+  <style>
+    #shopping_done{
+    display: none;
+}
+
+#contact table thead, #contact table tfoot{
+    background-color: #337ab7;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+
+#page-4 #contact table,#page-4 #contact form#page-4 contact section{
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+#contact table thead{
+    color: white;
+}
+
+#contact table tbody{
+    background-color: rgba(102,153,255,0.65);
+    font-size: 1.4rem;
+}
+
+#contact table tfoot #shopping_done a{
+    color: white;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+
+  </style>
+</head>
+<body>
+
+<section class="contact">
+                <form action="" method="post"  id="contact">
+                <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
+                    <thead>
+                        <tr>
+                            <th colspan="2" style="text-align: center;">
+                                下記ご入力ください<br>
+                                <span style="margin-left: 3%">*入力必須項目</span>
+                            </th>
+                        </tr>
+                      </thead>
+                      <tfoot>
+                        <tr>
+                          <td colspan="2" align="center">
+                            <input type="submit" value="SEND" id="send_btn">
+                            <p id="shopping_done">
+                              <span></span>様<br>お問い合わせありがとうございました
+                              <i class="fa fa-smile-o" aria-hidden="true"></i><br>
+                              <a href="">戻る</a>
+                            </p>
+                          </td>
+                        </tr>
+                      </tfoot>
+                      <tbody>
+                        <tr>
+                          <td align="right" nowrap>
+                            <label>Date<span>*</span></label>
+                          </td>
+                          <td valign="top">
+                            <input type="text" name="name" maxlength="20" required id="user" size="18">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td align="right" nowrap>
+                            <label>Maker</label>
+                          </td>
+                          <td valign="top">
+                            <input type="text" name="kana"  maxlength="20" size="18" placeholder="全角カタカナ入力">
+                          </td>
+                        </tr>
+                          <tr>
+                          <td align="right" nowrap>
+                            <label>Type<span>*</span></label>
+                          </td>
+                          <td valign="top">
+                            <input type="email" name="email"  maxlength="40" required size="18">
+                          </td>
+                        </tr>
+                          <tr>
+                          <td align="right" nowrap>
+                            <label>Year</label>
+                          </td>
+                          <td valign="top">
+                            <input type="tel" name="tel" maxlength="20" size="18">
+                          </td>
+                        </tr>
+                          <tr>
+                          <td align="right" nowrap>
+                            <label>Price<span>*</span></label>
+                          </td>
+                          <td valign="top">
+                            <textarea name="message" cols="23" rows="6" maxlength="200" required></textarea>
+                          </td>
+                        </tr>
+                        </tr>
+                          <tr>
+                          <td align="right" nowrap>
+                            <label>Image<span>*</span></label>
+                          </td>
+                          <td valign="top">
+                            <textarea name="message" cols="23" rows="6" maxlength="200" required></textarea>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </form>
+                </section>
+</body>
+</html>
