@@ -3,14 +3,14 @@
  * データベース利用の設定
  */
 define("HOST", "localhost"); // データベースサーバのアドレス
-define("DBNAME", "DBzd1B07"); // データベースの名前
-define("DBUSER", "zd1B07"); // データベース利用ユーザの名前
-define("DBPASS", "AV3M5E");  // データベース利用ユーザのパスワード
+define("DBNAME", "crescent"); // データベースの名前
+define("DBUSER", "sysuser"); // データベース利用ユーザの名前
+define("DBPASS", "secret");  // データベース利用ユーザのパスワード
 
 /**
  * データベース利用準備
  */
-function db_init()
+function db_connect()
 {
   //--------------------
   // データベースへ接続する

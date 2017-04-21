@@ -4,7 +4,7 @@ require_once '../function.php';
 
 $pdo = db_connect();
 
-$sql = "SELECT * FROM used_cars ORDER BY created DESC LIMIT 5";
+$sql = "SELECT * FROM used_cars";
 $posts = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 var_dump($posts);
 ?>
