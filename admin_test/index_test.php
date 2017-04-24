@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-require_once "../db_connect.php";
+require_once "../db_connect_test.php";
 require_once "../function.php";
-require_once "auth.inc.php";
+// require_once "auth.inc.php";
 
 //------------------------------------------------
 // ログイン認証済みでなければログインページへ移動
