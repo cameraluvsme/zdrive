@@ -1,3 +1,15 @@
+<?php
+
+require_once '../db_connect.php';
+require_once '../function.php';
+
+try{
+
+}
+
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -57,7 +69,8 @@
                       <tfoot>
                         <tr>
                           <td colspan="2" align="center">
-                            <input type="submit" value="Confirm" id="send_btn">
+                            <input type="submit" value="save" id="send_btn" value = "SAVE">
+                            <input type="submit" value="cancel" id="send_btn" value = "CXL">
                             <p id="shopping_done">
                               <span></span>様<br>お問い合わせありがとうございました
                               <i class="fa fa-smile-o" aria-hidden="true"></i><br>
