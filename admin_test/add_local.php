@@ -57,7 +57,7 @@
                       <tfoot>
                         <tr>
                           <td colspan="2" align="center">
-                            <input type="submit" value="SEND" id="send_btn">
+                            <input type="submit" value="Confirm" id="send_btn">
                             <p id="shopping_done">
                               <span></span>様<br>お問い合わせありがとうございました
                               <i class="fa fa-smile-o" aria-hidden="true"></i><br>
@@ -80,7 +80,13 @@
                             <label>Maker</label>
                           </td>
                           <td valign="top">
-                            <input type="text" name="maker"  maxlength="20" size="18" value ="maker">
+                            <input type="radio" name = "maker" value="Missan">Missan
+                            <input type="radio" name = "maker" value="Toyoda">Toyoda
+                            <input type="radio" name = "maker" value="Masuda">Masuda
+                            <br>
+                            <input type="radio" name = "maker" value="Nino">Nino
+                            <input type="radio" name = "maker" value="Tsubaru">Tsubaru
+                            <input type="radio" name = "maker" value="Ponda">Ponda
                           </td>
                         </tr>
                           <tr>
@@ -88,7 +94,15 @@
                             <label>Type<span>*</span></label>
                           </td>
                           <td valign="top">
-                            <input type="text" name="type"  maxlength="20" size="18" value ="type">
+                            <select name="type" size = "4">
+                              <option value="SUV">SUV</option>
+                              <option value="Van">Van</option>
+                              <option value="Compact">Compact</option>
+                              <option value="Wagon">Wagon</option>
+                              <option value="Sedan">Sedan</option>
+                              <option value="Convertible">Convertible</option>
+                              <option value="Sports">Sports</option>
+                            </select>
                           </td>
                         </tr>
                           <tr>
@@ -96,7 +110,7 @@
                             <label>Year</label>
                           </td>
                           <td valign="top">
-                            <input type="number" name="year" min="1980" max="2030" size="18" value = "year">
+                            <input type="number" name="year" min="1990" max="2020" size="18" value = "year">
                           </td>
                         </tr>
                           <tr>
@@ -104,7 +118,7 @@
                             <label>Price<span>*</span></label>
                           </td>
                           <td valign="top">
-                            <input type="number" name="year" min="5" max="5000" size="18" step = "5" value = "year"> Man JPY
+                            <input type="number" name="year" min="10" max="500" size="18" step = "5" value = "year"> Man JPY
                           </td>
                         </tr>
                         </tr>
