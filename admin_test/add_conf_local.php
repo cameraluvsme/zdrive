@@ -1,11 +1,16 @@
 <?php
-$date = $_POST["date"];  //氏名
+$posted = $_POST["posted"];  //氏名
 $maker = $_POST["maker"];  //フリガナ
 $type = $_POST["type"];  //職業：社会人、学生、その他
 $year = $_POST["year"]; //配列で人物名を取得
 $price = $_POST["price"]; //yesまたはno
 $image = $_POST["image"];  //備考欄
 $imageflag = $_POST["imageflag"]; //チェックしていればon
+
+if($imageflag === "on"){
+      $imageflag = "No Image";
+    }
+
 ?>
 <!doctype html>
 <html lang="ja">
@@ -68,7 +73,7 @@ $imageflag = $_POST["imageflag"]; //チェックしていればon
         <td align="right" nowrap>
             <label>Date</label>
         </td>
-        <td valign="top"><?php echo $date; ?></td>
+        <td valign="top"><?php echo $posted; ?></td>
       </tr>
       <tr>
         <td align="right" nowrap>
@@ -92,13 +97,13 @@ $imageflag = $_POST["imageflag"]; //チェックしていればon
         <td align="right" nowrap>
             <label>Price</label>
         </td>
-        <td valign="top"><?php echo $price; ?></td>
+        <td valign="top"><?php echo $price; ?> Man JPY</td>
       </tr>
       <tr>
         <td align="right" nowrap>
             <label>Image</label>
         </td>
-        <td valign="top"><?php echo "PENDING"; ?></td>
+        <td valign="top"><?php echo $imageflag; ?></td>
       </tr>
     </tbody>
   </table>

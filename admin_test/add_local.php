@@ -72,7 +72,7 @@
                             <label>Date<span>*</span></label>
                           </td>
                           <td valign="top">
-                            <input type="date" name="posted" required size="18" value = "posted">
+                            <input type="date" name="posted" required size="18">
                           </td>
                         </tr>
                         <tr>
@@ -118,7 +118,7 @@
                             <label>Price<span>*</span></label>
                           </td>
                           <td valign="top">
-                            <input type="number" name="year" min="10" max="500" size="18" step = "5" value = "year"> Man JPY
+                            <input type="number" name="price" min="10" max="500" size="18" step = "5" value = "price"> Man JPY
                           </td>
                         </tr>
                         </tr>
