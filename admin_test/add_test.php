@@ -1,5 +1,5 @@
 <?php
-require_once '../db_connect.php';
+require_once '../db_connect_test.php';
 require_once '../function.php';
 
 $pdo = db_connect();
