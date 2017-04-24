@@ -44,7 +44,7 @@
 <body>
 
 <section class="contact">
-                <form action="" method="post"  id="contact">
+                <form action="add_conf_local.php" method="post"  id="contact">
                 <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
                     <thead>
                         <tr>
@@ -127,7 +127,9 @@
                             <label>Image<span>*</span></label>
                           </td>
                           <td valign="top">
-                          <input type="file" name="image" size="18">
+                          <input type="file" name="image" size="18"><br>
+                          <label><input type="checkbox" name="imageflag">
+                            No Image</label>
                           </td>
                         </tr>
                       </tbody>

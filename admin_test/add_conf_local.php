@@ -1,11 +1,11 @@
 <?php
-$name = $_POST["name"];  //氏名
-$kana = $_POST["kana"];  //フリガナ
-$prof = $_POST["prof"];  //職業：社会人、学生、その他
-$character = $_POST["character"]; //配列で人物名を取得
-$magazine = $_POST["magazine"]; //yesまたはno
-$memo = $_POST["memo"];  //備考欄
-$privacy = $_POST["privacy"]; //チェックしていればon
+$date = $_POST["date"];  //氏名
+$maker = $_POST["maker"];  //フリガナ
+$type = $_POST["type"];  //職業：社会人、学生、その他
+$year = $_POST["year"]; //配列で人物名を取得
+$price = $_POST["price"]; //yesまたはno
+$image = $_POST["image"];  //備考欄
+$imageflag = $_POST["imageflag"]; //チェックしていればon
 ?>
 <!doctype html>
 <html lang="ja">
@@ -39,7 +39,7 @@ $privacy = $_POST["privacy"]; //チェックしていればon
     font-size: 1.4rem;
 }
 
-#contact table tfoot #shopping_done a{
+#contact table tfoot a{
     color: white;
     text-decoration: underline;
     font-weight: bold;
@@ -66,7 +66,7 @@ $privacy = $_POST["privacy"]; //チェックしていればon
     <tbody>
       <tr>
         <td align="right" nowrap>
-            <label>Date<span>*</span></label>
+            <label>Date</label>
         </td>
         <td valign="top"><?php echo $date; ?></td>
       </tr>
@@ -78,7 +78,7 @@ $privacy = $_POST["privacy"]; //チェックしていればon
       </tr>
       <tr>
         <td align="right" nowrap>
-          <label>Type<span>*</span></label>
+          <label>Type</label>
         </td>
         <td valign="top"><?php echo $type; ?></td>
       </tr>
@@ -90,13 +90,13 @@ $privacy = $_POST["privacy"]; //チェックしていればon
       </tr>
       <tr>
         <td align="right" nowrap>
-            <label>Price<span>*</span></label>
+            <label>Price</label>
         </td>
         <td valign="top"><?php echo $price; ?></td>
       </tr>
       <tr>
         <td align="right" nowrap>
-            <label>Image<span>*</span></label>
+            <label>Image</label>
         </td>
         <td valign="top"><?php echo "PENDING"; ?></td>
       </tr>
