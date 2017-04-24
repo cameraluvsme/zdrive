@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once "../db_connect_test.php";
+require_once "../db_connect.php";
 require_once "../function.php";
 // require_once "auth.inc.php";
 
@@ -13,12 +13,12 @@ require_once "../function.php";
 //-------------
 // 画像のパス
 //-------------
-define("IMAGE_PATH", "../images/press/");
+// define("IMAGE_PATH", "../images/press/");
 
 //----------------------
 // 1ページに表示する件数
 //----------------------
-define("NUM_PER_PAGE", 5);
+ define("NUM_PER_PAGE", 5);
 
 try {
   //--------------------
@@ -29,16 +29,16 @@ try {
   //--------------------------------
   // ページ分割機能 >> 実件数の取得
   //--------------------------------
-  $sql = "SELECT COUNT(*) AS hits FROM news";
+  $sql = "SELECT COUNT(*) AS hits FROM used_cars";
   $stmt = $pdo->query($sql);
   $res = $stmt->fetch();
   $hits = $res["hits"];
-
+/*
   //----------------------------------
   // ページ分割機能 >> ページ数の計算
   //----------------------------------
-  $numPages = ceil($hits / NUM_PER_PAGE);
-
+  // $numPages = ceil($hits / NUM_PER_PAGE);
+/
   //------------------------------------
   // ページ分割機能 >> ページ番号の取得
   //------------------------------------
@@ -55,15 +55,15 @@ try {
   // ページ分割機能 >> SQLのLIMITオプションの生成
   //----------------------------------------------
   $offset = ($currentPage - 1) * NUM_PER_PAGE;
-
+*/
   //----------------------
   // お知らせリストの取得
   //----------------------
-  $sql = "SELECT * FROM news ORDER BY posted DESC
+  $sql = "SELECT * FROM used_cars ORDER BY posted DESC
   		  LIMIT " . $offset . "," . NUM_PER_PAGE;
   $stmt = $pdo->query($sql);
   $news = $stmt->fetchAll();
-
+/*
   //----------------------------------------
   // データベースに未登録の画像データを削除
   //----------------------------------------
@@ -79,6 +79,7 @@ try {
   		unlink($imagefile);
   	}
   }
+*/
 }
 catch (PDOException $e) {
   echo $e->getMessage();
@@ -153,7 +154,7 @@ catch (PDOException $e) {
       <tr>
         <td class="center"><?php echo h($item["posted"]); ?></td>
         <td>
-        <span class="title"><?php echo h($item["maker"]); ?></span>
+        <span class="title"><?php echo h($item["title"]); ?></span>
         <?php echo h($item["message"]); ?>
         </td>
         <td class="center">
