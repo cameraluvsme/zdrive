@@ -64,4 +64,19 @@ $(document).ready(function(){
     });// ENDS $("").submit(function(){
 
 //↑Contact Page Submit***********************************************
+    var navHeight = $('nav').height();
+    // console.log(navHeight);
+    // スクロール
+    $('nav a').click(function(){
+        var target = $(this).attr('href');
+        // スクロールする
+        $('html, body').animate(
+            {scrollTop: $(target).offset().top - navHeight}
+        );
+        return false; //a要素本来の働きを無効化
+    });
+
+
+
+//↑Fixed Navigation Revise*******************************************
 });// ENDS $(document).ready(function(){
