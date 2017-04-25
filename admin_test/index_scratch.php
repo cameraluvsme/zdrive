@@ -154,7 +154,7 @@ catch (PDOException $e) {
       <tr>
         <td class="center"><?php echo h($item["posted"]); ?></td>
         <td>
-        <span class="title"><?php echo h($item["title"]); ?></span>
+        <span class="title"><?php echo h($item[""]); ?></span>
         <?php echo h($item["message"]); ?>
         </td>
         <td class="center">
