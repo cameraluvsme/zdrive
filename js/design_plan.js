@@ -77,6 +77,49 @@ $(document).ready(function(){
     });
 
 
+    var fixedPoint = $('nav').offset().top;
+    $(window).scroll(function(){
+        var scrollTop = $(window).scrollTop();
+        //ナビゲーションの固定
+        if(scrollTop > fixedPoint){
+            $('nav').addClass('fixed');
+            $('#page-6').addClass('fixedUnder');
+        }
+        else{
+            $('nav').removeClass('fixed');
+            $('#page-6').removeClass('fixedUnder');
+        }
+
+        //現在位置の表示
+        $('.container-fluid .nav li.active').removeClass('active');
+        if(scrollTop > $('#page-4').offset().top - navHeight){
+            $('li[data-attribute="#contact"]').addClass('active');
+        }
+        else if(scrollTop > $('#page-3').offset().top - navHeight){
+            $('li[data-attribute="#search"]').addClass('active');
+        }
+        else if(scrollTop > $('#page-2').offset().top - navHeight){
+            $('li[data-attribute="#new"]').addClass('active');
+        }
+        else if(scrollTop > $('#page-1').offset().top - navHeight){
+            $('li[data-attribute="#about"]').addClass('active');
+        }
+        else {
+            $('li[data-attribute="#top"]').addClass('active');
+        }
+    });
+
+
+
+
+/*
+    $(".container-fluid .nav li").click(function(){
+        $(".active").removeClass();
+        $(this).addClass("active");
+        var className = $(this).attr("class");
+        console.log(className);
+    });
+*/
 
 //↑Fixed Navigation Revise*******************************************
 });// ENDS $(document).ready(function(){
