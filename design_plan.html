@@ -321,13 +321,12 @@
 
 <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
-<script src="js/jquery.scrollablelink.js" type="text/javascript"></script>
 <script src="js/design_plan.js" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
     $(".container-fluid .nav li").click(function(){
         $(".active").removeClass();
-        $(this).addClass("active scrollable");
+        $(this).addClass("active");
         var className = $(this).attr("class");
         console.log(className);
     });
