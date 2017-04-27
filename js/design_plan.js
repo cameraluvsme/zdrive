@@ -91,21 +91,21 @@ $(document).ready(function(){
         }
 
         //現在位置の表示
-        $('.container-fluid .nav li.active').removeClass('active');
+        $('.nav-pills > li.active').removeClass();
         if(scrollTop > $('#page-4').offset().top - navHeight){
-            $('li[data-attribute="#contact"]').addClass('active');
+            $('li[data-attribute="contact"]').addClass('active');
         }
         else if(scrollTop > $('#page-3').offset().top - navHeight){
-            $('li[data-attribute="#search"]').addClass('active');
+            $('li[data-attribute="search"]').addClass('active');
         }
         else if(scrollTop > $('#page-2').offset().top - navHeight){
-            $('li[data-attribute="#new"]').addClass('active');
+            $('li[data-attribute="new"]').addClass('active');
         }
         else if(scrollTop > $('#page-1').offset().top - navHeight){
-            $('li[data-attribute="#about"]').addClass('active');
+            $('li[data-attribute="about"]').addClass('active');
         }
         else {
-            $('li[data-attribute="#top"]').addClass('active');
+            $('li[data-attribute="top"]').addClass('active');
         }
     });
 
