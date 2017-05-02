@@ -78,6 +78,7 @@ $(document).ready(function(){
 
 
     var fixedPoint = $('nav').offset().top;
+    // console.log(fixedPoint);
     $(window).scroll(function(){
         var scrollTop = $(window).scrollTop();
         //ナビゲーションの固定
