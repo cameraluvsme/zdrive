@@ -67,8 +67,8 @@ $(document).ready(function(){
     var navHeight = $('nav').height();
     // console.log(navHeight);
     // スクロール
-    $('nav li').click(function(){
-        var target = $(this).attr('data-attribute');
+    $('nav a').click(function(){
+        var target = $(this).attr('href');
         // スクロールする
         $('html, body').animate(
             {scrollTop: $(target).offset().top - navHeight}
@@ -83,11 +83,11 @@ $(document).ready(function(){
         //ナビゲーションの固定
         if(scrollTop > fixedPoint){
             $('nav').addClass('fixed');
-            $('#page-6').addClass('fixedUnder');
+            $('#main_top').addClass('fixedUnder');
         }
         else{
             $('nav').removeClass('fixed');
-            $('#page-6').removeClass('fixedUnder');
+            $('#main_top').removeClass('fixedUnder');
         }
 
         //現在位置の表示
