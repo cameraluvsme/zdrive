@@ -67,8 +67,8 @@ $(document).ready(function(){
     var navHeight = $('nav').height();
     // console.log(navHeight);
     // スクロール
-    $('nav a').click(function(){
-        var target = $(this).attr('href');
+    $('nav li').click(function(){
+        var target = $(this).attr('data-attribute');
         // スクロールする
         $('html, body').animate(
             {scrollTop: $(target).offset().top - navHeight}
@@ -91,7 +91,7 @@ $(document).ready(function(){
         }
 
         //現在位置の表示
-        $('.nav-pills > li.active').removeClass();
+        $('.nav-pills > li.active').removeClass('active');
         if(scrollTop > $('#page-4').offset().top - navHeight){
             $('li[data-attribute="contact"]').addClass('active');
         }
