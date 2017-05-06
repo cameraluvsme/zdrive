@@ -340,52 +340,52 @@ $(document).ready(function(){
             $(this).addClass("active");
         });//$(".container-fluid .nav li").click(function(){
     });//$('nav a').click(function(){
-    //.currentを足す
-    $(window).scroll(function(){
-           var scrollTop = $(window).scrollTop();
-          var navHeight = $('nav').height();
-           //現在位置の表示
-               $('.nav-pills > li').removeClass("current","synchro");
-               if(scrollTop > $('#page-4').offset().top - navHeight){
-                   $('li[data-attribute="contact"]').addClass('current');
-                   if($(".current").hasClass("active")){
+       //.currentを足す
+       $(window).scroll(function(){
+        var scrollTop = $(window).scrollTop();
+        var navHeight = $('nav').height();
+              //現在位置の表示
+              $('.nav-pills > li').removeClass("current","synchro");
+              if(scrollTop > $('#page-4').offset().top - navHeight){
+                 $('li[data-attribute="contact"]').addClass('current');
+                 if($(".current").hasClass("active") == true){
                     $('.nav-pills > li').addClass("synchro");
-                  }
-                  else{
-                      $(".synchro").removeClass();
-                  }
+                   }
+                 else{
+                    $('.nav-pills > li').removeClass(".synchro");
+                   }
               }
               else if(scrollTop > $('#page-3').offset().top - navHeight){
-                   $('li[data-attribute="search"]').addClass('current');
-                  if($(".current").hasClass("active")){
-                    $('.nav-pills > li').addClass("synchro");
-                  }
-                   else{
-                       $(".synchro").removeClass();
+                 $('li[data-attribute="search"]').addClass('current');
+                 if($('.nav-pills > li').hasClass("active") == true){
+                    $(".active").addClass("synchro");
+                   }
+                 else{
+                    $(".active").removeClass(".synchro");
                    }
               }
               else if(scrollTop > $('#page-2').offset().top - navHeight){
-                  $('li[data-attribute="new"]').addClass('current');
-                   if($(".current").hasClass("active")){
+                 $('li[data-attribute="new"]').addClass('current');
+                 if($('current').hasClass("active") == true){
                     $('.nav-pills > li').addClass("synchro");
-                  }
-                  else{
-                      $(".synchro").removeClass();
                    }
-               }
-               else if(scrollTop > $('#page-1').offset().top - navHeight){
-                  $('li[data-attribute="about"]').addClass('current');
-                  if($(".current").hasClass("active")){
-                    $('.nav-pills > li').addClass("synchro");
-                  }
                   else{
-                      $(".synchro").removeClass();
-                  }
-               }
-               else {
-                   $('li[data-attribute="top"]').addClass('current');
-               }
-     });//$(window).scroll(function(){
+                    $('.nav-pills > li').removeClass(".synchro");
+                   }
+              }
+              else if(scrollTop > $('#page-1').offset().top - navHeight){
+                  $('li[data-attribute="about"]').addClass('current');
+                  if($('.nav-pills > li').hasClass("active") == true){
+                     $('.nav-pills > li').addClass("synchro");
+                    }
+                  else{
+                     $('.nav-pills > li').removeClass(".synchro");
+                    }
+             }
+             else {
+              $('li[data-attribute="top"]').addClass('current');
+             }
+        });//$(window).scroll(function(){
 });// ./$(document).ready(function(){
 </script>
 
