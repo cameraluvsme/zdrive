@@ -324,14 +324,29 @@
 <script src="js/design_plan.js" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
-    /*
-    $(".container-fluid .nav li").click(function(){
-        $(".active").removeClass();
-        $(this).addClass("active");
-        var className = $(this).attr("class");
-        console.log(className);
+
+    var navHeight = $('nav').height();
+    // console.log(navHeight);
+    // スクロール
+    $('nav a').click(function(){
+        var target = $(this).attr('href');
+        // スクロールする
+        $('html, body').animate(
+            {scrollTop: $(target).offset().top - navHeight}
+        );
+        $(".container-fluid .nav li").click(function(){
+            $(".active").removeClass();
+            $(this).addClass("active");
+            var className = $(this).attr("class");
+        // console.log(className);
+        });
+        // return false; //a要素本来の働きを無効化
     });
-    */
+
+
+
+
+
 });// ./$(document).ready(function(){
 </script>
 

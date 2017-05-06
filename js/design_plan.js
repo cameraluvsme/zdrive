@@ -64,6 +64,10 @@ $(document).ready(function(){
     });// ENDS $("").submit(function(){
 
 //↑Contact Page Submit***********************************************
+
+
+
+/*
     var navHeight = $('nav').height();
     // console.log(navHeight);
     // スクロール
@@ -76,20 +80,8 @@ $(document).ready(function(){
         return false; //a要素本来の働きを無効化
     });
 
-
-    var fixedPoint = $('nav').offset().top;
-    // console.log(fixedPoint);
     $(window).scroll(function(){
         var scrollTop = $(window).scrollTop();
-        //ナビゲーションの固定
-        if(scrollTop > fixedPoint){
-            $('nav').addClass('fixed');
-            $('#main_top').addClass('fixedUnder');
-        }
-        else{
-            $('nav').removeClass('fixed');
-            $('#main_top').removeClass('fixedUnder');
-        }
 
         //現在位置の表示
         $('.nav-pills > li.active').removeClass('active');
@@ -111,9 +103,6 @@ $(document).ready(function(){
     });
 
 
-
-
-/*
     $(".container-fluid .nav li").click(function(){
         $(".active").removeClass();
         $(this).addClass("active");
