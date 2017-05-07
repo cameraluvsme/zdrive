@@ -1,3 +1,96 @@
+<?php
+session_start();
+
+require_once "util.inc.php";
+
+//--------------------
+// 変数の初期化
+//--------------------
+$name    = "";
+$kana    = "";
+$email   = "";
+$phone   = "";
+$inquiry = "";
+
+// $contactOnly = FALSE;  //地図の表示フラグ
+
+//--------------------
+// セッション変数が登録されている場合は読み出す
+//--------------------
+if (isset($_SESSION["contact"])) {
+  $contact = $_SESSION["contact"];
+  $name    = $contact["name"];
+  $kana    = $contact["kana"];
+  $email   = $contact["email"];
+  $phone   = $contact["phone"];
+  $inquiry = $contact["inquiry"];
+  $contactOnly = $contact["contactOnly"];
+}
+
+//--------------------
+// 「確認する」ボタン
+//--------------------
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  $isValidated = TRUE;
+  $contactOnly = TRUE;
+
+  // 入力データの取得
+  $name    = $_POST["name"];
+  $kana    = $_POST["kana"];
+  $email   = $_POST["email"];
+  $phone   = $_POST["phone"];
+  $inquiry = $_POST["inquiry"];
+  $token   = $_POST["token"];
+
+  // 名前のバリデーション
+  if ($name === "") {
+    $errorName = "※お名前を入力してください";
+    $isValidated = FALSE;
+  }
+
+  // フリガナのバリデーション
+  if ($kana === "") {
+    $errorKana = "※フリガナを入力してください";
+    $isValidated = FALSE;
+  }
+  elseif (!preg_match("/^[ァ-ヶー 　]+$/u", $kana)) {
+    $errorKana = "※全角カタカナで入力してください";
+    $isValidated = FALSE;
+  }
+
+  // メールアドレスのバリデーション
+  if ($email === "") {
+    $errorEmail = "※メールアドレスを入力してください";
+    $isValidated = FALSE;
+  }
+  elseif (!preg_match("/^[^@]+@[^@]+\.[^@]+$/", $email)) {
+    $errorEmail = "※メールアドレスの形式が正しくありません";
+    $isValidated = FALSE;
+  }
+
+  // 問い合わせ内容のバリデーション
+  if ($inquiry === "") {
+    $errorInquiry = "※お問い合わせ内容を入力してください";
+    $isValidated = FALSE;
+  }
+
+  // エラーが無ければ確認画面へ移動
+  if ($isValidated == TRUE) {
+    $contact = array(
+      "name"    => $name,
+      "kana"    => $kana,
+      "email"   => $email,
+      "phone"   => $phone,
+      "inquiry" => $inquiry,
+      "token"   => $token,
+      "contactOnly" => FALSE
+    );
+    $_SESSION["contact"] = $contact;
+    header("Location: contact_conf_tanma.php");
+    exit;
+  }
+}
+?>
 <!DOCTYPE html>
 
 <html lang = "ja">
@@ -223,7 +316,8 @@
         <div id="page-4" style="height:600px;">
             <h3>CONTACT</h3>
             <section class="contact">
-                <form action="" method="post"  id="contact">
+                  <form action="" method="post"  id="contact" novalidate>
+                  <input type="hidden" name="token" value="<?php echo getToken(); ?>">
                 <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
                     <thead>
                         <tr>
@@ -236,7 +330,7 @@
                       <tfoot>
                         <tr>
                           <td colspan="2" align="center">
-                            <input type="submit" value="SEND" id="send_btn">
+                            <input type="submit" value="Confirm" id="send_btn">
                             <p id="shopping_done">
                               <span></span>様<br>お問い合わせありがとうございました
                               <i class="fa fa-smile-o" aria-hidden="true"></i><br>
@@ -256,7 +350,7 @@
                         </tr>
                         <tr>
                           <td align="right" nowrap>
-                            <label for = "pronouce">カナ</label>
+                            <label for = "pronouce">カナ<span>*</span></label>
                           </td>
                           <td valign="top">
                             <input type="text" name="kana"  maxlength="20" size="18" placeholder="全角カタカナ入力" id = "pronouce">
@@ -275,7 +369,7 @@
                             <label for = "phonenum">TEL</label>
                           </td>
                           <td valign="top">
-                            <input type="tel" name="tel" maxlength="20" size="18" id = "phonenum">
+                            <input type="tel" name="phone" maxlength="20" size="18" id = "phonenum">
                           </td>
                         </tr>
                           <tr>
@@ -283,7 +377,7 @@
                             <label for = "inquiry_string">内容<span>*</span></label>
                           </td>
                           <td valign="top">
-                            <textarea name="message" cols="23" rows="6" maxlength="200" required id = "inquiry_string"></textarea>
+                            <textarea name="inquiry" cols="23" rows="6" maxlength="200" required id = "inquiry_string"></textarea>
                           </td>
                         </tr>
                       </tbody>

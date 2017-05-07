@@ -6,7 +6,6 @@ $pdo = db_connect();
 
 $sql = "SELECT * FROM used_cars";
 $posts = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-// var_dump($posts);
 ?>
 
 <!DOCTYPE html>
