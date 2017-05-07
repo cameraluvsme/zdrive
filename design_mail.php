@@ -12,7 +12,7 @@ $email   = "";
 $phone   = "";
 $inquiry = "";
 
-// $contactOnly = FALSE;  //地図の表示フラグ
+$contactOnly = FALSE;  //地図の表示フラグ
 
 //--------------------
 // セッション変数が登録されている場合は読み出す
@@ -43,13 +43,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $token   = $_POST["token"];
 
   // 名前のバリデーション
-  if ($name === "") {
+  if ($name === "" || mb_ereg_match("^(\s|　)", $name)){
     $errorName = "※お名前を入力してください";
     $isValidated = FALSE;
   }
 
   // フリガナのバリデーション
-  if ($kana === "") {
+  if ($kana === "" || mb_ereg_match("^(\s|　)", $kana)){
     $errorKana = "※フリガナを入力してください";
     $isValidated = FALSE;
   }
@@ -59,17 +59,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   }
 
   // メールアドレスのバリデーション
-  if ($email === "") {
+  if ($email === "" || mb_ereg_match("^(\s|　)", $email)){
     $errorEmail = "※メールアドレスを入力してください";
     $isValidated = FALSE;
   }
-  elseif (!preg_match("/^[^@]+@[^@]+\.[^@]+$/", $email)) {
+  elseif (!preg_match("/^[^@]+@[^@]+\.[^@]+$/", $email)){
     $errorEmail = "※メールアドレスの形式が正しくありません";
     $isValidated = FALSE;
   }
 
+  //電話番号のチェック
+  if($phone === "" || mb_ereg_match("^(\s|　)", $phone)){
+    $isValidated = false;
+    $errorPhone = "※電話番号を入力してください";
+  }
+  elseif(!preg_match("/^\d+$/", $phone)){
+    $isValidated = false;
+    $errorPhone = "※ハイフンなしの形式でお願いします";
+  }
+
+
   // 問い合わせ内容のバリデーション
-  if ($inquiry === "") {
+  if ($inquiry === "" || mb_ereg_match("^(\s|　)", $inquiry)){
     $errorInquiry = "※お問い合わせ内容を入力してください";
     $isValidated = FALSE;
   }
@@ -366,7 +377,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         </tr>
                           <tr>
                           <td align="right" nowrap>
-                            <label for = "phonenum">TEL</label>
+                            <label for = "phonenum">TEL<span>*</span></label>
                           </td>
                           <td valign="top">
                             <input type="tel" name="phone" maxlength="20" size="18" id = "phonenum">
