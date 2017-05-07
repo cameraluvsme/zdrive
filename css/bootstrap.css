@@ -4105,8 +4105,8 @@ Thesis Site CSS
 }
 
 .nav-pills > li.current > a{
-  color: rgba(0,0,102,0.8);
-  background-color: rgba(255, 255, 255, 0.8);
+  color: #fff;
+  background-color: rgba(51,122,183,0.85);
 }
 
 .nav-pills > li.current > a:hover,
