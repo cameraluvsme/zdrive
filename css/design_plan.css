@@ -829,12 +829,12 @@ footer a:visited{
 
 @media (min-width: 960px) {
     footer{
-        margin-top: 80px;
+        margin-top: 300px;
     }/* ENDS footer */
 } /* ENDS @media (min-width: @screen-sm-min) {} */
 
 @media (min-width: 1281px) {
     footer{
-        margin-top: 80px;
+        margin-top: 300px;
     }/* ENDS footer */
 } /* ENDS @media (min-width: @screen-sm-min) {} */
