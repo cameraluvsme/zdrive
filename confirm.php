@@ -393,6 +393,21 @@ if (isset($_POST["back"])) {
                               <i class="fa fa-smile-o" aria-hidden="true"></i><br>
                               <a href="">戻る</a>
                             </p>
+                            <?php if (isset($errorName)): ?>
+                                <div class="text-warning"><?php echo h($errorName); ?></div>
+                            <?php endif; ?>
+                            <?php if (isset($errorKana)): ?>
+                                <div class="text-warning"><?php echo h($errorKana); ?></div>
+                            <?php endif; ?>
+                            <?php if (isset($errorEmail)): ?>
+                                <div class="text-warning"><?php echo h($errorEmail); ?></div>
+                            <?php endif; ?>
+                            <?php if (isset($errorPhone)): ?>
+                                <div class="text-warning"><?php echo h($errorPhone); ?></div>
+                            <?php endif; ?>
+                            <?php if (isset($errorInquiry)): ?>
+                                <div class="text-warning"><?php echo h($errorInquiry); ?></div>
+                            <?php endif; ?>
                           </td>
                         </tr>
                       </tfoot>
@@ -402,7 +417,7 @@ if (isset($_POST["back"])) {
                             <label for = "user">お名前<span>*</span></label>
                           </td>
                           <td valign="top">
-                            <input type="text" name="name" maxlength="20" required id="user" size="18">
+                            <input type="text" name="name" maxlength="20" required id="user" size="18" value="<?php echo h($name); ?>">
                           </td>
                         </tr>
                         <tr>
@@ -410,7 +425,7 @@ if (isset($_POST["back"])) {
                             <label for = "pronouce">カナ<span>*</span></label>
                           </td>
                           <td valign="top">
-                            <input type="text" name="kana"  maxlength="20" size="18" placeholder="全角カタカナ入力" id = "pronouce">
+                            <input type="text" name="kana"  maxlength="20" size="18" placeholder="全角カタカナ入力" id = "pronouce" value="<?php echo h($kana); ?>">
                           </td>
                         </tr>
                           <tr>
@@ -418,7 +433,7 @@ if (isset($_POST["back"])) {
                             <label for = "eaddress">メール<span>*</span></label>
                           </td>
                           <td valign="top">
-                            <input type="email" name="email"  maxlength="40" required size="18" id = "eaddress">
+                            <input type="email" name="email"  maxlength="40" required size="18" id = "eaddress" value="<?php echo h($email); ?>" >
                           </td>
                         </tr>
                           <tr>
@@ -426,7 +441,7 @@ if (isset($_POST["back"])) {
                             <label for = "phonenum">TEL<span>*</span></label>
                           </td>
                           <td valign="top">
-                            <input type="tel" name="phone" maxlength="20" size="18" id = "phonenum">
+                            <input type="tel" name="phone" maxlength="20" size="18" id = "phonenum" value="<?php echo h($phone); ?>">
                           </td>
                         </tr>
                           <tr>
@@ -434,7 +449,7 @@ if (isset($_POST["back"])) {
                             <label for = "inquiry_string">内容<span>*</span></label>
                           </td>
                           <td valign="top">
-                            <textarea name="inquiry" cols="23" rows="6" maxlength="200" required id = "inquiry_string"></textarea>
+                            <textarea name="inquiry" cols="23" rows="6" maxlength="200" required id = "inquiry_string"><?php echo h($inquiry); ?></textarea>
                           </td>
                         </tr>
                       </tbody>
