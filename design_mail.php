@@ -435,6 +435,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <script src="js/design_plan.js" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
+    //$(window).scrollTop(100);
+
     var navHeight = $('nav').height();
     var navHeight =  parseInt(navHeight) - 46;
     // -50 -> padding Top分（凡そ）を調整

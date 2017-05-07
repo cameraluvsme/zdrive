@@ -9,7 +9,7 @@ if(($price == 1 && $year >= 50000)
 	|| ($price == 2 && $year >= 5000)){
 	$msg = "一戸建て物件あります";
 }
-elseif(($price == 1 && $year >= 500
+elseif(($price == 1 && $year >= 500) //閉じ括弧忘れによるエラー
 		|| ($price == 2 && $year >= 1000)){
 	$msg = "マンションあります";
 }

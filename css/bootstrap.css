@@ -4124,6 +4124,8 @@ Thesis Site CSS
 
 }
 
+/*
+
 .nav-pills > li.active > a{
   color: #fff;
   background-color: rgba(51,122,183,0.85);
@@ -4133,9 +4135,14 @@ Thesis Site CSS
 .nav-pills > li.active > a:focus{
   color: #000066;
   background-color: #fff;
+
+}
+
+*/
+
   /*color: #fff;*/
   /*background-color: rgba(51,122,183,0.65);*/
-}
+
 
 /*
 Thesis Site CSS
