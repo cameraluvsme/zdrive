@@ -435,8 +435,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <script src="js/design_plan.js" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
-    //$(window).scrollTop(100);
-
     var navHeight = $('nav').height();
     var navHeight =  parseInt(navHeight) - 46;
     // -50 -> padding Top分（凡そ）を調整
@@ -499,6 +497,8 @@ $(document).ready(function(){
               $('li[data-attribute="top"]').addClass('current');
              }
         });//$(window).scroll(function(){
+    //最初から少しスクロールダウン
+    $(window).scrollTop(10);
 });// ./$(document).ready(function(){
 </script>
 
