@@ -2,21 +2,12 @@
 session_start();
 
 require_once "util.inc.php";
+require_once "libs/qd/qdsmtp.php";
+require_once "libs/qd/qdmail.php";
 
-//--------------------
-// 変数の初期化
-//--------------------
-$name    = "";
-$kana    = "";
-$email   = "";
-$phone   = "";
-$inquiry = "";
-
-$contactOnly = FALSE;  //地図の表示フラグ
-
-//--------------------
+//----------------------------------------------
 // セッション変数が登録されている場合は読み出す
-//--------------------
+//----------------------------------------------
 if (isset($_SESSION["contact"])) {
   $contact = $_SESSION["contact"];
   $name    = $contact["name"];
@@ -24,82 +15,137 @@ if (isset($_SESSION["contact"])) {
   $email   = $contact["email"];
   $phone   = $contact["phone"];
   $inquiry = $contact["inquiry"];
-  $contactOnly = $contact["contactOnly"];
+  $token   = $contact["token"];
+  // CSRF対策
+  if($token !== getToken()){
+    header("Location: design_mail.php");
+    exit();
+  }
+}
+else {
+  // 不正なアクセス
+  // 入力ページへ戻る
+  header("Location: contact.php");
+  exit;
 }
 
 //--------------------
-// 「確認する」ボタン
+// 「送信」ボタン
 //--------------------
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-  $isValidated = TRUE;
-  $contactOnly = TRUE;
+if (isset($_POST["send"])) {
+  $mail = new Qdmail();
+  $mail->errorDisplay(false);
+  $mail->smtpObject()->error_display = false;
+  // SMTP用設定
+  $param = array(
+    "host"     => "w1.sim.zdrv.com",
+    "port"     => 25,
+    "from"     => "zd1b07@sim.zdrv.com",
+    "protocol" => "SMTP",
+  );
+  $mail->smtp(TRUE);
+  $mail->smtpServer($param);
 
-  // 入力データの取得
-  $name    = $_POST["name"];
-  $kana    = $_POST["kana"];
-  $email   = $_POST["email"];
-  $phone   = $_POST["phone"];
-  $inquiry = $_POST["inquiry"];
-  $token   = $_POST["token"];
+  // 管理者宛て基本設定
+  $senderAdrs = "zd1b07@sim.zdrv.com";
+  $senderName = "Crescent Shoes Web";
 
-  // 名前のバリデーション
-  if ($name === "" || mb_ereg_match("^(\s|　)", $name)){
-    $errorName = "※お名前を入力してください";
-    $isValidated = FALSE;
+// 連想配列を作ります
+  $mailParams = [
+    [ // 0: For User
+      "fromAdrs"  => $senderAdrs,
+      "fromName"  => $senderName,
+      "toAdrs"    => $email,
+      "toName"    => "{$name} 様",
+      "subject"   => "Crescent Shoes 問い合わせ Thank You",
+      "header"    => "{$name}様、以下のお問合せをいただきまして、ありがとうございます。",
+      "footer"    => "3営業日以内に、担当者より返信いたします。"
+    ],
+    [ // 1: Admin
+      "fromAdrs"  => $senderAdrs,
+      "fromName"  => $senderName,
+      "toAdrs"    => $senderAdrs,
+      "toName"    => "Z Drive Account",
+      "subject"   => "Crescent Shoes 問い合わせ",
+      "header"    => "{$name}様より以下のお問合せをいただきました、ご対応ください。",
+      "footer"    => "問合せ内容を確認の上で、返信ください。"
+    ],
+  ];
+
+  $results = array();
+
+  foreach ($mailParams as $key => $value) :
+    $body = <<<EOT
+{$value['header']}
+
+■お名前
+{$name}
+
+■フリガナ
+{$kana}
+
+■メールアドレス
+{$email}
+
+■電話番号
+{$phone}
+
+■お問い合わせ内容
+{$inquiry}
+
+{$value['footer']}
+
+EOT;
+
+    $mail->from($value['fromAdrs'], $value['fromName']);
+    $mail->to  ($value['toAdrs'], $value['toName']);
+    $mail->subject($value['subject']);
+    $mail->text($body);
+
+    // 送信
+    $results[$key] = $mail->send();
+  endforeach;
+
+
+  // error check
+  foreach ($results as $key => $result) {
+    if (!$result) {
+      // 送信失敗
+      switch($key) {
+        case 0: // to user
+          $_SESSION['msg'] = 'メールアドレスをもう一度...';
+          break;
+        case 1: // to admin
+          $_SESSION['msg'] = '内部エラー...';
+          break;
+        default:
+          // 本当は↓には入らないんだけども、保険で記述するとＣＯＤＥにミスがあるのに気づいちゃいます
+          $_SESSION['msg'] = 'unknown error';
+          break;
+      }
+      // エラー画面へ移動
+      // セッション変数は破棄しない
+      header("Location: contact_error.php");
+      exit;
+    }
   }
 
-  // フリガナのバリデーション
-  if ($kana === "" || mb_ereg_match("^(\s|　)", $kana)){
-    $errorKana = "※フリガナを入力してください";
-    $isValidated = FALSE;
-  }
-  elseif (!preg_match("/^[ァ-ヶー 　]+$/u", $kana)) {
-    $errorKana = "※全角カタカナで入力してください";
-    $isValidated = FALSE;
-  }
+  // 送信成功
+  // セッション変数を破棄
+  unset($_SESSION["contact"]);
+  // 完了画面へ移動
+  header("Location: contact_done.php");
+  exit;
+}
 
-  // メールアドレスのバリデーション
-  if ($email === "" || mb_ereg_match("^(\s|　)", $email)){
-    $errorEmail = "※メールアドレスを入力してください";
-    $isValidated = FALSE;
-  }
-  elseif (!preg_match("/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/", $email)){
-    $errorEmail = "※メールアドレスの形式が正しくありません";
-    $isValidated = FALSE;
-  }
-
-  //電話番号のチェック
-  if($phone === "" || mb_ereg_match("^(\s|　)", $phone)){
-    $isValidated = false;
-    $errorPhone = "※電話番号を入力してください";
-  }
-  elseif(!preg_match("/^\d+$/", $phone)){
-    $isValidated = false;
-    $errorPhone = "※ハイフンなしの形式でお願いします";
-  }
-
-
-  // 問い合わせ内容のバリデーション
-  if ($inquiry === "" || mb_ereg_match("^(\s|　)", $inquiry)){
-    $errorInquiry = "※お問い合わせ内容を入力してください";
-    $isValidated = FALSE;
-  }
-
-  // エラーが無ければ確認画面へ移動
-  if ($isValidated == TRUE) {
-    $contact = array(
-      "name"    => $name,
-      "kana"    => $kana,
-      "email"   => $email,
-      "phone"   => $phone,
-      "inquiry" => $inquiry,
-      "token"   => $token,
-      "contactOnly" => FALSE
-    );
-    $_SESSION["contact"] = $contact;
-    header("Location: confirm.php");
-    exit;
-  }
+//--------------------
+// 「修正」ボタン
+//--------------------
+if (isset($_POST["back"])) {
+  // 入力ページへ戻る
+  $_SESSION["contact"]["contactOnly"] = TRUE;
+  header("Location: contact.php");
+  exit;
 }
 ?>
 <!DOCTYPE html>
@@ -356,10 +402,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <label for = "user">お名前<span>*</span></label>
                           </td>
                           <td valign="top">
-                            <input type="text" name="name" maxlength="20" required id="user" size="18" value="<?php echo h($name); ?>">
-                            <?php if (isset($errorName)): ?>
-                              <div style="text-warning"><?php echo h($errorName); ?></div>
-                            <?php endif; ?>
+                            <input type="text" name="name" maxlength="20" required id="user" size="18">
                           </td>
                         </tr>
                         <tr>
