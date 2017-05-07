@@ -12,7 +12,7 @@ $email   = "";
 $phone   = "";
 $inquiry = "";
 
-$contactOnly = FALSE;  //地図の表示フラグ
+// $contactOnly = FALSE;  //地図の表示フラグ
 
 //--------------------
 // セッション変数が登録されている場合は読み出す
@@ -24,7 +24,7 @@ if (isset($_SESSION["contact"])) {
   $email   = $contact["email"];
   $phone   = $contact["phone"];
   $inquiry = $contact["inquiry"];
-  $contactOnly = $contact["contactOnly"];
+  // $contactOnly = $contact["contactOnly"];
 }
 
 //--------------------
@@ -32,7 +32,7 @@ if (isset($_SESSION["contact"])) {
 //--------------------
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $isValidated = TRUE;
-  $contactOnly = TRUE;
+  // $contactOnly = TRUE;
 
   // 入力データの取得
   $name    = $_POST["name"];
@@ -70,12 +70,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   //電話番号のチェック
   if($phone === "" || mb_ereg_match("^(\s|　)", $phone)){
-    $isValidated = false;
     $errorPhone = "※電話番号を入力してください";
+    $isValidated = FALSE;
   }
   elseif(!preg_match("/^\d+$/", $phone)){
-    $isValidated = false;
     $errorPhone = "※ハイフンなしの形式でお願いします";
+    $isValidated = FALSE;
   }
 
 
@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       "phone"   => $phone,
       "inquiry" => $inquiry,
       "token"   => $token,
-      "contactOnly" => FALSE
+      // "contactOnly" => FALSE
     );
     $_SESSION["contact"] = $contact;
     header("Location: confirm.php");
@@ -347,6 +347,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                               <i class="fa fa-smile-o" aria-hidden="true"></i><br>
                               <a href="">戻る</a>
                             </p>
+                            <?php if (isset($errorName)): ?>
+                                <div class="text-warning"><?php echo h($errorName); ?></div>
+                            <?php endif; ?>
+                            <?php if (isset($errorKana)): ?>
+                                <div class="text-warning"><?php echo h($errorKana); ?></div>
+                            <?php endif; ?>
+                            <?php if (isset($errorEmail)): ?>
+                                <div class="text-warning"><?php echo h($errorEmail); ?></div>
+                            <?php endif; ?>
+                            <?php if (isset($errorPhone)): ?>
+                                <div class="text-warning"><?php echo h($errorPhone); ?></div>
+                            <?php endif; ?>
+                            <?php if (isset($errorInquiry)): ?>
+                                <div class="text-warning"><?php echo h($errorInquiry); ?></div>
+                            <?php endif; ?>
                           </td>
                         </tr>
                       </tfoot>
@@ -357,9 +372,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                           </td>
                           <td valign="top">
                             <input type="text" name="name" maxlength="20" required id="user" size="18" value="<?php echo h($name); ?>">
-                            <?php if (isset($errorName)): ?>
-                              <div style="text-warning"><?php echo h($errorName); ?></div>
-                            <?php endif; ?>
                           </td>
                         </tr>
                         <tr>
@@ -367,7 +379,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <label for = "pronouce">カナ<span>*</span></label>
                           </td>
                           <td valign="top">
-                            <input type="text" name="kana"  maxlength="20" size="18" placeholder="全角カタカナ入力" id = "pronouce">
+                            <input type="text" name="kana"  maxlength="20" size="18" placeholder="全角カタカナ入力" id = "pronouce" value="<?php echo h($kana); ?>">
                           </td>
                         </tr>
                           <tr>
@@ -375,7 +387,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <label for = "eaddress">メール<span>*</span></label>
                           </td>
                           <td valign="top">
-                            <input type="email" name="email"  maxlength="40" required size="18" id = "eaddress">
+                            <input type="email" name="email"  maxlength="40" required size="18" id = "eaddress" value="<?php echo h($email); ?>" >
                           </td>
                         </tr>
                           <tr>
@@ -383,7 +395,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <label for = "phonenum">TEL<span>*</span></label>
                           </td>
                           <td valign="top">
-                            <input type="tel" name="phone" maxlength="20" size="18" id = "phonenum">
+                            <input type="tel" name="phone" maxlength="20" size="18" id = "phonenum" value="<?php echo h($phone); ?>">
                           </td>
                         </tr>
                           <tr>
@@ -391,7 +403,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             <label for = "inquiry_string">内容<span>*</span></label>
                           </td>
                           <td valign="top">
-                            <textarea name="inquiry" cols="23" rows="6" maxlength="200" required id = "inquiry_string"></textarea>
+                            <textarea name="inquiry" cols="23" rows="6" maxlength="200" required id = "inquiry_string"><?php echo h($inquiry); ?></textarea>
                           </td>
                         </tr>
                       </tbody>

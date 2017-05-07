@@ -25,7 +25,7 @@ if (isset($_SESSION["contact"])) {
 else {
   // 不正なアクセス
   // 入力ページへ戻る
-  header("Location: contact.php");
+  header("Location: design_mail.php");
   exit;
 }
 

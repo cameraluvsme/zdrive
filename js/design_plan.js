@@ -48,6 +48,7 @@ $(document).ready(function(){
         return false;
     });//ENDS $("#myform").submit(function(){});
 //↑MENU表示切替***********************************************
+/*
 
     var userName = "";
     $("#contact").submit(function(){
@@ -62,6 +63,10 @@ $(document).ready(function(){
             });
         return false;
     });// ENDS $("").submit(function(){
+
+
+*/
+
 
 //↑Contact Page Submit***********************************************
 
