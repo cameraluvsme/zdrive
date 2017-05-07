@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $errorEmail = "※メールアドレスを入力してください";
     $isValidated = FALSE;
   }
-  elseif (!preg_match("/^[^@]+@[^@]+\.[^@]+$/", $email)){
+  elseif (!preg_match("/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/", $email)){
     $errorEmail = "※メールアドレスの形式が正しくありません";
     $isValidated = FALSE;
   }
