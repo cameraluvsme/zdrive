@@ -724,6 +724,9 @@ Contact Page*****************************************************
     font-weight: bold;
 }
 
+#contact table tfoot .text-warning{
+    font-size: 1.3rem;
+}
 
 #page-4 #contact table,#page-4 #contact form#page-4 contact section{
     width: 90%;
@@ -756,6 +759,11 @@ Contact Form: min-width: 600px*************************************
     #contact table thead, #contact table tfoot{
         font-size: 1.7rem;
     }
+
+    #contact table tfoot .text-warning{
+        font-size: 1.4rem;
+    }
+
     #contact table tbody{
     font-size: 1.5rem;
     }
@@ -772,6 +780,12 @@ Contact Form: min-width: 960px*************************************
     #contact table thead, #contact table tfoot{
         font-size: 1.8rem;
     }
+
+    #contact table tfoot .text-warning{
+        font-size: 1.5rem;
+    }
+
+
     #contact table tbody{
     font-size: 1.6rem;
 }
@@ -786,6 +800,12 @@ Contact Form: min-width: 1281px*************************************
     #contact table thead, #contact table tfoot{
         font-size: 1.9rem;
     }
+
+    #contact table tfoot .text-warning{
+        font-size: 1.6rem;
+    }
+
+
     #contact table tbody{
     font-size: 1.7rem;
 }

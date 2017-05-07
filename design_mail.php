@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $isValidated = FALSE;
   }
   elseif(!preg_match("/^\d+$/", $phone)){
-    $errorPhone = "TELはハイフンなしの形式でお願いします";
+    $errorPhone = "TELは数字(ﾊｲﾌﾝなし)を入力してください";
     $isValidated = FALSE;
   }
 
@@ -436,7 +436,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <script>
 $(document).ready(function(){
     var navHeight = $('nav').height();
-    var navHeight =  parseInt(navHeight) - 47;
+    var navHeight =  parseInt(navHeight) - 46;
     // -50 -> padding Top分（凡そ）を調整
     // スクロール
     $('nav a').click(function(){
