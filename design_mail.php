@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $isValidated = FALSE;
   }
   elseif (!preg_match("/^[ァ-ヶー 　]+$/u", $kana)) {
-    $errorKana = "※全角カタカナで入力してください";
+    $errorKana = "カナは全角カタカナで入力してください";
     $isValidated = FALSE;
   }
 
@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $isValidated = FALSE;
   }
   elseif (!preg_match("/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/", $email)){
-    $errorEmail = "※メールアドレスの形式が正しくありません";
+    $errorEmail = "メールアドレスの形式が正しくありません";
     $isValidated = FALSE;
   }
 
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $isValidated = FALSE;
   }
   elseif(!preg_match("/^\d+$/", $phone)){
-    $errorPhone = "※ハイフンなしの形式でお願いします";
+    $errorPhone = "TELはハイフンなしの形式でお願いします";
     $isValidated = FALSE;
   }
 
@@ -324,7 +324,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </section>
         </div><!-- ENDS<div id="page-2" style="height:500px;"> -->
 
-        <div id="page-4" style="height:600px;">
+        <div id="page-4" style="height:700px;">
             <h3>CONTACT</h3>
             <section class="contact">
                   <form action="" method="post"  id="contact" novalidate>
@@ -436,7 +436,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <script>
 $(document).ready(function(){
     var navHeight = $('nav').height();
-    var navHeight =  parseInt(navHeight) - 55;
+    var navHeight =  parseInt(navHeight) - 47;
     // -50 -> padding Top分（凡そ）を調整
     // スクロール
     $('nav a').click(function(){
