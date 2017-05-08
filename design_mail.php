@@ -18,6 +18,13 @@ $aaa = "";
 //--------------------
 // セッション変数が登録されている場合は読み出す
 //--------------------
+if (isset($_SESSION["confirm"])) {
+  $confirm = "From Confirm Page";
+}
+
+//--------------------
+// セッション変数が登録されている場合は読み出す
+//--------------------
 if (isset($_SESSION["contact"])) {
   $contact = $_SESSION["contact"];
   $name    = $contact["name"];
@@ -108,6 +115,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       // "contactOnly" => FALSE
     );
     $_SESSION["contact"] = $contact;
+    // セッション変数を破棄
+    unset($_SESSION["confirm"]);
     header("Location: confirm.php");
     //header("Location: confirm.php", FALSE);
     exit;
@@ -343,6 +352,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <section class="contact">
                   <form action="" method="post"  id="contact" novalidate>
                   <input type="hidden" name="aaa" value="<?php echo $aaa; ?>">
+                  <input type="hidden" name="confirm" value="<?php echo $confirm; ?>">
                   <input type="hidden" name="token" value="<?php echo getToken(); ?>">
                 <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
                     <thead>
@@ -513,34 +523,21 @@ $(document).ready(function(){
               $('li[data-attribute="top"]').addClass('current');
              }
         });//$(window).scroll(function(){
+
     //最初から少しスクロールダウン
     $(window).scrollTop(10);
 
 
 
 
-
-    if($("input[name='aaa']").val() != ""){
+    //When Error => Reload with Scroll to Contact
+    if($("input[name='aaa']").val() != "" ｜｜$("input[name='confirm']").val() != ""){
       var scrollDown = parseInt($('#page-4').offset().top);
       //var heightNav = parseInt($('nav').height());
 
     $(window).scrollTop(scrollDown);
     }
 
-
-/*
-
-    var scrollDown = parseInt($('#page-4').offset().top);
-    //console.log(scrollDown);
-    var heightNav = parseInt($('nav').height());
-     $("#send_btn").on('click', function(){
-        // submitの選択範囲はフォーム全体です！！
-
-        $(window).scrollTop(scrollDown - heightNav);
-        //return false;
-    });// ENDS $("").submit(function(){
-
-*/
 
 
 
