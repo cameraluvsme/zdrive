@@ -227,7 +227,7 @@ Nav*******************************************************
     width: 99.5%;
     display: block;
     margin: 0 auto;
-    top:0.5%;
+    top:0.1%;
     left: 0.25%;
     right: 0.25%;
     padding: 0;
@@ -235,7 +235,7 @@ Nav*******************************************************
 }
 
 #page-6 nav ul.nav-justified{
-    background-color: rgba(102,153,255,0.65);
+    background-color: rgba(102,153,255,1.0);
     display: table;
     table-layout: fixed;
     border-radius: 4px;
@@ -276,26 +276,6 @@ Nav*******************************************************
 .nav > li > a:hover, .nav > li > a:focus{
         text-decoration: none;
     background-color:#ffffff;
-}
-
-
-/*++++++++++++++++++++++++
-    jquery:scroll-nav
-++++++++++++++++++++++++*/
-.fixed {
-  position: fixed;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-}
-
-.fixedUnder {
-  margin-top: 48px;
-}
-
-nav .current {
-  background-color: #FBB03B;
-  font-weight: bold;
 }
 
 

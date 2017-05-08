@@ -28,9 +28,9 @@
     <header id = "main_top">
             <img src="images/topMainV04.png" alt="Company Logo Top" id = "logo_top">
             <p>
-            中古車の検索は<i class="fa fa-car" aria-hidden="true"></i><br>
-            ボディタイプから<i class="fa fa-music" aria-hidden="true"></i><br>
-            メーカーから<i class="fa fa-star" aria-hidden="true"></i></p>
+            Webサイト制作スキル<i class="fa fa-glass" aria-hidden="true"></i><br>
+            職業訓練<i class="fa fa-heart" aria-hidden="true"></i><br>
+            Java開発<i class="fa fa-music" aria-hidden="true"></i></p>
             <div id="fade_parent">
                 <img src="images/sample_01.jpg"
                         alt="Sea 73 Image Picture"
@@ -38,8 +38,8 @@
                         id="images_fade">
             </div><!-- ./ <div id="fade_parent"> -->
             <p>
-            ご予算に合わせて<i class="fa fa-taxi" aria-hidden="true"></i><br>
-            ご提案をいたします<i class="fa fa-smile-o" aria-hidden="true"></i>
+            技術分野に特化<i class="fa fa-leaf" aria-hidden="true"></i><br>
+            eラーニングシステムをご提供<i class="fa fa-smile-o" aria-hidden="true"></i>
             </p>
     </header>
     <nav>
@@ -56,24 +56,24 @@
 
 <div class="container-fluid main_part">
     <main>
-        <div id="page-1" style="height:600px;">
+        <div id="page-1" style="height:950px;">
         <h3>ABOUT</h3>
           <div class="detail">
               <table width="100%" cellspacing="0" cellpadding="0" border="0" class="table_detail">
                   <tr>
                       <th>住所</th>
                       <td>
-                        西京都古宿区千人里1-2-3<br>
-                        ステップタワー7階
+                        東京都新宿区百人町2-4-8<br>
+                        ステアーズビル8階
                       </td>
                   </tr>
                   <tr>
                       <th>最寄り駅</th>
-                      <td>JR&nbsp;上和田</td>
+                      <td>JR&nbsp;新大久保</td>
                   </tr>
                   <tr>
                     <th>道順</th>
-                    <td>最寄り駅より&nbsp;徒歩7分<br>
+                    <td>最寄り駅より&nbsp;徒歩2分<br>
                         <img src="images/map_zdrive.png" alt="Area Map" width="100%">
                     </td>
                   </tr>
@@ -83,7 +83,7 @@
                   </tr>
                   <tr>
                       <th>営業時間</th>
-                      <td>07:00 ～ 17:00</td>
+                      <td>00:00 ～ 00:00</td>
                   </tr>
                   <tr>
                       <th>定休日</th>
@@ -96,6 +96,15 @@
                       <span><i class="fa fa-cc-mastercard" aria-hidden="true"></i></span>
                       <span><i class="fa fa-cc-amex" aria-hidden="true"></i></span>
                       </td>
+                  </tr>
+                  <tr>
+                      <th>喫煙席</th>
+                      <td>全席終日禁煙<br>
+                      屋外喫煙スペース設置あり</td>
+                  </tr>
+                  <tr>
+                      <th>駐車場</th>
+                      <td>駐車場なし</td>
                   </tr>
               </table>
             </div><!-- ./<div class="detail"> -->
@@ -316,7 +325,7 @@
 <script>
 $(document).ready(function(){
     var navHeight = $('nav').height();
-    var navHeight =  parseInt(navHeight) - 55;
+    var navHeight =  parseInt(navHeight) - 50;
     // -50 -> padding Top分（凡そ）を調整
     // スクロール
     $('nav a').click(function(){
@@ -339,11 +348,11 @@ $(document).ready(function(){
               $('.nav-pills > li').removeClass("current","synchro");
               if(scrollTop > $('#page-4').offset().top - navHeight){
                  $('li[data-attribute="contact"]').addClass('current');
-                 if($(".current").hasClass("active") == true){
-                    $('.nav-pills > li').addClass("synchro");
+                 if($('.nav-pills > li').hasClass("active") == true){
+                    $(".active").addClass("synchro");
                    }
                  else{
-                    $('.nav-pills > li').removeClass(".synchro");
+                    $(".active").removeClass(".synchro");
                    }
               }
               else if(scrollTop > $('#page-3').offset().top - navHeight){
