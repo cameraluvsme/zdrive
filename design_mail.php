@@ -46,52 +46,52 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   if ($name === "" || mb_ereg_match("^(\s|　)", $name)){
     $errorName = "※お名前を入力してください";
     $isValidated = FALSE;
-    // header("Location: input_error.php");
+    header("Location: input_error.php");
   }
 
   // フリガナのバリデーション
   if ($kana === "" || mb_ereg_match("^(\s|　)", $kana)){
     $errorKana = "※カナを入力してください";
     $isValidated = FALSE;
-    // header("Location: input_error.php", FALSE);
+    header("Location: input_error.php");
   }
   elseif (!preg_match("/^[ァ-ヶー 　]+$/u", $kana)) {
     $errorKana = "カナは全角カタカナで入力してください";
     $isValidated = FALSE;
-    // header("Location: input_error.php", FALSE);
+    header("Location: input_error.php");
   }
 
   // メールアドレスのバリデーション
   if ($email === "" || mb_ereg_match("^(\s|　)", $email)){
-    $errorEmail = "※メールアドレスを入力してください";
+    $errorEmail = "※メールを入力してください";
     $isValidated = FALSE;
-    // header("Location: input_error.php", FALSE);
+    header("Location: input_error.php");
   }
   elseif (!preg_match("/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/", $email)){
-    $errorEmail = "メールアドレスの形式が正しくありません";
+    $errorEmail = "メールの形式が正しくありません";
     $isValidated = FALSE;
-    // header("Location: input_error.php", FALSE);
+    header("Location: input_error.php");
   }
 
   //電話番号のチェック
   if($phone === "" || mb_ereg_match("^(\s|　)", $phone)){
-    $errorPhone = "※電話番号を入力してください";
+    $errorPhone = "※TELを入力してください";
     $isValidated = FALSE;
-    // header("Location: input_error.php", FALSE);
+    header("Location: input_error.php");
   }
   elseif(!preg_match("/^\d+$/", $phone)){
     $errorPhone = "TELは数字(ﾊｲﾌﾝなし)を入力してください";
     $isValidated = FALSE;
-    // header("Location: input_error.php", FALSE);
+    header("Location: input_error.php");
   }
 
 
   // 問い合わせ内容のバリデーション
   if ($inquiry === "" || mb_ereg_match("^(\s|　)", $inquiry)){
-    $errorInquiry = "※お問い合わせ内容を入力してください";
+    $errorInquiry = "※内容を入力してください";
     $isValidated = FALSE;
-    // header("Location: input_error.php", FALSE);
-    // exit;
+     header("Location: input_error.php");
+      exit;
   }
 
   // エラーが無ければ確認画面へ移動
@@ -465,6 +465,7 @@ $(document).ready(function(){
        //.currentを足す
        $(window).scroll(function(){
         var scrollTop = $(window).scrollTop();
+        //console.log(scrollTop);
         var navHeight = $('nav').height();
               //現在位置の表示
               $('.nav-pills > li').removeClass("current","synchro");
@@ -513,8 +514,9 @@ $(document).ready(function(){
 
 
     var scrollDown = parseInt($('#page-4').offset().top);
-
-     $("#contact").click(function(){
+    //console.log(scrollDown);
+    var heightNav = parseInt($('nav').height());
+     $("#send_btn").on('click', function(){
         // submitの選択範囲はフォーム全体です！！
 /*
         $("#send_btn").css({
@@ -526,8 +528,11 @@ $(document).ready(function(){
             display:"block"
             });
 */
-        $(window).scrollTop(scrollDown);
-        return false;
+
+
+
+        $(window).scrollTop(scrollDown - heightNav);
+        //return false;
     });// ENDS $("").submit(function(){
 
 
