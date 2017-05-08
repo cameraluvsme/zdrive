@@ -3,20 +3,9 @@ session_start();
 
 require_once "util.inc.php";
 
-//--------------------
-// 変数の初期化
-//--------------------
-$name    = "";
-$kana    = "";
-$email   = "";
-$phone   = "";
-$inquiry = "";
-
-// $contactOnly = FALSE;  //地図の表示フラグ
-
-//--------------------
+//----------------------------------------------
 // セッション変数が登録されている場合は読み出す
-//--------------------
+//----------------------------------------------
 if (isset($_SESSION["contact"])) {
   $contact = $_SESSION["contact"];
   $name    = $contact["name"];
@@ -24,7 +13,18 @@ if (isset($_SESSION["contact"])) {
   $email   = $contact["email"];
   $phone   = $contact["phone"];
   $inquiry = $contact["inquiry"];
-  // $contactOnly = $contact["contactOnly"];
+  $token   = $contact["token"];
+  // CSRF対策
+  if($token !== getToken()){
+    header("Location: design_mail.php#page-4");
+    exit();
+  }
+}
+else {
+  // 不正なアクセス
+  // 入力ページへ戻る
+  header("Location: design_mail.php#page-4");
+  exit;
 }
 
 //--------------------
@@ -46,43 +46,43 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   if ($name === "" || mb_ereg_match("^(\s|　)", $name)){
     $errorName = "※お名前を入力してください";
     $isValidated = FALSE;
-    // header("Location: input_error.php");
+    header("Location: input_error.php");
   }
 
   // フリガナのバリデーション
   if ($kana === "" || mb_ereg_match("^(\s|　)", $kana)){
     $errorKana = "※カナを入力してください";
     $isValidated = FALSE;
-    // header("Location: input_error.php", FALSE);
+    header("Location: input_error.php", FALSE);
   }
   elseif (!preg_match("/^[ァ-ヶー 　]+$/u", $kana)) {
     $errorKana = "カナは全角カタカナで入力してください";
     $isValidated = FALSE;
-    // header("Location: input_error.php", FALSE);
+    header("Location: input_error.php", FALSE);
   }
 
   // メールアドレスのバリデーション
   if ($email === "" || mb_ereg_match("^(\s|　)", $email)){
     $errorEmail = "※メールアドレスを入力してください";
     $isValidated = FALSE;
-    // header("Location: input_error.php", FALSE);
+    header("Location: input_error.php", FALSE);
   }
   elseif (!preg_match("/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/", $email)){
     $errorEmail = "メールアドレスの形式が正しくありません";
     $isValidated = FALSE;
-    // header("Location: input_error.php", FALSE);
+    header("Location: input_error.php", FALSE);
   }
 
   //電話番号のチェック
   if($phone === "" || mb_ereg_match("^(\s|　)", $phone)){
     $errorPhone = "※電話番号を入力してください";
     $isValidated = FALSE;
-    // header("Location: input_error.php", FALSE);
+    header("Location: input_error.php", FALSE);
   }
   elseif(!preg_match("/^\d+$/", $phone)){
     $errorPhone = "TELは数字(ﾊｲﾌﾝなし)を入力してください";
     $isValidated = FALSE;
-    // header("Location: input_error.php", FALSE);
+    header("Location: input_error.php", FALSE);
   }
 
 
@@ -90,8 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   if ($inquiry === "" || mb_ereg_match("^(\s|　)", $inquiry)){
     $errorInquiry = "※お問い合わせ内容を入力してください";
     $isValidated = FALSE;
-    // header("Location: input_error.php", FALSE);
-    // exit;
+    header("Location: input_error.php", FALSE);
+    exit;
   }
 
   // エラーが無ければ確認画面へ移動

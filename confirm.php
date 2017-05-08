@@ -18,14 +18,14 @@ if (isset($_SESSION["contact"])) {
   $token   = $contact["token"];
   // CSRF対策
   if($token !== getToken()){
-    header("Location: design_mail.php");
+    header("Location: design_mail.php#page-4");
     exit();
   }
 }
 else {
   // 不正なアクセス
   // 入力ページへ戻る
-  header("Location: design_mail.php");
+  header("Location: design_mail.php#page-4");
   exit;
 }
 
