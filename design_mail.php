@@ -512,9 +512,9 @@ $(document).ready(function(){
     $(window).scrollTop(10);
 
 
-    // var scrollDown = parseInt($('#page-4').offset().top);
+    var scrollDown = parseInt($('#page-4').offset().top);
 
-    // $("#contact").submit(function(){
+     $("#contact").click(function(){
         // submitの選択範囲はフォーム全体です！！
 /*
         $("#send_btn").css({
@@ -526,9 +526,9 @@ $(document).ready(function(){
             display:"block"
             });
 */
-        // $(window).scrollTop(scrollDown);
-        // return false;
-    // });// ENDS $("").submit(function(){
+        $(window).scrollTop(scrollDown);
+        return false;
+    });// ENDS $("").submit(function(){
 
 
 });// ./$(document).ready(function(){
