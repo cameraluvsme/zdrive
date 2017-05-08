@@ -514,34 +514,35 @@ $(document).ready(function(){
              }
         });//$(window).scroll(function(){
     //最初から少しスクロールダウン
+    $(window).scrollTop(10);
+
+
+
+
+
     if($("input[name='aaa']").val() != ""){
+      var scrollDown = parseInt($('#page-4').offset().top);
+      //var heightNav = parseInt($('nav').height());
 
-
-    $(window).scrollTop(500);
+    $(window).scrollTop(scrollDown);
     }
 
+
+/*
 
     var scrollDown = parseInt($('#page-4').offset().top);
     //console.log(scrollDown);
     var heightNav = parseInt($('nav').height());
      $("#send_btn").on('click', function(){
         // submitの選択範囲はフォーム全体です！！
-/*
-        $("#send_btn").css({
-            display:"none"
-            });
-        var userName = $("#user").val();
-        $("#shopping_done span").text(userName);
-        $("#shopping_done").css({
-            display:"block"
-            });
-*/
-
-
 
         $(window).scrollTop(scrollDown - heightNav);
         //return false;
     });// ENDS $("").submit(function(){
+
+*/
+
+
 
 
 });// ./$(document).ready(function(){
