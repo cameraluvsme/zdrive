@@ -48,24 +48,8 @@ $(document).ready(function(){
         return false;
     });//ENDS $("#myform").submit(function(){});
 //↑MENU表示切替***********************************************
-/*
-
-    var userName = "";
-    $("#contact").submit(function(){
-        // submitの選択範囲はフォーム全体です！！
-        $("#send_btn").css({
-            display:"none"
-            });
-        var userName = $("#user").val();
-        $("#shopping_done span").text(userName);
-        $("#shopping_done").css({
-            display:"block"
-            });
-        return false;
-    });// ENDS $("").submit(function(){
 
 
-*/
 
 
 //↑Contact Page Submit***********************************************

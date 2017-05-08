@@ -510,6 +510,27 @@ $(document).ready(function(){
         });//$(window).scroll(function(){
     //最初から少しスクロールダウン
     $(window).scrollTop(10);
+
+
+    // var scrollDown = parseInt($('#page-4').offset().top);
+
+    // $("#contact").submit(function(){
+        // submitの選択範囲はフォーム全体です！！
+/*
+        $("#send_btn").css({
+            display:"none"
+            });
+        var userName = $("#user").val();
+        $("#shopping_done span").text(userName);
+        $("#shopping_done").css({
+            display:"block"
+            });
+*/
+        // $(window).scrollTop(scrollDown);
+        // return false;
+    // });// ENDS $("").submit(function(){
+
+
 });// ./$(document).ready(function(){
 </script>
 
