@@ -11,6 +11,7 @@ $kana    = "";
 $email   = "";
 $phone   = "";
 $inquiry = "";
+$aaa = "";
 
 // $contactOnly = FALSE;  //地図の表示フラグ
 
@@ -41,48 +42,49 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $phone   = $_POST["phone"];
   $inquiry = $_POST["inquiry"];
   $token   = $_POST["token"];
+  $aaa = "押したよ";
 
   // 名前のバリデーション
   if ($name === "" || mb_ereg_match("^(\s|　)", $name)){
     $errorName = "※お名前を入力してください";
     $isValidated = FALSE;
-    header("Location: input_error.php");
+    //header("Location: input_error.php");
   }
 
   // フリガナのバリデーション
   if ($kana === "" || mb_ereg_match("^(\s|　)", $kana)){
     $errorKana = "※カナを入力してください";
     $isValidated = FALSE;
-    header("Location: input_error.php");
+    //header("Location: input_error.php");
   }
   elseif (!preg_match("/^[ァ-ヶー 　]+$/u", $kana)) {
     $errorKana = "カナは全角カタカナで入力してください";
     $isValidated = FALSE;
-    header("Location: input_error.php");
+    //header("Location: input_error.php");
   }
 
   // メールアドレスのバリデーション
   if ($email === "" || mb_ereg_match("^(\s|　)", $email)){
     $errorEmail = "※メールを入力してください";
     $isValidated = FALSE;
-    header("Location: input_error.php");
+    //header("Location: input_error.php");
   }
   elseif (!preg_match("/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/", $email)){
     $errorEmail = "メールの形式が正しくありません";
     $isValidated = FALSE;
-    header("Location: input_error.php");
+    //header("Location: input_error.php");
   }
 
   //電話番号のチェック
   if($phone === "" || mb_ereg_match("^(\s|　)", $phone)){
     $errorPhone = "※TELを入力してください";
     $isValidated = FALSE;
-    header("Location: input_error.php");
+    //header("Location: input_error.php");
   }
   elseif(!preg_match("/^\d+$/", $phone)){
     $errorPhone = "TELは数字(ﾊｲﾌﾝなし)を入力してください";
     $isValidated = FALSE;
-    header("Location: input_error.php");
+    //header("Location: input_error.php");
   }
 
 
@@ -90,8 +92,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   if ($inquiry === "" || mb_ereg_match("^(\s|　)", $inquiry)){
     $errorInquiry = "※内容を入力してください";
     $isValidated = FALSE;
-     header("Location: input_error.php");
-      exit;
+     //header("Location: input_error.php");
+      //exit;
   }
 
   // エラーが無ければ確認画面へ移動
@@ -106,7 +108,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       // "contactOnly" => FALSE
     );
     $_SESSION["contact"] = $contact;
-    header("Location: confirm.php", FALSE);
+    header("Location: confirm.php");
+    //header("Location: confirm.php", FALSE);
     exit;
   }
 
@@ -339,6 +342,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <h3>CONTACT</h3>
             <section class="contact">
                   <form action="" method="post"  id="contact" novalidate>
+                  <input type="hidden" name="aaa" value="<?php echo $aaa; ?>">
                   <input type="hidden" name="token" value="<?php echo getToken(); ?>">
                 <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
                     <thead>
@@ -510,7 +514,11 @@ $(document).ready(function(){
              }
         });//$(window).scroll(function(){
     //最初から少しスクロールダウン
-    $(window).scrollTop(10);
+    if($("input[name='aaa']").val() != ""){
+
+
+    $(window).scrollTop(500);
+    }
 
 
     var scrollDown = parseInt($('#page-4').offset().top);
