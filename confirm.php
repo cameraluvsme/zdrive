@@ -20,8 +20,8 @@ if (isset($_SESSION["contact"])) {
   $token   = $contact["token"];
   // CSRF対策
   if($token !== getToken()){
-    $isValidated = FALSE;
-    $_SESSION["confirm"] = $confirm;
+    //$isValidated = FALSE;
+    //$_SESSION["confirm"] = $confirm;
     header("Location: design_mail.php#page-4");
     exit();
   }
@@ -29,8 +29,8 @@ if (isset($_SESSION["contact"])) {
 else {
   // 不正なアクセス
   // 入力ページへ戻る
-  $isValidated = FALSE;
-  $_SESSION["confirm"] = $confirm;
+  //$isValidated = FALSE;
+  //$_SESSION["confirm"] = $confirm;
   header("Location: design_mail.php#page-4");
   exit;
 }
@@ -149,7 +149,7 @@ EOT;
 //--------------------
 if (isset($_POST["back"])) {
   // 入力ページへ戻る
-  $_SESSION["contact"]["contactOnly"] = TRUE;
+  $_SESSION["contact"] = TRUE;
   header("Location: contact.php");
   exit;
 }
