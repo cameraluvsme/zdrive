@@ -8,6 +8,7 @@ require_once "libs/qd/qdmail.php";
 
 //初期化
 $confirm = "";
+$sended = "";
 
 //----------------------------------------------
 // セッション変数が登録されている場合は読み出す
@@ -74,7 +75,7 @@ if (isset($_POST["send"])) {
       "toAdrs"    => $email,
       "toName"    => "{$name} 様",
       "subject"   => "Crescent Shoes 問い合わせ Thank You",
-      "header"    => "{$name}様、以下のお問合せをいただきまして、ありがとうございます。",
+      "header"    => "{$name} 様、以下のお問合せをいただきまして、ありがとうございます。",
       "footer"    => "3営業日以内に、担当者より返信いたします。"
     ],
     [ // 1: Admin
@@ -82,9 +83,9 @@ if (isset($_POST["send"])) {
       "fromName"  => $senderName,
       "toAdrs"    => $senderAdrs,
       "toName"    => "Z Drive Account",
-      "subject"   => "Crescent Shoes 問い合わせ",
-      "header"    => "{$name}様より以下のお問合せをいただきました、ご対応ください。",
-      "footer"    => "問合せ内容を確認の上で、返信ください。"
+      "subject"   => "Crescent Shoes 問い合わせ受付",
+      "header"    => "{$name} 様より以下のお問合せをいただきました、ご対応ください。",
+      "footer"    => "お問合せ内容を確認の上で、返信願います"
     ],
   ];
 
@@ -160,7 +161,7 @@ EOT;
 if (isset($_POST["back"])) {
   // 入力ページへ戻る
   $_SESSION["contact"] = TRUE;
-  header("Location: contact.php");
+  header("Location: design_mail.php");
   exit;
 }
 ?>
@@ -404,7 +405,8 @@ if (isset($_POST["back"])) {
                       <tfoot>
                         <tr>
                           <td colspan="2" align="center">
-                            <input type="submit" value="Confirm" id="send_btn">
+                            <input type="submit" value="SEND" id="send_btn" name="send">
+                            <input type="submit" value="修正" id="send_btn" name="back">
                             <p id="shopping_done">
                               <span></span>様<br>お問い合わせありがとうございました
                               <i class="fa fa-smile-o" aria-hidden="true"></i><br>
