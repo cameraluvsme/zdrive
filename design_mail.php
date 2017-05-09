@@ -14,24 +14,6 @@ $inquiry = "";
 $aaa = "";
 $confirm = "";
 
-// $contactOnly = FALSE;  //地図の表示フラグ
-
-//--------------------
-// セッション変数が登録されている場合は読み出す
-//--------------------
-if (isset($_SESSION["confirm"])) {
-  $headerLocated = TRUE;
-  $confirm = $_SESSION["confirm"];
-}
-
-
-/*
-
-else{
-  $confirm = "From Confirm Page";
-}
-
-*/
 
 //--------------------
 // セッション変数が登録されている場合は読み出す
@@ -45,6 +27,19 @@ if (isset($_SESSION["contact"])) {
   $inquiry = $contact["inquiry"];
   // $contactOnly = $contact["contactOnly"];
 }
+
+  //--------------------
+  // セッション変数が登録されている場合は読み出す
+  //--------------------
+  if (isset($_SESSION["confirm"])) {
+    $headerLocated = TRUE;
+    $confirm = $_SESSION["confirm"];
+    $confirm = "From Confirm Page";
+  }
+  else{
+    $headerLocated = FALSE;
+    $fstvisit = "1st Time Visit, Welcome to Page Top!";
+  }
 
 
 //--------------------
@@ -134,7 +129,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     //header("Location: confirm.php", FALSE);
     exit;
   }
-
 
 }
 
@@ -367,6 +361,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                   <form action="" method="post"  id="contact" novalidate>
                   <input type="hidden" name="aaa" value="<?php echo $aaa; ?>">
                   <input type="hidden" name="confirm" value="<?php echo $confirm; ?>">
+                  <input type="hidden" name="fstvisit" value="<?php echo $fstvisit; ?>">
                   <input type="hidden" name="token" value="<?php echo getToken(); ?>">
                 <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
                     <thead>
@@ -539,8 +534,12 @@ $(document).ready(function(){
         });//$(window).scroll(function(){
 
     //最初から少しスクロールダウン
-    $(window).scrollTop(10);
+    if($("input[name='fstvisit']").val() != ""){
+    //if($("input[name='aaa']").val() != "" || $("input[name='confirm']").val() != ""){
 
+
+    $(window).scrollTop(10);
+    }
 
 
 
@@ -559,7 +558,7 @@ $(document).ready(function(){
       var scrollDown = parseInt($('#page-4').offset().top);
       //var heightNav = parseInt($('nav').height());
 
-    $(window).scrollTop(scrollDown);
+    $(window).scrollTop(scrollDown + 1);
     }
 
 

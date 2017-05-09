@@ -160,7 +160,9 @@ EOT;
 //--------------------
 if (isset($_POST["back"])) {
   // 入力ページへ戻る
-  $_SESSION["contact"] = TRUE;
+  //$_SESSION["contact"] = $contact;
+  $isConfirmed = FALSE;
+  $_SESSION["confirm"] = $confirm;
   header("Location: design_mail.php");
   exit;
 }
@@ -568,7 +570,7 @@ $(document).ready(function(){
           var scrollDown = parseInt($('#page-4').offset().top);
           //var heightNav = parseInt($('nav').height());
 
-        $(window).scrollTop(scrollDown);
+        $(window).scrollTop(scrollDown + 1);
         }
 
 
