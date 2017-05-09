@@ -452,14 +452,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                       </tbody>
                     </table>
                   </form>
-                  <h4 id="shopping_done">
+                  <div id="shopping_done">
+                    <h4>
                     <!--<span></span>様<br>-->お問い合わせありがとうございました
                     <i class="fa fa-smile-o" aria-hidden="true"></i><br><br>
                     <!--<a href="">戻る</a>-->
                     確認メールを送信いたしましたので、<br>
                     ご登録のメールをご覧くださいませ
                     <i class="fa fa-inbox" aria-hidden="true"></i>
-                  </h4>
+                    </h4>
+                    <input type="submit" value="FORM" id="send_btn" class = "form_back">
+                  </div>
                 </section>
         </div><!-- ./<div id="page-4" style="height:600px;"> -->
     </main>
@@ -553,8 +556,6 @@ $(document).ready(function(){
     //最初から少しスクロールダウン
     if($("input[name='fstvisit']").val() != ""){
     //if($("input[name='aaa']").val() != "" || $("input[name='confirm']").val() != ""){
-
-
     $(window).scrollTop(10);
     }
 
@@ -596,7 +597,17 @@ $(document).ready(function(){
             });
     }
 
-
+    //フォームを再表示
+    $('.form_back').on('click', function() {
+      $("#shopping_done").css({
+            display:"none"
+            });
+        //var userName = $("#user").val();
+        //$("#shopping_done span").text(userName);
+        $("#contact").css({
+            display:"block"
+            });
+    });
 
 });// ./$(document).ready(function(){
 </script>
