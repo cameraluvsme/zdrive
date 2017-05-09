@@ -14,6 +14,7 @@ $inquiry = "";
 $aaa = "";
 $confirm = "";
 $sent = "";
+$fstvisit = "";
 
 
 //--------------------
@@ -36,10 +37,18 @@ if (isset($_SESSION["contact"])) {
     $headerLocated = TRUE;
     $confirm = $_SESSION["confirm"];
     $confirm = "From Confirm Page";
+    $aaa = "";
+    //$confirm = "";
+    $sent = "";
+    $fstvisit = "";
   }
   else{
     $headerLocated = FALSE;
     $fstvisit = "1st Time Visit, Welcome to Page Top!";
+    $aaa = "";
+    $confirm = "";
+    $sent = "";
+    //$fstvisit = "";
   }
 
   //--------------------
@@ -49,16 +58,28 @@ if (isset($_SESSION["contact"])) {
     $beenSent = TRUE;
     $sent = $_SESSION["sent"];
     $sent = "Mail Has Been Sent, Thank You!";
+    $aaa = "";
+    $confirm = "";
+    //$sent = "";
+    $fstvisit = "";
   }
   else{
     $beenSent = FALSE;
     $fstvisit = "1st Time Visit, Welcome to Page Top!";
+    $aaa = "";
+    $confirm = "";
+    $sent = "";
+    //$fstvisit = "";
   }
 
 if (isset($_POST["formback"])) {
     // セッション変数を破棄
     unset($_SESSION["sent"]);
     $sent = "Display Contact Form, again!";
+    $aaa = "";
+    $confirm = "";
+    //$sent = "";
+    $fstvisit = "";
 }
 
 
@@ -78,6 +99,10 @@ if (isset($_POST["confirmbtn"])) {
   $inquiry = $_POST["inquiry"];
   $token   = $_POST["token"];
   $aaa = "押したよ";
+  //$aaa = "";
+  $confirm = "";
+  $sent = "";
+  $fstvisit = "";
 
   // 名前のバリデーション
   if ($name === "" || mb_ereg_match("^(\s|　)", $name)){
