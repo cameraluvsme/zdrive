@@ -8,7 +8,7 @@ require_once "libs/qd/qdmail.php";
 
 //初期化
 $confirm = "";
-$sended = "";
+$sent = "";
 
 //----------------------------------------------
 // セッション変数が登録されている場合は読み出す
@@ -18,6 +18,7 @@ $sended = "";
 
 if (isset($_SESSION["contact"])) {
   $isConfirmed = TRUE;
+  $beenSent = FALSE;
   $contact = $_SESSION["contact"];
   $name    = $contact["name"];
   $kana    = $contact["kana"];
@@ -151,7 +152,9 @@ EOT;
   // セッション変数を破棄
   unset($_SESSION["contact"]);
   // 完了画面へ移動
-  header("Location: contact_done.php");
+  $beenSent = FALSE;
+  $_SESSION["sent"] = $sent;
+  header("Location: design_mail.php");
   exit;
 }
 

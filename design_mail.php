@@ -41,6 +41,19 @@ if (isset($_SESSION["contact"])) {
     $fstvisit = "1st Time Visit, Welcome to Page Top!";
   }
 
+  //--------------------
+  // セッション変数が登録されている場合は読み出す
+  //--------------------
+  if (isset($_SESSION["sent"])) {
+    $beenSent = TRUE;
+    $sent = $_SESSION["sent"];
+    $sent = "Mail Has Been Sent, Thank You!";
+  }
+  else{
+    $beenSent = FALSE;
+    $fstvisit = "1st Time Visit, Welcome to Page Top!";
+  }
+
 
 //--------------------
 // 「確認する」ボタン
@@ -361,6 +374,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                   <form action="" method="post"  id="contact" novalidate>
                   <input type="hidden" name="aaa" value="<?php echo $aaa; ?>">
                   <input type="hidden" name="confirm" value="<?php echo $confirm; ?>">
+                  <input type="hidden" name="sent" value="<?php echo $sent; ?>">
                   <input type="hidden" name="fstvisit" value="<?php echo $fstvisit; ?>">
                   <input type="hidden" name="token" value="<?php echo getToken(); ?>">
                 <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
@@ -376,11 +390,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <tr>
                           <td colspan="2" align="center">
                             <input type="submit" value="Confirm" id="send_btn">
-                            <p id="shopping_done">
-                              <span></span>様<br>お問い合わせありがとうございました
-                              <i class="fa fa-smile-o" aria-hidden="true"></i><br>
-                              <a href="">戻る</a>
-                            </p>
                             <?php if (isset($errorName)): ?>
                                 <div class="text-warning"><?php echo h($errorName); ?></div>
                             <?php endif; ?>
@@ -443,6 +452,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                       </tbody>
                     </table>
                   </form>
+                  <h4 id="shopping_done">
+                    <!--<span></span>様<br>-->お問い合わせありがとうございました
+                    <i class="fa fa-smile-o" aria-hidden="true"></i><br><br>
+                    <!--<a href="">戻る</a>-->
+                    確認メールを送信いたしましたので、<br>
+                    ご登録のメールをご覧くださいませ
+                    <i class="fa fa-inbox" aria-hidden="true"></i>
+                  </h4>
                 </section>
         </div><!-- ./<div id="page-4" style="height:600px;"> -->
     </main>
@@ -559,6 +576,24 @@ $(document).ready(function(){
       //var heightNav = parseInt($('nav').height());
 
     $(window).scrollTop(scrollDown + 1);
+    }
+
+
+    //Mail Sent => Thank You Message
+    if($("input[name='sent']").val() != ""){
+    //if($("input[name='aaa']").val() != "" || $("input[name='confirm']").val() != ""){
+      var scrollDown = parseInt($('#page-4').offset().top);
+      //var heightNav = parseInt($('nav').height());
+
+    $(window).scrollTop(scrollDown + 1);
+    $("#contact").css({
+            display:"none"
+            });
+        //var userName = $("#user").val();
+        //$("#shopping_done span").text(userName);
+        $("#shopping_done").css({
+            display:"block"
+            });
     }
 
 
