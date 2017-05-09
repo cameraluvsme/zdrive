@@ -1,0 +1,61 @@
+***********//var_dump($_SESSION) && var_dump($_POST) Results//*****************
+
+
+//****最初の読み込み
+array(0) { } array(0) { } $fstvisit=1st Time Visit, Welcome to Page Top!
+
+
+//**Validation OK後の Confirm.PHP
+array(1) { ["contact"]=> array(6) { ["name"]=> string(2) "sa" ["kana"]=> string(3) "サ" ["email"]=> string(8) "sa@s.com" ["phone"]=> string(1) "6" ["inquiry"]=> string(3) "さ" ["token"]=> string(64) "1df6a820ce2ecc0c9c602e7a4acc9ef57633ded88d27f1139c037963389e71da" } } array(0) { }
+
+
+//**SEND後のdesign_mail.php
+array(1) { ["sent"]=> string(0) "" } array(0) { } $fstvisit=
+
+
+//**FORMクリック後にフォーム再表示>>>ページ遷移なしの為SESSIONのアンセット不可
+array(1) { ["sent"]=> string(0) "" } array(0) { } $fstvisit=
+
+//**1度送信済み後に再度、Validation OK -> Comfirm.php
+array(2) { ["sent"]=> string(0) "" ["contact"]=> array(6) { ["name"]=> string(3) "さ" ["kana"]=> string(3) "サ" ["email"]=> string(8) "sa@s.com" ["phone"]=> string(1) "8" ["inquiry"]=> string(3) "さ" ["token"]=> string(64) "1df6a820ce2ecc0c9c602e7a4acc9ef57633ded88d27f1139c037963389e71da" } } array(0) { }
+
+
+//**1度送信済み後にConfirm.phpを経て修正ボタンクリック後
+array(3) { ["sent"]=> string(0) "" ["contact"]=> array(6) { ["name"]=> string(3) "さ" ["kana"]=> string(3) "サ" ["email"]=> string(8) "sa@s.com" ["phone"]=> string(1) "8" ["inquiry"]=> string(3) "さ" ["token"]=> string(64) "1df6a820ce2ecc0c9c602e7a4acc9ef57633ded88d27f1139c037963389e71da" } ["confirm"]=> string(22) "Scroll Down To Contact" } array(0) { } $fstvisit=
+
+
+
+//**未送信時の修正ボタン後
+array(2) { ["contact"]=> array(6) { ["name"]=> string(2) "sa" ["kana"]=> string(3) "サ" ["email"]=> string(8) "sa@s.com" ["phone"]=> string(1) "2" ["inquiry"]=> string(3) "さ" ["token"]=> string(64) "645825ebdd2a95a87efc3eb882bb3dbc7f2db59fe772bf645298460e2d9e0050" } ["confirm"]=> string(22) "Scroll Down To Contact" } array(0) { } $fstvisit=1st Time Visit, Welcome to Page Top!
+
+
+//**送信後THANK YOUメッセージ
+array(1) { ["sent"]=> string(0) "" } array(0) { } $fstvisit=
+
+
+//**一度送信済み後のFORMボタンクリック操作
+array(1) { ["sent"]=> string(0) "" } array(0) { } $fstvisit=
+
+
+//**一度送信済み後のFORMボタンクリック操作
+array(1) { ["sent"]=> string(0) "" } array(0) { } $fstvisit=
+
+::::::::::::CODE修正あり↓
+
+
+//**一度送信済み後のFORMボタンクリック操作
+array(1) { ["sent"]=> string(0) "" } array(1) { ["formback"]=> string(4) "FORM" } $fstvisit=
+
+
+//**未送信時の修正ボタン
+array(2) { ["contact"]=> array(6) { ["name"]=> string(3) "さ" ["kana"]=> string(3) "サ" ["email"]=> string(8) "sa@s.com" ["phone"]=> string(3) "222" ["inquiry"]=> string(3) "さ" ["token"]=> string(64) "c5216f6f652cfb5fc37a0a3a15cb0c2f946df2cf65006a14f0a887713529ce4f" } ["confirm"]=> string(22) "Scroll Down To Contact" } array(0) { } $fstvisit=1st Time Visit, Welcome to Page Top!
+
+//**送信後 Thank You メッセ
+array(1) { ["sent"]=> string(0) "" } array(0) { } $fstvisit=
+
+
+//**一度送信済み後にFORMボタンクリック
+array(1) { ["confirm"]=> string(0) "" } array(0) { } $fstvisit=1st Time Visit, Welcome to Page Top!
+
+//**
+
