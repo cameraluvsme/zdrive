@@ -5,9 +5,14 @@ require_once "util.inc.php";
 require_once "libs/qd/qdsmtp.php";
 require_once "libs/qd/qdmail.php";
 
+
+//初期化
+$confirm = "";
+
 //----------------------------------------------
 // セッション変数が登録されている場合は読み出す
 //----------------------------------------------
+
 
 
 if (isset($_SESSION["contact"])) {
@@ -34,6 +39,10 @@ else {
   $_SESSION["confirm"] = $confirm;
   header("Location: design_mail.php");
   exit;
+}
+
+if($isConfirmed = TRUE){
+    $confirm = "Scroll Down To Contact";
 }
 
 //--------------------
@@ -382,6 +391,7 @@ if (isset($_POST["back"])) {
             <section class="contact">
                   <form action="" method="post"  id="contact" novalidate>
                   <input type="hidden" name="token" value="<?php echo getToken(); ?>">
+                  <input type="hidden" name="confirm" value="<?php echo $confirm; ?>">
                 <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
                     <thead>
                         <tr>
@@ -550,6 +560,16 @@ $(document).ready(function(){
               $('li[data-attribute="top"]').addClass('current');
              }
         });//$(window).scroll(function(){
+
+        if($("input[name='confirm']").val() != ""){
+        //if($("input[name='aaa']").val() != "" || $("input[name='confirm']").val() != ""){
+          var scrollDown = parseInt($('#page-4').offset().top);
+          //var heightNav = parseInt($('nav').height());
+
+        $(window).scrollTop(scrollDown);
+        }
+
+
 });// ./$(document).ready(function(){
 </script>
 
