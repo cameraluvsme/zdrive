@@ -1,6 +1,13 @@
 <?php
 session_start();
 
+/*
+
+var_dump($_SESSION);
+var_dump($_POST);
+
+*/
+
 require_once "util.inc.php";
 
 //--------------------
@@ -17,6 +24,23 @@ $sent = "";
 $fstvisit = "";
 
 
+/*
+
+擬似コード**今後の参考までに
+if (empty($_POST) && empty($_SESSION)) {
+  $scroll = 0;
+}
+else {
+  $scroll = 1;
+}
+
+
+<input type="hidden" value="<?php echo $scroll ?>">
+
+初回の読み込み時のみの場合
+*/
+
+
 //--------------------
 // セッション変数が登録されている場合は読み出す
 //--------------------
@@ -30,47 +54,50 @@ if (isset($_SESSION["contact"])) {
   // $contactOnly = $contact["contactOnly"];
 }
 
-  //--------------------
-  // セッション変数が登録されている場合は読み出す
-  //--------------------
-  if (isset($_SESSION["confirm"])) {
-    $headerLocated = TRUE;
-    $confirm = $_SESSION["confirm"];
-    $confirm = "From Confirm Page";
-    $aaa = "";
-    //$confirm = "";
-    $sent = "";
-    $fstvisit = "";
-  }
-  else{
-    $headerLocated = FALSE;
-    $fstvisit = "1st Time Visit, Welcome to Page Top!";
-    $aaa = "";
-    $confirm = "";
-    $sent = "";
-    //$fstvisit = "";
-  }
+//--------------------
+// セッション変数が登録されている場合は読み出す
+//--------------------
+if (isset($_SESSION["confirm"])) {
+  $headerLocated = TRUE;
+  $confirm = $_SESSION["confirm"];
+  $confirm = "From Confirm Page";
+  $aaa = "";
+  //$confirm = "";
+  $sent = "";
+  $fstvisit = "";
+}
+else{
+  //Scroll DownせずTOP
+  $headerLocated = FALSE;
+  $fstvisit = "1st Time Visit, Welcome to Page Top!";
+  $aaa = "";
+  $confirm = "";
+  $sent = "";
+  //$fstvisit = "";
+}
 
-  //--------------------
-  // セッション変数が登録されている場合は読み出す
-  //--------------------
-  if (isset($_SESSION["sent"])) {
-    $beenSent = TRUE;
-    $sent = $_SESSION["sent"];
-    $sent = "Mail Has Been Sent, Thank You!";
-    $aaa = "";
-    $confirm = "";
-    //$sent = "";
-    $fstvisit = "";
-  }
-  else{
-    $beenSent = FALSE;
-    $fstvisit = "1st Time Visit, Welcome to Page Top!";
-    $aaa = "";
-    $confirm = "";
-    $sent = "";
-    //$fstvisit = "";
-  }
+//--------------------
+// セッション変数が登録されている場合は読み出す
+//--------------------
+if (isset($_SESSION["sent"])) {
+  $beenSent = TRUE;
+  $sent = $_SESSION["sent"];
+  $sent = "Mail Has Been Sent, Thank You!";
+  $aaa = "";
+  $confirm = "";
+  //$sent = "";
+  $fstvisit = "";
+}
+/*
+else{
+  $beenSent = FALSE;
+  $fstvisit = "1st Time Visit, Welcome to Page Top!";
+  $aaa = "";
+  $confirm = "";
+  $sent = "";
+  //$fstvisit = "";
+}
+*/
 
 if (isset($_POST["formback"])) {
     // セッション変数を破棄
@@ -80,6 +107,10 @@ if (isset($_POST["formback"])) {
     $confirm = "";
     //$sent = "";
     $fstvisit = "";
+	//送信後にフォームを再表示
+    $_SESSION["confirm"] = "";
+    header("Location: design_mail.php");
+    exit;
 }
 
 
@@ -204,6 +235,14 @@ if (isset($_POST["confirmbtn"])) {
 </head>
 
 <body>
+	<!--<?php echo "\$fstvisit={$fstvisit}"; ?>-->
+
+<?php
+
+//var_dump($_SESSION);
+//var_dump($_POST);
+
+?>
 <div class="container-fluid header_nav" id="page-6">
     <header id = "main_top">
             <img src="images/topMainV04.png" alt="Company Logo Top" id = "logo_top">
@@ -283,8 +322,8 @@ if (isset($_POST["confirmbtn"])) {
         <div id="page-2" style="height:700px;">
             <h3>NEW</h3>
             <div id="parent">
-
-            </div>
+            
+			</div>
         </div><!-- ./<div id="page-2 style="height:600px;"> -->
         <div id="page-3" style="height:800px;">
         <h3>SEARCH</h3>
@@ -493,7 +532,9 @@ if (isset($_POST["confirmbtn"])) {
                     ご登録のメールをご覧くださいませ
                     <i class="fa fa-inbox" aria-hidden="true"></i>
                     </h4>
-                    <input type="submit" value="FORM" id="send_btn" class = "form_back" name = "formback">
+                    <form action="" method = "post">
+                      <input type="submit" value="FORM" id="send_btn" class = "form_back" name = "formback">
+					</form>
                   </div>
                 </section>
         </div><!-- ./<div id="page-4" style="height:600px;"> -->
@@ -599,7 +640,7 @@ $(document).ready(function(){
       var scrollDown = parseInt($('#page-4').offset().top);
       //var heightNav = parseInt($('nav').height());
 
-    $(window).scrollTop(scrollDown);
+    $(window).scrollTop(scrollDown + 1);
     }
 
     //From Confirm => Header Location with Scroll to Contact

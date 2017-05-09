@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+//var_dump($_SESSION);
+//var_dump($_POST);
+
 require_once "util.inc.php";
 require_once "libs/qd/qdsmtp.php";
 require_once "libs/qd/qdmail.php";
