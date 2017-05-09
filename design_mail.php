@@ -20,7 +20,7 @@ $confirm = "";
 // セッション変数が登録されている場合は読み出す
 //--------------------
 if (isset($_SESSION["confirm"])) {
-  $confirm = "From Confirm Page";
+  $confirm = $_SESSION["confirm"];
 }
 
 //--------------------
@@ -40,6 +40,7 @@ if (isset($_SESSION["contact"])) {
 // 「確認する」ボタン
 //--------------------
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
   $isValidated = TRUE;
   // $contactOnly = TRUE;
 
@@ -125,6 +126,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 }
+else{
+  $confirm = "From Confirm Page";
+}
+
 ?>
 <!DOCTYPE html>
 

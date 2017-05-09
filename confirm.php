@@ -8,9 +8,10 @@ require_once "libs/qd/qdmail.php";
 //----------------------------------------------
 // セッション変数が登録されている場合は読み出す
 //----------------------------------------------
-$isConfirmed = TRUE;
+
 
 if (isset($_SESSION["contact"])) {
+  $isConfirmed = TRUE;
   $contact = $_SESSION["contact"];
   $name    = $contact["name"];
   $kana    = $contact["kana"];
@@ -22,7 +23,7 @@ if (isset($_SESSION["contact"])) {
   if($token !== getToken()){
     $isConfirmed = FALSE;
     $_SESSION["confirm"] = $confirm;
-    header("Location: design_mail.php#page-4");
+    header("Location: design_mail.php");
     exit();
   }
 }
@@ -31,7 +32,7 @@ else {
   // 入力ページへ戻る
   $isConfirmed = FALSE;
   $_SESSION["confirm"] = $confirm;
-  header("Location: design_mail.php#page-4");
+  header("Location: design_mail.php");
   exit;
 }
 
