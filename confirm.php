@@ -410,8 +410,8 @@ if (isset($_POST["back"])) {
                       <tfoot>
                         <tr>
                           <td colspan="2" align="center">
-                            <input type="submit" value="SEND" id="send_btn" name="send">
-                            <input type="submit" value="修正" id="send_btn" name="back">
+                            <input type="submit" value="SEND"  name="send">
+                            <input type="submit" value="修正"  name="back">
                             <p id="shopping_done">
                               <span></span>様<br>お問い合わせありがとうございました
                               <i class="fa fa-smile-o" aria-hidden="true"></i><br>
