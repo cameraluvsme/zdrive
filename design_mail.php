@@ -54,11 +54,16 @@ if (isset($_SESSION["contact"])) {
     $fstvisit = "1st Time Visit, Welcome to Page Top!";
   }
 
+if (isset($_POST["formback"])) {
+    // セッション変数を破棄
+    unset($_SESSION["sent"]);
+}
+
 
 //--------------------
 // 「確認する」ボタン
 //--------------------
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if (isset($_POST["confirmbtn"])) {
 
   $isValidated = TRUE;
   // $contactOnly = TRUE;
@@ -389,7 +394,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                       <tfoot>
                         <tr>
                           <td colspan="2" align="center">
-                            <input type="submit" value="Confirm" id="send_btn">
+                            <input type="submit" value="Confirm" id="send_btn" name = "confirmbtn">
                             <?php if (isset($errorName)): ?>
                                 <div class="text-warning"><?php echo h($errorName); ?></div>
                             <?php endif; ?>
@@ -461,7 +466,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     ご登録のメールをご覧くださいませ
                     <i class="fa fa-inbox" aria-hidden="true"></i>
                     </h4>
-                    <input type="submit" value="FORM" id="send_btn" class = "form_back">
+                    <input type="submit" value="FORM" id="send_btn" class = "form_back" name = "formback">
                   </div>
                 </section>
         </div><!-- ./<div id="page-4" style="height:600px;"> -->
