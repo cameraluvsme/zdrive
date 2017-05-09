@@ -8,7 +8,7 @@ require_once "libs/qd/qdmail.php";
 //----------------------------------------------
 // セッション変数が登録されている場合は読み出す
 //----------------------------------------------
-$isValidated = TRUE;
+$isConfirmed = TRUE;
 
 if (isset($_SESSION["contact"])) {
   $contact = $_SESSION["contact"];
@@ -20,8 +20,8 @@ if (isset($_SESSION["contact"])) {
   $token   = $contact["token"];
   // CSRF対策
   if($token !== getToken()){
-    //$isValidated = FALSE;
-    //$_SESSION["confirm"] = $confirm;
+    $isConfirmed = FALSE;
+    $_SESSION["confirm"] = $confirm;
     header("Location: design_mail.php#page-4");
     exit();
   }
@@ -29,8 +29,8 @@ if (isset($_SESSION["contact"])) {
 else {
   // 不正なアクセス
   // 入力ページへ戻る
-  //$isValidated = FALSE;
-  //$_SESSION["confirm"] = $confirm;
+  $isConfirmed = FALSE;
+  $_SESSION["confirm"] = $confirm;
   header("Location: design_mail.php#page-4");
   exit;
 }

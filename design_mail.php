@@ -12,6 +12,7 @@ $email   = "";
 $phone   = "";
 $inquiry = "";
 $aaa = "";
+$confirm = "";
 
 // $contactOnly = FALSE;  //地図の表示フラグ
 
@@ -531,14 +532,22 @@ $(document).ready(function(){
 
 
     //When Error => Reload with Scroll to Contact
-    if($("input[name='aaa']").val() != "" ｜｜$("input[name='confirm']").val() != ""){
+    if($("input[name='aaa']").val() != ""){
+    //if($("input[name='aaa']").val() != "" || $("input[name='confirm']").val() != ""){
       var scrollDown = parseInt($('#page-4').offset().top);
       //var heightNav = parseInt($('nav').height());
 
     $(window).scrollTop(scrollDown);
     }
 
+    //From Confirm => Header Location with Scroll to Contact
+    if($("input[name='confirm']").val() != ""){
+    //if($("input[name='aaa']").val() != "" || $("input[name='confirm']").val() != ""){
+      var scrollDown = parseInt($('#page-4').offset().top);
+      //var heightNav = parseInt($('nav').height());
 
+    $(window).scrollTop(scrollDown);
+    }
 
 
 
