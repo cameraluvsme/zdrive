@@ -13,6 +13,7 @@ $phone   = "";
 $inquiry = "";
 $aaa = "";
 $confirm = "";
+$sent = "";
 
 
 //--------------------
@@ -57,6 +58,7 @@ if (isset($_SESSION["contact"])) {
 if (isset($_POST["formback"])) {
     // セッション変数を破棄
     unset($_SESSION["sent"]);
+    $sent = "Display Contact Form, again!";
 }
 
 
