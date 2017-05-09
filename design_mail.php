@@ -20,8 +20,18 @@ $confirm = "";
 // セッション変数が登録されている場合は読み出す
 //--------------------
 if (isset($_SESSION["confirm"])) {
+  $headerLocated = TRUE;
   $confirm = $_SESSION["confirm"];
 }
+
+
+/*
+
+else{
+  $confirm = "From Confirm Page";
+}
+
+*/
 
 //--------------------
 // セッション変数が登録されている場合は読み出す
@@ -35,6 +45,7 @@ if (isset($_SESSION["contact"])) {
   $inquiry = $contact["inquiry"];
   // $contactOnly = $contact["contactOnly"];
 }
+
 
 //--------------------
 // 「確認する」ボタン
@@ -125,9 +136,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   }
 
 
-}
-else{
-  $confirm = "From Confirm Page";
 }
 
 ?>
