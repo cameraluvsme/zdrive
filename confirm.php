@@ -15,6 +15,7 @@ $sent = "";
 
 //::::::::::::::::::::::SEARCH↓↓:::::::::::::::::::::::::::::::::::::
 
+
 //--------------------
 // セッション変数が登録されている場合は読み出す
 //--------------------
@@ -185,7 +186,8 @@ if (isset($_SESSION["contact"])) {
     //header("Location: design_mail.php");
     //exit();
   //}
-//}
+}
+
 //else {
   // 不正なアクセス
   // 入力ページへ戻る
@@ -322,30 +324,31 @@ if (isset($_POST["back"])) {
   exit;
 }
 ?>
+
 <!DOCTYPE html>
 
 <html lang = "ja">
-<head>
-    <meta charset = "UTF-8">
-    <title>Grad Thesis Site</title>
-    <meta name = "viewport" content = "width=device-width, initial-scale=1">
-    <meta name = "description" content = "Site Excercise(Grad Thesis)">
-    <meta name = "keywords" content = "PHP, Programming, JavaScript, JQuery, HTML5, CSS3, SQL">
-    <link href="https://fonts.googleapis.com/css?family=Rum+Raisin|Barrio|Chewy|Passion+One|Righteous|Risque|Russo+One" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link href = "css/bootstrap.css" rel = "stylesheet">
-    <link href="https://fonts.googleapis.com/earlyaccess/roundedmplus1c.css" rel="stylesheet" />
-    <link href = "css/design_plan.css" rel = "stylesheet">
-    <link href = "images/favicon.ico"
-            rel = "shortcut icon"
-            type="image/vnd.microsoft.icon">
-    <style>
-    </style>
-    <!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js">
-</script>
-<![endif]-->
-</head>
+  <head>
+      <meta charset = "UTF-8">
+      <title>Grad Thesis Site</title>
+      <meta name = "viewport" content = "width=device-width, initial-scale=1">
+      <meta name = "description" content = "Site Excercise(Grad Thesis)">
+      <meta name = "keywords" content = "PHP, Programming, JavaScript, JQuery, HTML5, CSS3, SQL">
+      <link href="https://fonts.googleapis.com/css?family=Rum+Raisin|Barrio|Chewy|Passion+One|Righteous|Risque|Russo+One" rel="stylesheet">
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+      <link href = "css/bootstrap.css" rel = "stylesheet">
+      <link href="https://fonts.googleapis.com/earlyaccess/roundedmplus1c.css" rel="stylesheet" />
+      <link href = "css/design_plan.css" rel = "stylesheet">
+      <link href = "images/favicon.ico"
+              rel = "shortcut icon"
+              type="image/vnd.microsoft.icon">
+      <style>
+      </style>
+      <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js">
+  </script>
+  <![endif]-->
+  </head>
 
 <body>
 <div class="container-fluid header_nav" id="page-6">

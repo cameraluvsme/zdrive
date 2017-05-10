@@ -1,58 +1,152 @@
 <?php
 session_start();
 
-/*
-
-var_dump($_SESSION);
-var_dump($_POST);
-
-*/
-
-var_dump($edit);
-var_dump($again);
+//var_dump($_SESSION);
+//var_dump($_POST);
 
 require_once "util.inc.php";
+require_once "libs/qd/qdsmtp.php";
+require_once "libs/qd/qdmail.php";
 
-//--------------------
-// 変数の初期化
-//--------------------
-$name    = "";
-$kana    = "";
-$email   = "";
-$phone   = "";
-$inquiry = "";
-$aaa = "";
+
+//初期化
 $confirm = "";
 $sent = "";
-$fstvisit = "";
-$pref = "";
-$maker = "";
-$type = "";
-$year = "";
-$price = "";
-$makerResult = "";
-$search = "";
-$show = "";
-$edit = "";
-$condition = "";
-$imgNum= "";
-/*
 
-擬似コード**今後の参考までに
-if (empty($_POST) && empty($_SESSION)) {
-  $scroll = 0;
+//::::::::::::::::::::::SEARCH↓↓:::::::::::::::::::::::::::::::::::::
+
+//--------------------
+// セッション変数が登録されている場合は読み出す
+//--------------------
+if (isset($_SESSION["search"])) {
+  $isSearched = TRUE;
+  $search = $_SESSION["search"];
+  $pref = $search["pref"];
+  $maker = $search["maker"];
+  $type = $search["type"];
+  $year = $search["year"];
+  $price = $search["price"];
+  //$token2   = $search["token2"];
+  // CSRF対策
+  //if($token2 !== getToken()){
+    //$reLocated = TRUE;
+    //$_SESSION["movepage"] = $movepage;
+    //header("Location: search_form.php");
+    //exit();
+  //}
+    //配列かどうかの判断
+    if(is_array($maker)){
+    $makerResult = implode("<br>", $maker);
+    }
+    else{
+    $makerResult = "選択なし";
+    }
+
+    if(is_array($type)){
+    $typeResult = implode("<br>", $type);
+    }
+    else{
+    $typeResult = "選択なし";
+    }
+
+    if(is_numeric($price)){
+      $noprice = FALSE;
+    }
+    else{
+      $noprice = TRUE;
+      $choose = "CHOOSE";
+      $errorPrice = "値段を選択してください";
+    }
 }
-else {
-  $scroll = 1;
+//else {
+    // 不正なアクセス
+    // 入力ページへ戻る
+    //$reLocated = TRUE;
+    //$_SESSION["movepage"] = $movepage;
+    //header("Location: search_form.php");
+    //exit();
+//}
+
+//$_SESSION["search"]あるとき
+//if (isset($_SESSION["search"])) {
+  //$beenSearch = TRUE;
+  //$search = $_SESSION["search"];
+  //$search = "BEEN SENT";
+//}
+
+
+
+//SHOW ボタンクリック
+if (isset($_POST["show_btn"])){
+
+  $_SESSION["show"] = $show;
+  //unset($_SESSION["search"]);
+  //unset($_SESSION["edit"]);
+  header("Location: confirm.php");
+  exit;
+}
+
+//$_SESSION["show"]あるとき
+if (is_null($_SESSION["show"])) {
+  $showClick = FALSE;
+}
+else{
+  $showClick = TRUE;
+  //$show = $_SESSION["show"];
+  $show = "SHOW RESULT";
+}
+
+if($showClick == TRUE){
+  if($price >= 350){
+    $condition = "新車のご提案が可能です";
+    $imgNum = 4;
+  }
+
+  elseif($price >= 200){
+    $condition = "幅広いご提案ができます";
+    $imgNum = 5;
+
+  }
+  elseif($price >= 100){
+    $condition = "複数のご提案が可能です";
+    $imgNum = 3;
+  }
+
+  elseif($price >= 50){
+    $condition = "お買い得な車です";
+    $imgNum = 2;
+  }
+
+  else{
+    $condition = "紹介できる車なし";
+    $imgNum = 1;
+  }
 }
 
 
-<input type="hidden" value="<?php echo $scroll ?>">
 
-初回の読み込み時のみの場合
-*/
 
-//:::::::::::::SEARCH↓↓:::::::::::::::::::::::::
+
+//EDIT ボタンクリック
+if (isset($_POST["edit_btn"])){
+    $_SESSION["edit"] = $edit;
+    //unset($_SESSION["search"]);
+    unset($_SESSION["show"]);
+    header("Location: design_mail.php");
+    exit;
+}
+
+//AGAIN ボタンクリック
+if (isset($_POST["again_btn"])){
+    $_SESSION["again"] = $again;
+    unset($_SESSION["search"]);
+    unset($_SESSION["show"]);
+    header("Location: design_mail.php");
+    exit;
+}
+
+
+//:::::::::::::::::::::::::::↓↓CONTACT:::::::::::::::::::::::
 
 //--------------------
 // セッション変数が登録されている場合は読み出す
@@ -67,224 +161,168 @@ if (isset($_SESSION["search"])) {
   //$token2   = $search["token2"];
 }
 
-//--------------------
+
+//----------------------------------------------
 // セッション変数が登録されている場合は読み出す
-//--------------------
-if (isset($_SESSION["edit"])) {
-  $edit = $_SESSION["edit"];
-  $edit = "EDIT";
-}
-
-//--------------------
-// セッション変数が登録されている場合は読み出す
-//--------------------
-if (isset($_SESSION["again"])) {
-  $again = $_SESSION["again"];
-  $again = "AGAIN";
-}
+//----------------------------------------------
 
 
-//SEARCH ボタンクリック
-if (isset($_POST["search_btn"])){
 
-  $isSearched = TRUE;
-
-    // 入力データの取得
-    $pref = $_POST["pref"];  //
-    $maker = $_POST["maker"];  //IMPLODE
-    $type = $_POST["type"];  //IMPLODE
-    $year = $_POST["year"]; //
-    $price = $_POST["price"]; //
-    //$token2 = $_POST["token2"]; //
-
-    if($isSearched == TRUE){
-      $search = array(
-      "pref" => $pref,
-      "maker" => $maker,
-      "type" => $type,
-      "year" => $year,
-      "price" => $price
-      //"token2" => $token2
-    );
-
-    $_SESSION["search"] = $search;
-    header("Location: confirm.php");
-    exit;
-    }
-
-}
-
-
-//:::::::::::::::CONTACT↓↓::::::::::::::::::::::::::::::::
-
-//--------------------
-// セッション変数が登録されている場合は読み出す
-//--------------------
 if (isset($_SESSION["contact"])) {
+  $isConfirmed = TRUE;
+  $beenSent = FALSE;
   $contact = $_SESSION["contact"];
   $name    = $contact["name"];
   $kana    = $contact["kana"];
   $email   = $contact["email"];
   $phone   = $contact["phone"];
   $inquiry = $contact["inquiry"];
-  // $contactOnly = $contact["contactOnly"];
+  //$token   = $contact["token"];
+  // CSRF対策
+  //if($token !== getToken()){
+    //$isConfirmed = FALSE;
+    //$_SESSION["confirm"] = $confirm;
+    //header("Location: design_mail.php");
+    //exit();
+  //}
+//}
+//else {
+  // 不正なアクセス
+  // 入力ページへ戻る
+  //$isConfirmed = FALSE;
+  //$_SESSION["confirm"] = $confirm;
+  //header("Location: design_mail.php");
+  //exit;
+//}
+
+if($isConfirmed = TRUE){
+    $confirm = "Scroll Down To Contact";
 }
 
 //--------------------
-// セッション変数が登録されている場合は読み出す
+// 「送信」ボタン
 //--------------------
-if (isset($_SESSION["confirm"])) {
-  $headerLocated = TRUE;
-  $confirm = $_SESSION["confirm"];
-  $confirm = "From Confirm Page";
-  $aaa = "";
-  //$confirm = "";
-  $sent = "";
-  $fstvisit = "";
-}
-else{
-  //Scroll DownせずTOP
-  $headerLocated = FALSE;
-  $fstvisit = "1st Time Visit, Welcome to Page Top!";
-  $aaa = "";
-  $confirm = "";
-  $sent = "";
-  //$fstvisit = "";
-}
+if (isset($_POST["send"])) {
+  $mail = new Qdmail();
+  $mail->errorDisplay(false);
+  $mail->smtpObject()->error_display = false;
+  // SMTP用設定
+  $param = array(
+    "host"     => "w1.sim.zdrv.com",
+    "port"     => 25,
+    "from"     => "zd1b07@sim.zdrv.com",
+    "protocol" => "SMTP",
+  );
+  $mail->smtp(TRUE);
+  $mail->smtpServer($param);
 
-//--------------------
-// セッション変数が登録されている場合は読み出す
-//--------------------
-if (isset($_SESSION["sent"])) {
-  $beenSent = TRUE;
-  $sent = $_SESSION["sent"];
-  $sent = "Mail Has Been Sent, Thank You!";
-  $aaa = "";
-  $confirm = "";
-  //$sent = "";
-  $fstvisit = "";
-}
-/*
-else{
+  // 管理者宛て基本設定
+  $senderAdrs = "zd1b07@sim.zdrv.com";
+  $senderName = "Crescent Shoes Web";
+
+// 連想配列を作ります
+  $mailParams = [
+    [ // 0: For User
+      "fromAdrs"  => $senderAdrs,
+      "fromName"  => $senderName,
+      "toAdrs"    => $email,
+      "toName"    => "{$name} 様",
+      "subject"   => "Crescent Shoes 問い合わせ Thank You",
+      "header"    => "{$name} 様、以下のお問合せをいただきまして、ありがとうございます。",
+      "footer"    => "3営業日以内に、担当者より返信いたします。"
+    ],
+    [ // 1: Admin
+      "fromAdrs"  => $senderAdrs,
+      "fromName"  => $senderName,
+      "toAdrs"    => $senderAdrs,
+      "toName"    => "Z Drive Account",
+      "subject"   => "Crescent Shoes 問い合わせ受付",
+      "header"    => "{$name} 様より以下のお問合せをいただきました、ご対応ください。",
+      "footer"    => "お問合せ内容を確認の上で、返信願います"
+    ],
+  ];
+
+  $results = array();
+
+  foreach ($mailParams as $key => $value) :
+    $body = <<<EOT
+{$value['header']}
+
+■お名前
+{$name}
+
+■フリガナ
+{$kana}
+
+■メールアドレス
+{$email}
+
+■電話番号
+{$phone}
+
+■お問い合わせ内容
+{$inquiry}
+
+{$value['footer']}
+
+EOT;
+
+    $mail->from($value['fromAdrs'], $value['fromName']);
+    $mail->to  ($value['toAdrs'], $value['toName']);
+    $mail->subject($value['subject']);
+    $mail->text($body);
+
+    // 送信
+    $results[$key] = $mail->send();
+  endforeach;
+
+
+  // error check
+  foreach ($results as $key => $result) {
+    if (!$result) {
+      // 送信失敗
+      switch($key) {
+        case 0: // to user
+          $_SESSION['msg'] = 'メールアドレスをもう一度...';
+          break;
+        case 1: // to admin
+          $_SESSION['msg'] = '内部エラー...';
+          break;
+        default:
+          // 本当は↓には入らないんだけども、保険で記述するとＣＯＤＥにミスがあるのに気づいちゃいます
+          $_SESSION['msg'] = 'unknown error';
+          break;
+      }
+      // エラー画面へ移動
+      // セッション変数は破棄しない
+      header("Location: contact_error.php");
+      exit;
+    }
+  }
+
+  // 送信成功
+  // セッション変数を破棄
+  unset($_SESSION["contact"]);
+  // 完了画面へ移動
   $beenSent = FALSE;
-  $fstvisit = "1st Time Visit, Welcome to Page Top!";
-  $aaa = "";
-  $confirm = "";
-  $sent = "";
-  //$fstvisit = "";
+  $_SESSION["sent"] = $sent;
+  header("Location: design_mail.php");
+  exit;
 }
-*/
-
-if (isset($_POST["formback"])) {
-    // セッション変数を破棄
-    unset($_SESSION["sent"]);
-    $sent = "Display Contact Form, again!";
-    $aaa = "";
-    $confirm = "";
-    //$sent = "";
-    $fstvisit = "";
-	//送信後にフォームを再表示
-    $_SESSION["confirm"] = "";
-    header("Location: design_mail.php");
-    exit;
-}
-
 
 //--------------------
-// 「確認する」ボタン
+// 「修正」ボタン
 //--------------------
-if (isset($_POST["confirmbtn"])) {
-
-  $isValidated = TRUE;
-  // $contactOnly = TRUE;
-
-  // 入力データの取得
-  $name    = $_POST["name"];
-  $kana    = $_POST["kana"];
-  $email   = $_POST["email"];
-  $phone   = $_POST["phone"];
-  $inquiry = $_POST["inquiry"];
-  $token   = $_POST["token"];
-  $aaa = "押したよ";
-  //$aaa = "";
-  $confirm = "";
-  $sent = "";
-  $fstvisit = "";
-
-  // 名前のバリデーション
-  if ($name === "" || mb_ereg_match("^(\s|　)", $name)){
-    $errorName = "※お名前を入力してください";
-    $isValidated = FALSE;
-    //header("Location: input_error.php");
-  }
-
-  // フリガナのバリデーション
-  if ($kana === "" || mb_ereg_match("^(\s|　)", $kana)){
-    $errorKana = "※カナを入力してください";
-    $isValidated = FALSE;
-    //header("Location: input_error.php");
-  }
-  elseif (!preg_match("/^[ァ-ヶー 　]+$/u", $kana)) {
-    $errorKana = "カナは全角カタカナで入力してください";
-    $isValidated = FALSE;
-    //header("Location: input_error.php");
-  }
-
-  // メールアドレスのバリデーション
-  if ($email === "" || mb_ereg_match("^(\s|　)", $email)){
-    $errorEmail = "※メールを入力してください";
-    $isValidated = FALSE;
-    //header("Location: input_error.php");
-  }
-  elseif (!preg_match("/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/", $email)){
-    $errorEmail = "メールの形式が正しくありません";
-    $isValidated = FALSE;
-    //header("Location: input_error.php");
-  }
-
-  //電話番号のチェック
-  if($phone === "" || mb_ereg_match("^(\s|　)", $phone)){
-    $errorPhone = "※TELを入力してください";
-    $isValidated = FALSE;
-    //header("Location: input_error.php");
-  }
-  elseif(!preg_match("/^\d+$/", $phone)){
-    $errorPhone = "TELは数字(ﾊｲﾌﾝなし)を入力してください";
-    $isValidated = FALSE;
-    //header("Location: input_error.php");
-  }
-
-
-  // 問い合わせ内容のバリデーション
-  if ($inquiry === "" || mb_ereg_match("^(\s|　)", $inquiry)){
-    $errorInquiry = "※内容を入力してください";
-    $isValidated = FALSE;
-     //header("Location: input_error.php");
-      //exit;
-  }
-
-  // エラーが無ければ確認画面へ移動
-  if ($isValidated == TRUE) {
-    $contact = array(
-      "name"    => $name,
-      "kana"    => $kana,
-      "email"   => $email,
-      "phone"   => $phone,
-      "inquiry" => $inquiry
-      //"token"   => $token
-      // "contactOnly" => FALSE
-    );
-    $_SESSION["contact"] = $contact;
-    // セッション変数を破棄
-    unset($_SESSION["confirm"]);
-    header("Location: confirm.php");
-    //header("Location: confirm.php", FALSE);
-    exit;
-  }
-
+if (isset($_POST["back"])) {
+  // 入力ページへ戻る
+  //$_SESSION["contact"] = $contact;
+  $isConfirmed = FALSE;
+  $_SESSION["confirm"] = $confirm;
+  header("Location: design_mail.php");
+  exit;
 }
-
 ?>
+
 <!DOCTYPE html>
 
 <html lang = "ja">
@@ -311,14 +349,6 @@ if (isset($_POST["confirmbtn"])) {
 </head>
 
 <body>
-	<!--<?php echo "\$fstvisit={$fstvisit}"; ?>-->
-
-<?php
-
-//var_dump($_SESSION);
-//var_dump($_POST);
-
-?>
 <div class="container-fluid header_nav" id="page-6">
     <header id = "main_top">
             <img src="images/topMainV04.png" alt="Company Logo Top" id = "logo_top">
@@ -399,98 +429,96 @@ if (isset($_POST["confirmbtn"])) {
             <h3>NEW</h3>
             <div id="parent">
 
-			</div>
+            </div>
         </div><!-- ./<div id="page-2 style="height:600px;"> -->
         <div id="page-3" style="height:800px;">
           <h3>SEARCH</h3>
           <section class = "search_page">
-            <form action="" method="post" id = "search">
-              <!--<input type="hidden" name="token2" value="<?php //echo getToken(); ?>">-->
-              <input type="hidden" name="again" value="<?php echo $again; ?>">
+            <form action="" method="post" id = "search_click">
+              <input type="hidden" name="noprice" value="<?php echo $choose; ?>">
               <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
                 <thead>
                   <tr>
-                    <td colspan="2" style="text-align: center;">SELECT YOUR PREFERENCE</td>
+                    <td colspan="2" style="text-align: center;">SELECTED PREFERENCE</td>
                   </tr>
                 </thead>
                 <tfoot>
                     <tr>
                       <td colspan="2" align="center">
-                        <input type="submit" value = "SEARCH" name = "search_btn">
+                        <input type="submit" value = "SHOW" name = "show_btn" id = "show">
+                        <input type="submit" value = "EDIT" name = "edit_btn">
+                        <?php if (isset($errorPrice)): ?>
+                            <div class="text-warning"><?php echo h($errorPrice); ?></div>
+                        <?php endif; ?>
                       </td>
                     </tr>
                 </tfoot>
-                <tobody>
-                  <tr>
-                    <td align="right" nowrap>
-                      <label>Preference</label>
-                    </td>
-                    <td valign="top">
-                      <label><input type="radio" name="pref" value="NEW">NEW</label><br>
-                      <label><input type="radio" name="pref" value="USED">USED</label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td align="right" nowrap>
-                      <label>Maker</label>
-                    </td>
-                    <td valign="top">
-                      <label><input type="checkbox" name="maker[]" value="Nissan" <?php if($maker == maker)//{echo "checked";} ?>>Nissan</label><br>
-                      <label><input type="checkbox" name="maker[]" value="Toyota" <?php if($maker == maker)//{echo "checked";} ?>>Toyota</label><br>
-                      <label><input type="checkbox" name="maker[]" value="Honda" <?php if($maker == maker)//{echo "checked";} ?>>Honda</label><br>
-                      <label><input type="checkbox" name="maker[]" value="Mazda" <?php if($maker == maker)//{echo "checked";} ?>>Mazda</label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td align="right" nowrap>
-                      <label>Type</label>
-                    </td>
-                    <td valign="top">
-                      <select name="type[]" size = "4" multiple>
-                        <option value="SUV" <?php if($type == SUV)//{echo "selected";} ?>>SUV</option>
-                        <option value="Van" <?php if($type == Van)//{echo "selected";} ?>>Van</option>
-                        <option value="Compact" <?php if($type == Compact)//{echo "selected";} ?>>Compact</option>
-                        <option value="Wagon" <?php if($type == Wagon)//{echo "selected";} ?>>Wagon</option>
-                      </select>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td align="right" nowrap>
-                      <label>Year</label>
-                    </td>
-                    <td valign="top">
-                      <select name="year" size = "4">
-                        <option value="2012" <?php if($year == 2012)//{echo "selected";} ?>>2012</option>
-                        <option value="2010" <?php if($year == 2010)//{echo "selected";} ?>>2010</option>
-                        <option value="2008" <?php if($year == 2008)//{echo "selected";} ?>>2008</option>
-                        <option value="2005" <?php if($year == 2005)//{echo "selected";} ?>>2005</option>
-                      </select>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td align="right" nowrap>
-                      <label>Price</label>
-                    </td>
-                    <td valign="top">
-                      <label><input type="number" name="price"
-              value="<?php //echo $price; ?>" step = "25" min= "25" max = "900">Man Yen</label>
-                    </td>
-                  </tr>
-                </tobody>
+                <tbody>
+                    <tr>
+                        <td align="right" nowrap>
+                          <label>Preference</label>
+                        </td>
+                        <td valign="top">
+                          <?php echo $pref; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" nowrap>
+                          <label>Maker</label>
+                        </td>
+                        <td valign="top">
+                          <?php echo $makerResult ; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" nowrap>
+                          <label>Type</label>
+                        </td>
+                        <td valign="top">
+                          <?php echo $typeResult; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" nowrap>
+                          <label>Year</label>
+                        </td>
+                        <td valign="top">
+                          <?php echo $year; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" nowrap>
+                          <label>Price</label>
+                        </td>
+                        <td valign="top">
+                          <?php echo $price; ?>
+                        </td>
+                    </tr>
+                </tbody>
               </table>
             </form>
           </section>
+          <div id = "result_show" style="display: none;">
+            <input type="hidden" name="show" value="<?php echo $show; ?>">
+            <h4>
+            <?php echo h($condition); ?>
+            <i class="fa fa-car" aria-hidden="true"></i>
+            </h4>
+            <section>
+              <?php echo "<img src = 'images/di_img_0{$imgNum}.jpg' alt ='Image Picture' >";?>
+            </section>
+            <form action="" method = "post">
+              <input type="submit" value="AGAIN" id="send_btn" class = "search_back" name = "again_btn">
+            </form>
+          </div>
         </div><!-- ENDS<div id="page-2" style="height:500px;"> -->
 
-        <div id="page-4" style="height:700px;">
+        <div id="page-4" style="height:600px;">
             <h3>CONTACT</h3>
             <section class="contact">
                   <form action="" method="post"  id="contact" novalidate>
-                  <input type="hidden" name="aaa" value="<?php echo $aaa; ?>">
-                  <input type="hidden" name="confirm" value="<?php echo $confirm; ?>">
-                  <input type="hidden" name="sent" value="<?php echo $sent; ?>">
-                  <input type="hidden" name="fstvisit" value="<?php echo $fstvisit; ?>">
                   <!--<input type="hidden" name="token" value="<?php //echo getToken(); ?>">-->
+                  <input type="hidden" name="confirm" value="<?php echo $confirm; ?>">
                 <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
                     <thead>
                         <tr>
@@ -503,7 +531,13 @@ if (isset($_POST["confirmbtn"])) {
                       <tfoot>
                         <tr>
                           <td colspan="2" align="center">
-                            <input type="submit" value="Confirm" id="send_btn" name = "confirmbtn">
+                            <input type="submit" value="SEND"  name="send">
+                            <input type="submit" value="修正"  name="back">
+                            <p id="shopping_done">
+                              <span></span>様<br>お問い合わせありがとうございました
+                              <i class="fa fa-smile-o" aria-hidden="true"></i><br>
+                              <a href="">戻る</a>
+                            </p>
                             <?php if (isset($errorName)): ?>
                                 <div class="text-warning"><?php echo h($errorName); ?></div>
                             <?php endif; ?>
@@ -566,19 +600,6 @@ if (isset($_POST["confirmbtn"])) {
                       </tbody>
                     </table>
                   </form>
-                  <div id="shopping_done">
-                    <h4>
-                    <!--<span></span>様<br>-->お問い合わせありがとうございました
-                    <i class="fa fa-smile-o" aria-hidden="true"></i><br><br>
-                    <!--<a href="">戻る</a>-->
-                    確認メールを送信いたしましたので、<br>
-                    ご登録のメールをご覧くださいませ
-                    <i class="fa fa-inbox" aria-hidden="true"></i>
-                    </h4>
-                    <form action="" method = "post">
-                      <input type="submit" value="FORM" id="send_btn" class = "form_back" name = "formback">
-					         </form>
-                </div>
                 </section>
         </div><!-- ./<div id="page-4" style="height:600px;"> -->
     </main>
@@ -606,7 +627,7 @@ if (isset($_POST["confirmbtn"])) {
 <script>
 $(document).ready(function(){
     var navHeight = $('nav').height();
-    var navHeight =  parseInt(navHeight) - 46;
+    var navHeight =  parseInt(navHeight) - 55;
     // -50 -> padding Top分（凡そ）を調整
     // スクロール
     $('nav a').click(function(){
@@ -624,7 +645,6 @@ $(document).ready(function(){
        //.currentを足す
        $(window).scroll(function(){
         var scrollTop = $(window).scrollTop();
-        //console.log(scrollTop);
         var navHeight = $('nav').height();
               //現在位置の表示
               $('.nav-pills > li').removeClass("current","synchro");
@@ -669,74 +689,35 @@ $(document).ready(function(){
              }
         });//$(window).scroll(function(){
 
-    //最初から少しスクロールダウン
-    if($("input[name='fstvisit']").val() != ""){
-    //if($("input[name='aaa']").val() != "" || $("input[name='confirm']").val() != ""){
-    $(window).scrollTop(10);
-    }
-
-
-
-    //When Error => Reload with Scroll to Contact
-    if($("input[name='aaa']").val() != ""){
-    //if($("input[name='aaa']").val() != "" || $("input[name='confirm']").val() != ""){
-      var scrollDown = parseInt($('#page-4').offset().top);
-      //var heightNav = parseInt($('nav').height());
-
-    $(window).scrollTop(scrollDown + 1);
-    }
-
-    //From Confirm => Header Location with Scroll to Contact
-    if($("input[name='confirm']").val() != ""){
-    //if($("input[name='aaa']").val() != "" || $("input[name='confirm']").val() != ""){
-      var scrollDown = parseInt($('#page-4').offset().top);
-      //var heightNav = parseInt($('nav').height());
-
-    $(window).scrollTop(scrollDown + 1);
-    }
-
-
-    //Mail Sent => Thank You Message
-    if($("input[name='sent']").val() != ""){
-    //if($("input[name='aaa']").val() != "" || $("input[name='confirm']").val() != ""){
-      var scrollDown = parseInt($('#page-4').offset().top);
-      //var heightNav = parseInt($('nav').height());
-
-    $(window).scrollTop(scrollDown + 1);
-    $("#contact").css({
-            display:"none"
-            });
-        //var userName = $("#user").val();
-        //$("#shopping_done span").text(userName);
-        $("#shopping_done").css({
-            display:"block"
-            });
-    }
-
-    //フォームを再表示
-    $('.form_back').on('click', function() {
-      $("#shopping_done").css({
-            display:"none"
-            });
-        //var userName = $("#user").val();
-        //$("#shopping_done span").text(userName);
-        $("#contact").css({
-            display:"block"
-            });
-    });
-
-      //EDIT CLICK
-      if($("input[name='edit']").val() != ""){
-        var scrollDown = parseInt($('#page-3').offset().top);
+        if($("input[name='confirm']").val() != ""){
+        //if($("input[name='aaa']").val() != "" || $("input[name='confirm']").val() != ""){
+          var scrollDown = parseInt($('#page-4').offset().top);
+          //var heightNav = parseInt($('nav').height());
 
         $(window).scrollTop(scrollDown + 1);
+        }
+
+      //SHOW CLICK
+      if($("input[name='show']").val() != ""){
+        //var scrollDown = parseInt($('#page-3').offset().top);
+
+        //$(window).scrollTop(scrollDown + 1);
+        $("#search_click").css({
+                display:"none"
+                });
+        $("#result_show").css({
+                display:"block"
+                });
       }
 
-      //AGAIN CLICK
-      if($("input[name='again']").val() != ""){
-        var scrollDown = parseInt($('#page-3').offset().top);
+      //NO PRICE
+      if($("input[name='noprice']").val() != ""){
+        //var scrollDown = parseInt($('#page-3').offset().top);
 
-        $(window).scrollTop(scrollDown + 1);
+        //$(window).scrollTop(scrollDown + 1);
+        $("#show").css({
+                display:"none"
+                });
       }
 
 });// ./$(document).ready(function(){
