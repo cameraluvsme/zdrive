@@ -6,6 +6,7 @@ session_start();
 
 var_dump($_SESSION);
 var_dump($_POST);
+var_dump($_SESSION["search"]);
 
 
 
@@ -49,12 +50,12 @@ if (isset($_SESSION["search"])) {
   $price = $search["price"];
   $token2   = $search["token2"];
   // CSRF対策
-  if($token2 !== getToken()){
-    $reLocated = TRUE;
-    $_SESSION["movepage"] = $movepage;
-    header("Location: search_form.php");
-    exit();
-  }
+  //if($token2 !== getToken()){
+    //$reLocated = TRUE;
+    //$_SESSION["movepage"] = $movepage;
+    //header("Location: search_form.php");
+    //exit();
+  //}
     //配列かどうかの判断
     if(is_array($maker)){
     $makerResult = implode("<br>", $maker);
@@ -70,14 +71,14 @@ if (isset($_SESSION["search"])) {
     $typeResult = "選択なし";
     }
 }
-else {
+//else {
     // 不正なアクセス
     // 入力ページへ戻る
-    $reLocated = TRUE;
-    $_SESSION["movepage"] = $movepage;
-    header("Location: search_form.php");
-    exit();
-}
+    //$reLocated = TRUE;
+    //$_SESSION["movepage"] = $movepage;
+    //header("Location: search_form.php");
+    //exit();
+//}
 
 //$_SESSION["search"]あるとき
 //if (isset($_SESSION["search"])) {
