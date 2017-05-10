@@ -2,12 +2,12 @@
 
 session_start();
 
-/*
+
 
 var_dump($_SESSION);
 var_dump($_POST);
 
-*/
+
 
 require_once "util.inc.php";
 
