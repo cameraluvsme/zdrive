@@ -105,7 +105,7 @@ if (isset($_POST["show_btn"])){
   $_SESSION["show"] = $show;
   //unset($_SESSION["search"]);
   //unset($_SESSION["edit"]);
-  header("Location: search_confirm.php");
+  header("Location: confirm.php");
   exit;
 }
 
@@ -155,7 +155,7 @@ if (isset($_POST["edit_btn"])){
     $_SESSION["edit"] = $edit;
     //unset($_SESSION["search"]);
     unset($_SESSION["show"]);
-    header("Location: search_form.php");
+    header("Location: design_mail.php");
     exit;
 }
 
@@ -164,7 +164,7 @@ if (isset($_POST["again_btn"])){
     $_SESSION["again"] = $again;
     unset($_SESSION["search"]);
     unset($_SESSION["show"]);
-    header("Location: search_form.php");
+    header("Location: design_mail.php");
     exit;
 }
 

@@ -48,6 +48,9 @@ else {
 
 初回の読み込み時のみの場合
 */
+
+//:::::::::::::SEARCH↓↓:::::::::::::::::::::::::
+
 //--------------------
 // セッション変数が登録されている場合は読み出す
 //--------------------
@@ -102,12 +105,14 @@ if (isset($_POST["search_btn"])){
     );
 
     $_SESSION["search"] = $search;
-    header("Location: search_confirm.php");
+    header("Location: confirm.php");
     exit;
     }
 
 }
 
+
+//:::::::::::::::CONTACT↓↓::::::::::::::::::::::::::::::::
 
 //--------------------
 // セッション変数が登録されている場合は読み出す
@@ -262,8 +267,8 @@ if (isset($_POST["confirmbtn"])) {
       "kana"    => $kana,
       "email"   => $email,
       "phone"   => $phone,
-      "inquiry" => $inquiry,
-      "token"   => $token
+      "inquiry" => $inquiry
+      //"token"   => $token
       // "contactOnly" => FALSE
     );
     $_SESSION["contact"] = $contact;
@@ -482,7 +487,7 @@ if (isset($_POST["confirmbtn"])) {
                   <input type="hidden" name="confirm" value="<?php echo $confirm; ?>">
                   <input type="hidden" name="sent" value="<?php echo $sent; ?>">
                   <input type="hidden" name="fstvisit" value="<?php echo $fstvisit; ?>">
-                  <input type="hidden" name="token" value="<?php echo getToken(); ?>">
+                  <!--<input type="hidden" name="token" value="<?php //echo getToken(); ?>">-->
                 <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
                     <thead>
                         <tr>

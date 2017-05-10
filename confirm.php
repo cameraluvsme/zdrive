@@ -13,6 +13,140 @@ require_once "libs/qd/qdmail.php";
 $confirm = "";
 $sent = "";
 
+//::::::::::::::::::::::SEARCH↓↓:::::::::::::::::::::::::::::::::::::
+
+//--------------------
+// セッション変数が登録されている場合は読み出す
+//--------------------
+if (isset($_SESSION["search"])) {
+  $isSearched = TRUE;
+  $search = $_SESSION["search"];
+  $pref = $search["pref"];
+  $maker = $search["maker"];
+  $type = $search["type"];
+  $year = $search["year"];
+  $price = $search["price"];
+  //$token2   = $search["token2"];
+  // CSRF対策
+  //if($token2 !== getToken()){
+    //$reLocated = TRUE;
+    //$_SESSION["movepage"] = $movepage;
+    //header("Location: search_form.php");
+    //exit();
+  //}
+    //配列かどうかの判断
+    if(is_array($maker)){
+    $makerResult = implode("<br>", $maker);
+    }
+    else{
+    $makerResult = "選択なし";
+    }
+
+    if(is_array($type)){
+    $typeResult = implode("<br>", $type);
+    }
+    else{
+    $typeResult = "選択なし";
+    }
+
+    if(is_numeric($price)){
+      $noprice = FALSE;
+    }
+    else{
+      $noprice = TRUE;
+      $choose = "CHOOSE";
+      $errorPrice = "値段を選択してください";
+    }
+}
+//else {
+    // 不正なアクセス
+    // 入力ページへ戻る
+    //$reLocated = TRUE;
+    //$_SESSION["movepage"] = $movepage;
+    //header("Location: search_form.php");
+    //exit();
+//}
+
+//$_SESSION["search"]あるとき
+//if (isset($_SESSION["search"])) {
+  //$beenSearch = TRUE;
+  //$search = $_SESSION["search"];
+  //$search = "BEEN SENT";
+//}
+
+
+
+//SHOW ボタンクリック
+if (isset($_POST["show_btn"])){
+
+  $_SESSION["show"] = $show;
+  //unset($_SESSION["search"]);
+  //unset($_SESSION["edit"]);
+  header("Location: confirm.php");
+  exit;
+}
+
+//$_SESSION["show"]あるとき
+if (is_null($_SESSION["show"])) {
+  $showClick = FALSE;
+}
+else{
+  $showClick = TRUE;
+  //$show = $_SESSION["show"];
+  $show = "SHOW RESULT";
+}
+
+if($showClick == TRUE){
+  if($price >= 350){
+    $condition = "新車のご提案が可能です";
+    $imgNum = 4;
+  }
+
+  elseif($price >= 200){
+    $condition = "幅広いご提案ができます";
+    $imgNum = 5;
+
+  }
+  elseif($price >= 100){
+    $condition = "複数のご提案が可能です";
+    $imgNum = 3;
+  }
+
+  elseif($price >= 50){
+    $condition = "お買い得な車です";
+    $imgNum = 2;
+  }
+
+  else{
+    $condition = "紹介できる車なし";
+    $imgNum = 1;
+  }
+}
+
+
+
+
+
+//EDIT ボタンクリック
+if (isset($_POST["edit_btn"])){
+    $_SESSION["edit"] = $edit;
+    //unset($_SESSION["search"]);
+    unset($_SESSION["show"]);
+    header("Location: design_mail.php");
+    exit;
+}
+
+//AGAIN ボタンクリック
+if (isset($_POST["again_btn"])){
+    $_SESSION["again"] = $again;
+    unset($_SESSION["search"]);
+    unset($_SESSION["show"]);
+    header("Location: design_mail.php");
+    exit;
+}
+
+
+//:::::::::::::::::::::::::::↓↓CONTACT:::::::::::::::::::::::
 
 //--------------------
 // セッション変数が登録されている場合は読み出す
@@ -25,53 +159,6 @@ if (isset($_SESSION["search"])) {
   $year = $search["year"];
   $price = $search["price"];
   //$token2   = $search["token2"];
-}
-
-//--------------------
-// セッション変数が登録されている場合は読み出す
-//--------------------
-if (isset($_SESSION["edit"])) {
-  $edit = $_SESSION["edit"];
-  $edit = "EDIT";
-}
-
-//--------------------
-// セッション変数が登録されている場合は読み出す
-//--------------------
-if (isset($_SESSION["again"])) {
-  $again = $_SESSION["again"];
-  $again = "AGAIN";
-}
-
-
-//SEARCH ボタンクリック
-if (isset($_POST["search_btn"])){
-
-  $isSearched = TRUE;
-
-    // 入力データの取得
-    $pref = $_POST["pref"];  //
-    $maker = $_POST["maker"];  //IMPLODE
-    $type = $_POST["type"];  //IMPLODE
-    $year = $_POST["year"]; //
-    $price = $_POST["price"]; //
-    //$token2 = $_POST["token2"]; //
-
-    if($isSearched == TRUE){
-      $search = array(
-      "pref" => $pref,
-      "maker" => $maker,
-      "type" => $type,
-      "year" => $year,
-      "price" => $price
-      //"token2" => $token2
-    );
-
-    $_SESSION["search"] = $search;
-    header("Location: search_confirm.php");
-    exit;
-    }
-
 }
 
 
@@ -90,23 +177,23 @@ if (isset($_SESSION["contact"])) {
   $email   = $contact["email"];
   $phone   = $contact["phone"];
   $inquiry = $contact["inquiry"];
-  $token   = $contact["token"];
+  //$token   = $contact["token"];
   // CSRF対策
-  if($token !== getToken()){
-    $isConfirmed = FALSE;
-    $_SESSION["confirm"] = $confirm;
-    header("Location: design_mail.php");
-    exit();
-  }
-}
-else {
+  //if($token !== getToken()){
+    //$isConfirmed = FALSE;
+    //$_SESSION["confirm"] = $confirm;
+    //header("Location: design_mail.php");
+    //exit();
+  //}
+//}
+//else {
   // 不正なアクセス
   // 入力ページへ戻る
-  $isConfirmed = FALSE;
-  $_SESSION["confirm"] = $confirm;
-  header("Location: design_mail.php");
-  exit;
-}
+  //$isConfirmed = FALSE;
+  //$_SESSION["confirm"] = $confirm;
+  //header("Location: design_mail.php");
+  //exit;
+//}
 
 if($isConfirmed = TRUE){
     $confirm = "Scroll Down To Contact";
@@ -429,7 +516,7 @@ if (isset($_POST["back"])) {
             <h3>CONTACT</h3>
             <section class="contact">
                   <form action="" method="post"  id="contact" novalidate>
-                  <input type="hidden" name="token" value="<?php echo getToken(); ?>">
+                  <!--<input type="hidden" name="token" value="<?php //echo getToken(); ?>">-->
                   <input type="hidden" name="confirm" value="<?php echo $confirm; ?>">
                 <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
                     <thead>
