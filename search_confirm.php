@@ -48,7 +48,13 @@ if (isset($_SESSION["search"])) {
   $year = $search["year"];
   $price = $search["price"];
   $token2   = $search["token2"];
-
+  // CSRF対策
+  if($token2 !== getToken()){
+    $reLocated = TRUE;
+    $_SESSION["movepage"] = $movepage;
+    header("Location: search_form.php");
+    exit();
+  }
     //配列かどうかの判断
     if(is_array($maker)){
     $makerResult = implode("<br>", $maker);
@@ -64,7 +70,14 @@ if (isset($_SESSION["search"])) {
     $typeResult = "選択なし";
     }
 }
-
+else {
+    // 不正なアクセス
+    // 入力ページへ戻る
+    $reLocated = TRUE;
+    $_SESSION["movepage"] = $movepage;
+    header("Location: search_form.php");
+    exit();
+}
 
 //$_SESSION["search"]あるとき
 //if (isset($_SESSION["search"])) {
@@ -139,64 +152,66 @@ if (isset($_POST["edit"])){
 </head>
 <body>
 
-<table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333" id = "search_click">
-  <input type="hidden" name="edit" value="<?php echo $edit; ?>">
-  <thead>
-    <tr>
-      <td colspan="2" style="text-align: center;">SELECTED PREFERENCE</td>
-    </tr>
-  </thead>
-  <tfoot>
+<form action="" method="post">
+  <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333" id = "search_click">
+    <input type="hidden" name="edit" value="<?php echo $edit; ?>">
+    <thead>
       <tr>
-        <td colspan="2" align="center">
-          <input type="submit" value = "SHOW" name = "show_btn">
-          <input type="submit" value = "EDIT" name = "edit_btn">
-        </td>
+        <td colspan="2" style="text-align: center;">SELECTED PREFERENCE</td>
       </tr>
-  </tfoot>
-  <tbody>
-      <tr>
-          <td align="right" nowrap>
-            <label>Preference</label>
+    </thead>
+    <tfoot>
+        <tr>
+          <td colspan="2" align="center">
+            <input type="submit" value = "SHOW" name = "show_btn">
+            <input type="submit" value = "EDIT" name = "edit_btn">
           </td>
-          <td valign="top">
-            <?php echo $pref; ?>
-          </td>
-      </tr>
-      <tr>
-          <td align="right" nowrap>
-            <label>Maker</label>
-          </td>
-          <td valign="top">
-            <?php echo $makerResult ; ?>
-          </td>
-      </tr>
-      <tr>
-          <td align="right" nowrap>
-            <label>Type</label>
-          </td>
-          <td valign="top">
-            <?php echo $typeResult; ?>
-          </td>
-      </tr>
-      <tr>
-          <td align="right" nowrap>
-            <label>Year</label>
-          </td>
-          <td valign="top">
-            <?php echo $year; ?>
-          </td>
-      </tr>
-      <tr>
-          <td align="right" nowrap>
-            <label>Price</label>
-          </td>
-          <td valign="top">
-            <?php echo $price; ?>
-          </td>
-      </tr>
-  </tbody>
-</table>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr>
+            <td align="right" nowrap>
+              <label>Preference</label>
+            </td>
+            <td valign="top">
+              <?php echo $pref; ?>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" nowrap>
+              <label>Maker</label>
+            </td>
+            <td valign="top">
+              <?php echo $makerResult ; ?>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" nowrap>
+              <label>Type</label>
+            </td>
+            <td valign="top">
+              <?php echo $typeResult; ?>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" nowrap>
+              <label>Year</label>
+            </td>
+            <td valign="top">
+              <?php echo $year; ?>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" nowrap>
+              <label>Price</label>
+            </td>
+            <td valign="top">
+              <?php echo $price; ?>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+</form>
 <div id = "result_show" style="display: none;">
   <input type="hidden" name="show" value="<?php echo $show; ?>">
   <h4>

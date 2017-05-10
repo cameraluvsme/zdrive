@@ -51,6 +51,9 @@ if (isset($_SESSION["search"])) {
 
 //SEARCH ボタンクリック
 if (isset($_POST["search_btn"])){
+
+  $isSearched = TRUE;
+
     // 入力データの取得
     $pref = $_POST["pref"];  //
     $maker = $_POST["maker"];  //IMPLODE
@@ -59,7 +62,8 @@ if (isset($_POST["search_btn"])){
     $price = $_POST["price"]; //
     $token2 = $_POST["token2"]; //
 
-    $search = array(
+    if($isSearched == TRUE){
+      $search = array(
       "pref" => $pref,
       "maker" => $maker,
       "type" => $type,
@@ -71,6 +75,8 @@ if (isset($_POST["search_btn"])){
     $_SESSION["search"] = $search;
     header("Location: search_confirm.php");
     exit;
+    }
+
 }
 
 //$_SESSION["search"]あるとき
