@@ -604,6 +604,40 @@ NEW Page*****************************************************
     font-size: 15px;
 }
 
+@media (min-width: 600px) {
+    #page-2 #parent h3{
+        font-size: 20px;
+    }
+
+    #page-2 #parent h4{
+        font-size: 18px;
+    }
+
+} /* ENDS @media (min-width: @screen-sm-min) {} */
+
+
+@media (min-width: 960px) {
+    #page-2 #parent h3{
+        font-size: 22px;
+    }
+
+    #page-2 #parent h4{
+        font-size: 20px;
+    }
+
+} /* ENDS @media (min-width: @screen-sm-min) {} */
+
+@media (min-width: 1281px) {
+    #page-2 #parent h3{
+        font-size: 24px;
+    }
+
+    #page-2 #parent h4{
+        font-size: 22px;
+    }
+
+} /* ENDS @media (min-width: @screen-sm-min) {} */
+
 /*
 Layout: min-width: 600px*************************************
 */
@@ -742,6 +776,33 @@ Main > MENU Page*********************************************
 
 
 
+
+#design_mail table thead, #design_mail table tfoot{
+    background-color: #337ab7;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+#cdesign_mail table tfoot .text-warning{
+    font-size: 1.3rem;
+}
+
+#design_mail  table,#design_mail section{
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+#design_mail table thead{
+    color: white;
+}
+
+#design_mail table tbody{
+    background-color: rgba(102,153,255,0.65);
+    font-size: 1.4rem;
+}
+
+
 /*
 MENU Page: min-width: 600px*************************************
 */
@@ -822,6 +883,24 @@ MENU Page: min-width: 600px*************************************
 } /* ENDS @media (min-width: @screen-sm-min) {} */
 
 
+@media (min-width: 600px) {
+    #design_mail table,#design_mail section{
+    width: 98%;
+    }
+    #design_mail table thead, #design_mail table tfoot{
+        font-size: 1.7rem;
+    }
+
+    #design_mail table tfoot .text-warning{
+        font-size: 1.4rem;
+    }
+
+    #design_mail table tbody{
+    font-size: 1.5rem;
+    }
+
+} /* ENDS @media (min-width: @screen-sm-min) {} */
+
 /*
 MENU Page: min-width: 960px*************************************
 */
@@ -899,6 +978,25 @@ MENU Page: min-width: 960px*************************************
     }
 } /* ENDS @media (min-width: @screen-sm-min) {} */
 
+@media (min-width: 960px) {
+    #design_mail table,#design_mail  section{
+    width: 70%;
+    }
+    #design_mail  table thead, #design_mail  table tfoot{
+        font-size: 1.8rem;
+    }
+
+    #design_mail table tfoot .text-warning{
+        font-size: 1.5rem;
+    }
+
+
+    #design_mail  table tbody{
+    font-size: 1.6rem;
+    }
+} /* ENDS @media (min-width: @screen-sm-min) {} */
+
+
 /*
 MENU Page: min-width: 1281px*************************************
 */
@@ -958,7 +1056,7 @@ MENU Page: min-width: 1281px*************************************
 
 
 @media (min-width: 1281px) {
-    #confirm_page table,#page-4 #confirm_page section{
+    #confirm_page table,#confirm_page section{
     width: 60%;
     }
     #confirm_page table thead, #confirm_page table tfoot{
@@ -975,6 +1073,24 @@ MENU Page: min-width: 1281px*************************************
     }
 } /* ENDS @media (min-width: @screen-sm-min) {} */
 
+
+@media (min-width: 1281px) {
+    #design_mail table,#design_mail section{
+    width: 60%;
+    }
+    #design_mail table thead, #design_mail table tfoot{
+        font-size: 1.9rem;
+    }
+
+    #design_mail table tfoot .text-warning{
+        font-size: 1.6rem;
+    }
+
+
+    #design_mail table tbody{
+    font-size: 1.7rem;
+    }
+} /* ENDS @media (min-width: @screen-sm-min) {} */
 
 
 /*

@@ -453,7 +453,7 @@ if (isset($_SESSION["again"])) {
         </div><!-- ./<div id="page-2 style="height:600px;"> -->
         <div id="page-3" style="height:800px;">
           <h3>SEARCH</h3>
-          <section class = "search_page">
+          <section class = "search_page" id = "design_mail">
             <form action="" method="post" id = "search">
               <!--<input type="hidden" name="token2" value="<?php //echo getToken(); ?>">-->
               <input type="hidden" name="again" value="<?php echo $again; ?>">
