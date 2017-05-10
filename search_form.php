@@ -47,7 +47,7 @@ if (isset($_SESSION["search"])) {
   $type = $search["type"];
   $year = $search["year"];
   $price = $search["price"];
-  $token2   = $search["token2"];
+  //$token2   = $search["token2"];
 }
 
 //--------------------
@@ -58,6 +58,13 @@ if (isset($_SESSION["edit"])) {
   $edit = "EDIT";
 }
 
+//--------------------
+// セッション変数が登録されている場合は読み出す
+//--------------------
+if (isset($_SESSION["again"])) {
+  $again = $_SESSION["again"];
+  $again = "AGAIN";
+}
 
 
 //SEARCH ボタンクリック
@@ -71,7 +78,7 @@ if (isset($_POST["search_btn"])){
     $type = $_POST["type"];  //IMPLODE
     $year = $_POST["year"]; //
     $price = $_POST["price"]; //
-    $token2 = $_POST["token2"]; //
+    //$token2 = $_POST["token2"]; //
 
     if($isSearched == TRUE){
       $search = array(
@@ -79,8 +86,8 @@ if (isset($_POST["search_btn"])){
       "maker" => $maker,
       "type" => $type,
       "year" => $year,
-      "price" => $price,
-      "token2" => $token2
+      "price" => $price
+      //"token2" => $token2
     );
 
     $_SESSION["search"] = $search;
@@ -119,7 +126,8 @@ if (isset($_POST["search_btn"])){
 
   <section>
     <form action="" method="post">
-      <input type="hidden" name="token2" value="<?php echo getToken(); ?>">
+      <!--<input type="hidden" name="token2" value="<?php //echo getToken(); ?>">-->
+      <input type="hidden" name="again" value="<?php echo $again; ?>">
       <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
         <thead>
           <tr>
@@ -148,10 +156,10 @@ if (isset($_POST["search_btn"])){
               <label>Maker</label>
             </td>
             <td valign="top">
-              <label><input type="checkbox" name="maker[]" value="Nissan" <?php if($maker == maker){echo "checked";} ?>>Nissan</label><br>
-              <label><input type="checkbox" name="maker[]" value="Toyota" <?php if($maker == maker){echo "checked";} ?>>Toyota</label><br>
-              <label><input type="checkbox" name="maker[]" value="Honda" <?php if($maker == maker){echo "checked";} ?>>Honda</label><br>
-              <label><input type="checkbox" name="maker[]" value="Mazda" <?php if($maker == maker){echo "checked";} ?>>Mazda</label>
+              <label><input type="checkbox" name="maker[]" value="Nissan" <?php if($maker == maker)//{echo "checked";} ?>>Nissan</label><br>
+              <label><input type="checkbox" name="maker[]" value="Toyota" <?php if($maker == maker)//{echo "checked";} ?>>Toyota</label><br>
+              <label><input type="checkbox" name="maker[]" value="Honda" <?php if($maker == maker)//{echo "checked";} ?>>Honda</label><br>
+              <label><input type="checkbox" name="maker[]" value="Mazda" <?php if($maker == maker)//{echo "checked";} ?>>Mazda</label>
             </td>
           </tr>
           <tr>
@@ -160,10 +168,10 @@ if (isset($_POST["search_btn"])){
             </td>
             <td valign="top">
               <select name="type[]" size = "4" multiple>
-                <option value="SUV" <?php if($type == SUV){echo "selected";} ?>>SUV</option>
-                <option value="Van" <?php if($type == Van){echo "selected";} ?>>Van</option>
-                <option value="Compact" <?php if($type == Compact){echo "selected";} ?>>Compact</option>
-                <option value="Wagon" <?php if($type == Wagon){echo "selected";} ?>>Wagon</option>
+                <option value="SUV" <?php if($type == SUV)//{echo "selected";} ?>>SUV</option>
+                <option value="Van" <?php if($type == Van)//{echo "selected";} ?>>Van</option>
+                <option value="Compact" <?php if($type == Compact)//{echo "selected";} ?>>Compact</option>
+                <option value="Wagon" <?php if($type == Wagon)//{echo "selected";} ?>>Wagon</option>
               </select>
             </td>
           </tr>
@@ -173,10 +181,10 @@ if (isset($_POST["search_btn"])){
             </td>
             <td valign="top">
               <select name="year" size = "4">
-                <option value="2012" <?php if($year == 2012){echo "selected";} ?>>2012</option>
-                <option value="2010" <?php if($year == 2010){echo "selected";} ?>>2010</option>
-                <option value="2008" <?php if($year == 2008){echo "selected";} ?>>2008</option>
-                <option value="2005" <?php if($year == 2005){echo "selected";} ?>>2005</option>
+                <option value="2012" <?php if($year == 2012)//{echo "selected";} ?>>2012</option>
+                <option value="2010" <?php if($year == 2010)//{echo "selected";} ?>>2010</option>
+                <option value="2008" <?php if($year == 2008)//{echo "selected";} ?>>2008</option>
+                <option value="2005" <?php if($year == 2005)//{echo "selected";} ?>>2005</option>
               </select>
             </td>
           </tr>
@@ -186,7 +194,7 @@ if (isset($_POST["search_btn"])){
             </td>
             <td valign="top">
               <label><input type="number" name="price"
-      value="<?php echo $price; ?>" step = "25" min= "25" max = "900">Man Yen</label>
+      value="<?php //echo $price; ?>" step = "25" min= "25" max = "900">Man Yen</label>
             </td>
           </tr>
         </tobody>
@@ -243,6 +251,15 @@ $(document).ready(function(){
 
         $(window).scrollTop(scrollDown + 1);
       }
+
+      //AGAIN CLICK
+      if($("input[name='again']").val() != ""){
+        var scrollDown = parseInt($('#page-3').offset().top);
+
+        $(window).scrollTop(scrollDown + 1);
+      }
+
+
 
 
 });// ./$(document).ready(function(){

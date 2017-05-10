@@ -7,6 +7,7 @@ session_start();
 var_dump($_SESSION);
 var_dump($_POST);
 var_dump($_SESSION["search"]);
+var_dump($_SESSION["show"]);
 
 
 
@@ -48,7 +49,7 @@ if (isset($_SESSION["search"])) {
   $type = $search["type"];
   $year = $search["year"];
   $price = $search["price"];
-  $token2   = $search["token2"];
+  //$token2   = $search["token2"];
   // CSRF対策
   //if($token2 !== getToken()){
     //$reLocated = TRUE;
@@ -70,6 +71,15 @@ if (isset($_SESSION["search"])) {
     else{
     $typeResult = "選択なし";
     }
+
+    if(is_numeric($price)){
+      $noprice = FALSE;
+    }
+    else{
+      $noprice = TRUE;
+      $choose = "CHOOSE";
+      $errorPrice = "値段を選択してください";
+    }
 }
 //else {
     // 不正なアクセス
@@ -87,18 +97,29 @@ if (isset($_SESSION["search"])) {
   //$search = "BEEN SENT";
 //}
 
-//--------------------
-// セッション変数が登録されている場合は読み出す
-//--------------------
-if (isset($_SESSION["show"])) {
-  $show = $_SESSION["show"];
-  $show= "SHOW";
-}
 
 
 //SHOW ボタンクリック
 if (isset($_POST["show_btn"])){
 
+  $_SESSION["show"] = $show;
+  //unset($_SESSION["search"]);
+  //unset($_SESSION["edit"]);
+  header("Location: search_confirm.php");
+  exit;
+}
+
+//$_SESSION["show"]あるとき
+if (is_null($_SESSION["show"])) {
+  $showClick = FALSE;
+}
+else{
+  $showClick = TRUE;
+  //$show = $_SESSION["show"];
+  $show = "SHOW RESULT";
+}
+
+if($showClick == TRUE){
   if($price >= 350){
     $condition = "新車のご提案が可能です";
     $imgNum = 4;
@@ -123,21 +144,14 @@ if (isset($_POST["show_btn"])){
     $condition = "紹介できる車なし";
     $imgNum = 1;
   }
+}
 
-  $_SESSION["show"] = $show;
-  unset($_SESSION["search"]);
-  unset($_SESSION["edit"]);
-  header("Location: search_confirm.php");
-  exit;
-}
-//$_SESSION["show"]あるとき
-if (isset($_SESSION["show"])) {
-  $show = $_SESSION["show"];
-  $show = "SHOW RESULT";
-}
+
+
+
 
 //EDIT ボタンクリック
-if (isset($_POST["edit"])){
+if (isset($_POST["edit_btn"])){
     $_SESSION["edit"] = $edit;
     //unset($_SESSION["search"]);
     unset($_SESSION["show"]);
@@ -145,11 +159,14 @@ if (isset($_POST["edit"])){
     exit;
 }
 
-//$_SESSION["edit"]あるとき
-//if (isset($_SESSION["edit"])) {
-  //$edit = $_SESSION["edit"];
-  //$edit = "EDIT";
-//}
+//AGAIN ボタンクリック
+if (isset($_POST["again_btn"])){
+    $_SESSION["again"] = $again;
+    unset($_SESSION["search"]);
+    //unset($_SESSION["show"]);
+    header("Location: search_form.php");
+    exit;
+}
 
 ?>
 
@@ -162,9 +179,8 @@ if (isset($_POST["edit"])){
 <body>
 
 <form action="" method="post" id = "search_click">
+  <input type="hidden" name="noprice" value="<?php echo $choose; ?>">
   <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
-    <!--<input type="hidden" name="edit" value="<?php //echo $edit; ?>">-->
-    <input type="hidden" name="show" value="<?php echo $show; ?>">
     <thead>
       <tr>
         <td colspan="2" style="text-align: center;">SELECTED PREFERENCE</td>
@@ -173,8 +189,11 @@ if (isset($_POST["edit"])){
     <tfoot>
         <tr>
           <td colspan="2" align="center">
-            <input type="submit" value = "SHOW" name = "show_btn">
+            <input type="submit" value = "SHOW" name = "show_btn" id = "show">
             <input type="submit" value = "EDIT" name = "edit_btn">
+            <?php if (isset($errorPrice)): ?>
+                <div class="text-warning"><?php echo h($errorPrice); ?></div>
+            <?php endif; ?>
           </td>
         </tr>
     </tfoot>
@@ -230,7 +249,7 @@ if (isset($_POST["edit"])){
   </h4>
   <?php echo "<img src = 'images/di_img_0{$imgNum}.jpg' alt ='Image Picture' >";?>
   <form action="" method = "post">
-    <input type="submit" value="SEARCH" id="send_btn" class = "search_back" name = "srchback">
+    <input type="submit" value="AGAIN" id="send_btn" class = "search_back" name = "again_btn">
   </form>
 </div>
 <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
@@ -273,14 +292,24 @@ $(document).ready(function(){
 
       //SHOW CLICK
       if($("input[name='show']").val() != ""){
-        var scrollDown = parseInt($('#page-3').offset().top);
+        //var scrollDown = parseInt($('#page-3').offset().top);
 
-        $(window).scrollTop(scrollDown + 1);
+        //$(window).scrollTop(scrollDown + 1);
         $("#search_click").css({
                 display:"none"
                 });
         $("#result_show").css({
                 display:"block"
+                });
+      }
+
+      //NO PRICE
+      if($("input[name='noprice']").val() != ""){
+        //var scrollDown = parseInt($('#page-3').offset().top);
+
+        //$(window).scrollTop(scrollDown + 1);
+        $("#show").css({
+                display:"none"
                 });
       }
 
