@@ -8,8 +8,8 @@ var_dump($_POST);
 
 */
 
-var_dump($edit);
-var_dump($again);
+//var_dump($edit);
+//var_dump($again);
 
 require_once "util.inc.php";
 

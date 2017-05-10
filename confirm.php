@@ -1,8 +1,10 @@
 <?php
 session_start();
 
-//var_dump($_SESSION);
-//var_dump($_POST);
+var_dump($_SESSION);
+var_dump($_POST);
+var_dump($_SESSION["show"]);
+var_dump($show);
 
 require_once "util.inc.php";
 require_once "libs/qd/qdsmtp.php";
@@ -56,7 +58,7 @@ if (isset($_SESSION["search"])) {
     else{
       $noprice = TRUE;
       $choose = "CHOOSE";
-      $errorPrice = "値段を選択してください";
+      $errorPrice = "金額を選択してください";
     }
 }
 //else {
@@ -701,9 +703,9 @@ $(document).ready(function(){
 
       //SHOW CLICK
       if($("input[name='show']").val() != ""){
-        //var scrollDown = parseInt($('#page-3').offset().top);
+        var scrollDown = parseInt($('#page-3').offset().top);
 
-        //$(window).scrollTop(scrollDown + 1);
+        $(window).scrollTop(scrollDown + 1);
         $("#search_click").css({
                 display:"none"
                 });
@@ -714,9 +716,9 @@ $(document).ready(function(){
 
       //NO PRICE
       if($("input[name='noprice']").val() != ""){
-        //var scrollDown = parseInt($('#page-3').offset().top);
+        var scrollDown = parseInt($('#page-3').offset().top);
 
-        //$(window).scrollTop(scrollDown + 1);
+        $(window).scrollTop(scrollDown + 1);
         $("#show").css({
                 display:"none"
                 });
