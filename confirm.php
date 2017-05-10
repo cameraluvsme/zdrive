@@ -14,6 +14,26 @@ require_once "libs/qd/qdmail.php";
 //初期化
 $confirm = "";
 $sent = "";
+$name    = "";
+$kana    = "";
+$email   = "";
+$phone   = "";
+$inquiry = "";
+$aaa = "";
+$confirm = "";
+$sent = "";
+$fstvisit = "";
+$pref = "";
+$maker = "";
+$type = "";
+$year = "";
+$price = "";
+$makerResult = "";
+$search = "";
+$show = "";
+$edit = "";
+$condition = "";
+$imgNum= "";
 
 //::::::::::::::::::::::SEARCH↓↓:::::::::::::::::::::::::::::::::::::
 
@@ -29,6 +49,7 @@ if (isset($_SESSION["search"])) {
   $type = $search["type"];
   $year = $search["year"];
   $price = $search["price"];
+  $frmsearch = "FROM SEARCH";
   //$token2   = $search["token2"];
   // CSRF対策
   //if($token2 !== getToken()){
@@ -84,7 +105,7 @@ if (isset($_POST["show_btn"])){
 
   $_SESSION["show"] = $show;
   //unset($_SESSION["search"]);
-  //unset($_SESSION["edit"]);
+  unset($_SESSION["edit"]);
   header("Location: confirm.php");
   exit;
 }
@@ -127,21 +148,19 @@ if($showClick == TRUE){
 }
 
 
-
-
-
 //EDIT ボタンクリック
 if (isset($_POST["edit_btn"])){
-    $_SESSION["edit"] = $edit;
-    //unset($_SESSION["search"]);
+    $_SESSION["edit"] = true;
+    unset($_SESSION["search"]);
     unset($_SESSION["show"]);
+    unset($_SESSION["contact"]);
     header("Location: design_mail.php");
     exit;
 }
 
 //AGAIN ボタンクリック
 if (isset($_POST["again_btn"])){
-    $_SESSION["again"] = $again;
+    $_SESSION["again"] = true;
     unset($_SESSION["search"]);
     unset($_SESSION["show"]);
     header("Location: design_mail.php");
@@ -310,6 +329,8 @@ EOT;
   // 完了画面へ移動
   $beenSent = FALSE;
   $_SESSION["sent"] = $sent;
+  unset($_SESSION["edit"]);
+  unset($_SESSION["again"]);
   header("Location: design_mail.php");
   exit;
 }
@@ -322,6 +343,8 @@ if (isset($_POST["back"])) {
   //$_SESSION["contact"] = $contact;
   $isConfirmed = FALSE;
   $_SESSION["confirm"] = $confirm;
+  unset($_SESSION["edit"]);
+  unset($_SESSION["again"]);
   header("Location: design_mail.php");
   exit;
 }
@@ -440,6 +463,8 @@ if (isset($_POST["back"])) {
           <section class = "search_page">
             <form action="" method="post" id = "search_click">
               <input type="hidden" name="noprice" value="<?php echo $choose; ?>">
+              <input type="hidden" name="show" value="<?php echo $show; ?>">
+              <input type="hidden" name="frmsearch" value="<?php echo $frmsearch; ?>">
               <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
                 <thead>
                   <tr>
@@ -698,7 +723,7 @@ $(document).ready(function(){
           var scrollDown = parseInt($('#page-4').offset().top);
           //var heightNav = parseInt($('nav').height());
 
-        $(window).scrollTop(scrollDown + 1);
+          $(window).scrollTop(scrollDown + 1);
         }
 
       //SHOW CLICK
@@ -712,6 +737,12 @@ $(document).ready(function(){
         $("#result_show").css({
                 display:"block"
                 });
+      }
+
+      //SEARCH HEADER LOCATION FRM DESIGN MAIL
+      if($("input[name='frmsearch']").val() != ""){
+        var scrollDown = parseInt($('#page-3').offset().top);
+        $(window).scrollTop(scrollDown + 1);
       }
 
       //NO PRICE

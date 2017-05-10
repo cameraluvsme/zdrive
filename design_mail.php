@@ -1,15 +1,14 @@
 <?php
 session_start();
 
-/*
+
 
 var_dump($_SESSION);
 var_dump($_POST);
 
-*/
 
-//var_dump($edit);
-//var_dump($again);
+
+
 
 require_once "util.inc.php";
 
@@ -67,23 +66,6 @@ if (isset($_SESSION["search"])) {
   //$token2   = $search["token2"];
 }
 
-//--------------------
-// セッション変数が登録されている場合は読み出す
-//--------------------
-if (isset($_SESSION["edit"])) {
-  $edit = $_SESSION["edit"];
-  $edit = "EDIT";
-}
-
-//--------------------
-// セッション変数が登録されている場合は読み出す
-//--------------------
-if (isset($_SESSION["again"])) {
-  $again = $_SESSION["again"];
-  $again = "AGAIN";
-}
-
-
 //SEARCH ボタンクリック
 if (isset($_POST["search_btn"])){
 
@@ -108,6 +90,9 @@ if (isset($_POST["search_btn"])){
     );
 
     $_SESSION["search"] = $search;
+    unset($_SESSION["edit"]);
+    unset($_SESSION["again"]);
+    unset($_SESSION["contact"]);
     header("Location: confirm.php");
     exit;
     }
@@ -178,6 +163,7 @@ else{
 if (isset($_POST["formback"])) {
     // セッション変数を破棄
     unset($_SESSION["sent"]);
+    unset($_SESSION["contact"]);
     $sent = "Display Contact Form, again!";
     $aaa = "";
     $confirm = "";
@@ -185,6 +171,8 @@ if (isset($_POST["formback"])) {
     $fstvisit = "";
 	//送信後にフォームを再表示
     $_SESSION["confirm"] = "";
+    unset($_SESSION["edit"]);
+    unset($_SESSION["again"]);
     header("Location: design_mail.php");
     exit;
 }
@@ -194,7 +182,8 @@ if (isset($_POST["formback"])) {
 // 「確認する」ボタン
 //--------------------
 if (isset($_POST["confirmbtn"])) {
-
+  unset($_SESSION["again"]);
+  unset($_SESSION["edit"]);
   $isValidated = TRUE;
   // $contactOnly = TRUE;
 
@@ -283,6 +272,30 @@ if (isset($_POST["confirmbtn"])) {
   }
 
 }
+
+
+
+//--------------------
+// セッション変数が登録されている場合は読み出す
+//--------------------
+if (isset($_SESSION["edit"])) {
+  $edit = $_SESSION["edit"];
+  $edit = "EDIT";
+}
+
+//--------------------
+// セッション変数が登録されている場合は読み出す
+//--------------------
+if (isset($_SESSION["again"])) {
+  $again = $_SESSION["again"];
+  $again = "AGAIN";
+}
+
+var_dump($edit);
+var_dump($again);
+
+
+
 
 ?>
 <!DOCTYPE html>
@@ -407,6 +420,7 @@ if (isset($_POST["confirmbtn"])) {
             <form action="" method="post" id = "search">
               <!--<input type="hidden" name="token2" value="<?php //echo getToken(); ?>">-->
               <input type="hidden" name="again" value="<?php echo $again; ?>">
+              <input type="hidden" name="edit" value="<?php echo $edit; ?>">
               <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
                 <thead>
                   <tr>
@@ -725,6 +739,8 @@ $(document).ready(function(){
             });
     });
 
+
+
       //EDIT CLICK
       if($("input[name='edit']").val() != ""){
         var scrollDown = parseInt($('#page-3').offset().top);
@@ -738,6 +754,8 @@ $(document).ready(function(){
 
         $(window).scrollTop(scrollDown + 1);
       }
+
+
 
 });// ./$(document).ready(function(){
 </script>
