@@ -11,27 +11,43 @@ var_dump($_POST);
 
 require_once "util.inc.php";
 
+//--------------------
+// 変数の初期化
+//--------------------
+$name    = "";
+$kana    = "";
+$email   = "";
+$phone   = "";
+$inquiry = "";
+$aaa = "";
+$confirm = "";
+$sent = "";
+$fstvisit = "";
+$pref = "";
+$maker = "";
+$type = "";
+$year = "";
+$price = "";
+$makerResult = "";
+$search = "";
+$show = "";
+$edit = "";
+$condition = "";
+$imgNum= "";
+
 
 //--------------------
 // セッション変数が登録されている場合は読み出す
 //--------------------
 if (isset($_SESSION["search"])) {
+  $isSearched = TRUE;
   $search = $_SESSION["search"];
-  $pref = $contact["pref"];
-  $makerResult = $contact["makerResult"];
-  $typeResult = $contact["typeResult"];
-  $year = $contact["year"];
-  $price = $contact["price"];
-}
-
-//SEARCH ボタンクリック
-if (isset($_POST["search_btn"])){
-    // 入力データの取得
-    $pref = $_POST["pref"];  //
-    $maker = $_POST["maker"];  //IMPLODE
-    $type = $_POST["type"];  //IMPLODE
-    $year = $_POST["year"]; //
-    $price = $_POST["price"]; //
+  $pref = $search["pref"];
+  $maker = $search["maker"];
+  $type = $search["type"];
+  $year = $search["year"];
+  $price = $search["price"];
+  $token2   = $search["token2"];
 
     //配列かどうかの判断
     if(is_array($maker)){
@@ -47,27 +63,15 @@ if (isset($_POST["search_btn"])){
     else{
     $typeResult = "選択なし";
     }
-
-    $search = array(
-      "pref"    => $pref,
-      "makerResult"    => $makerResult,
-      "typeResult"   => $typeResult,
-      "year"   => $year,
-      "price"   => $price
-    );
-
-    $_SESSION["search"] = $search;
-    unset($_SESSION["show"]);
-    unset($_SESSION["edit"]);
-    header("Location: search_confirm.php");
-    exit;
 }
+
+
 //$_SESSION["search"]あるとき
-if (isset($_SESSION["search"])) {
-  $beenSearch = TRUE;
-  $search = $_SESSION["search"];
-  $search = "BEEN SENT";
-}
+//if (isset($_SESSION["search"])) {
+  //$beenSearch = TRUE;
+  //$search = $_SESSION["search"];
+  //$search = "BEEN SENT";
+//}
 
 
 //SHOW ボタンクリック
@@ -101,13 +105,13 @@ if (isset($_POST["show_btn"])){
   $_SESSION["show"] = $show;
   unset($_SESSION["search"]);
   unset($_SESSION["edit"]);
-  header("Location: search_form.php");
+  header("Location: search_confirm.php");
   exit;
 }
 //$_SESSION["show"]あるとき
 if (isset($_SESSION["show"])) {
   $show = $_SESSION["show"];
-  $search = "SHOW RESULT";
+  $show = "SHOW RESULT";
 }
 
 //EDIT ボタンクリック
@@ -120,13 +124,13 @@ if (isset($_POST["edit"])){
 }
 
 //$_SESSION["edit"]あるとき
-if (isset($_SESSION["edit"])) {
-  $edit = $_SESSION["edit"];
-  $edit = "EDIT";
-}
-
+//if (isset($_SESSION["edit"])) {
+  //$edit = $_SESSION["edit"];
+  //$edit = "EDIT";
+//}
 
 ?>
+
 <!doctype html>
 <html lang="ja">
 <head>
@@ -193,7 +197,7 @@ if (isset($_SESSION["edit"])) {
       </tr>
   </tbody>
 </table>
-<div id = "result_show">
+<div id = "result_show" style="display: none;">
   <input type="hidden" name="show" value="<?php echo $show; ?>">
   <h4>
   <?php echo h($condition); ?>

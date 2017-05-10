@@ -204,7 +204,7 @@ if (isset($_POST["confirmbtn"])) {
       "email"   => $email,
       "phone"   => $phone,
       "inquiry" => $inquiry,
-      "token"   => $token,
+      "token"   => $token
       // "contactOnly" => FALSE
     );
     $_SESSION["contact"] = $contact;
