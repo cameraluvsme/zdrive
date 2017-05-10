@@ -15,7 +15,8 @@ $(document).ready(function(){
         });// ENDS $("#images_fade").fadeOut(3000, function(){
     }, 9000);//ENDS setInterval(function(){
 //↑TOP画像切替***********************************************
-    $("#myform").submit(function(){
+    //$("#search_btn").submit(function(){
+    $('#search_btn').on('click', function() {
         $("section").css("display","none");
         var priceNum = parseInt($("select[name= 'budget']").val());
         var idName = "";

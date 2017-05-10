@@ -322,7 +322,7 @@ if (isset($_POST["confirmbtn"])) {
         <div id="page-2" style="height:700px;">
             <h3>NEW</h3>
             <div id="parent">
-            
+
 			</div>
         </div><!-- ./<div id="page-2 style="height:600px;"> -->
         <div id="page-3" style="height:800px;">
@@ -343,7 +343,7 @@ if (isset($_POST["confirmbtn"])) {
                         <option value="600">600</option>
                         <option value="380">380</option>
                     </select>
-                    <input type="submit" value = "SEARCH">
+                    <input type="submit" value = "SEARCH" id = "search_btn">
             </form>
                 <section id="rank00">
                     <img src="images/original6.jpg" alt="Menu Item">
