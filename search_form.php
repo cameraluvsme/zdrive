@@ -108,7 +108,7 @@ if (isset($_POST["search_btn"])){
 
 
   <section>
-    <form action="search_confirm.php" method="post">
+    <form action="" method="post">
       <input type="hidden" name="token2" value="<?php echo getToken(); ?>">
       <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
         <thead>
