@@ -66,7 +66,7 @@
           </td>
           <td valign="top">
             <label><input type="number" name="price"
-    value="<?php echo $price; ?>" step = "25" min= "50" max = "900">Man Yen</label>
+    value="<?php echo $price; ?>" step = "25" min= "25" max = "900">Man Yen</label>
           </td>
         </tr>
       </tobody>

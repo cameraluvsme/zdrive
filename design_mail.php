@@ -22,8 +22,17 @@ $aaa = "";
 $confirm = "";
 $sent = "";
 $fstvisit = "";
-
-
+$pref = "";
+$maker = "";
+$type = "";
+$year = "";
+$price = "";
+$makerResult = "";
+$search = "";
+$show = "";
+$edit = "";
+$condition = "";
+$imgNum= "";
 /*
 
 擬似コード**今後の参考までに
@@ -534,8 +543,8 @@ if (isset($_POST["confirmbtn"])) {
                     </h4>
                     <form action="" method = "post">
                       <input type="submit" value="FORM" id="send_btn" class = "form_back" name = "formback">
-					</form>
-                  </div>
+					         </form>
+                </div>
                 </section>
         </div><!-- ./<div id="page-4" style="height:600px;"> -->
     </main>
