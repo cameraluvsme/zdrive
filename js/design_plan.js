@@ -17,7 +17,7 @@ $(document).ready(function(){
 //↑TOP画像切替***********************************************
     //$("#search_btn").submit(function(){
     $('#search_btn').on('click', function() {
-        $("section").css("display","none");
+        $(".search_hide").css("display","none");
         var priceNum = parseInt($("select[name= 'budget']").val());
         var idName = "";
 
@@ -45,7 +45,7 @@ $(document).ready(function(){
         else if(priceNum == 0){
             idName = $("#rank00").attr("id");//380
         }//ENDS else{}
-        $("section" + "#" + idName).css("display","block");
+        $(".search_hide" + "#" + idName).css("display","block");
         return false;
     });//ENDS $("#myform").submit(function(){});
 //↑MENU表示切替***********************************************

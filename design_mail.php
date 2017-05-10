@@ -345,7 +345,7 @@ if (isset($_POST["confirmbtn"])) {
                     </select>
                     <input type="submit" value = "SEARCH" id = "search_btn">
             </form>
-                <section id="rank00">
+                <section id="rank00" class = "search_hide">
                     <img src="images/original6.jpg" alt="Menu Item">
                 </section>
                 <section id="rank01">
