@@ -1,11 +1,28 @@
 <?php
-$name = $_POST["name"];  //氏名
-$kana = $_POST["kana"];  //フリガナ
-$prof = $_POST["prof"];  //職業：社会人、学生、その他
-$character = $_POST["character"]; //配列で人物名を取得
-$magazine = $_POST["magazine"]; //yesまたはno
-$memo = $_POST["memo"];  //備考欄
-$privacy = $_POST["privacy"]; //チェックしていればon
+$pref = $_POST["pref"];  //
+$maker = $_POST["maker"];  //IMPLODE
+$type = $_POST["type"];  //IMPLODE
+$year = $_POST["year"]; //
+$price = $_POST["price"]; //
+
+//配列かどうかの判断
+if(is_array($maker)){
+$makerResult = implode("<br>", $maker);
+}
+else{
+$makerResult = "選択なし";
+}
+
+if(is_array($type)){
+$typeResult = implode("<br>", $type);
+}
+else{
+$typeResult = "選択なし";
+}
+
+
+
+
 ?>
 <!doctype html>
 <html lang="ja">
@@ -14,36 +31,62 @@ $privacy = $_POST["privacy"]; //チェックしていればon
   <title>確認画面</title>
 </head>
 <body>
-<h1>確認画面</h1>
-<table border="1" cellpadding="5" cellspacing="0">
-  <tr>
-    <th>氏名</th>
-    <td><?php echo $name; ?></td>
-  </tr>
-  <tr>
-    <th>フリガナ</th>
-    <td><?php echo $kana; ?></td>
-  </tr>
-  <tr>
-    <th>職業</th>
-    <td><?php echo $prof; ?></td>
-  </tr>
-  <tr>
-    <th>好きな登場人物（複数選択可）</th>
-    <td><?php echo implode("<br>", $character); ?></td>
-  </tr>
-  <tr>
-    <th>メールマガジン</th>
-    <td><?php echo $magazine; ?></td>
-  </tr>
-  <tr>
-    <th>備考</th>
-    <td><?php echo nl2br($memo); ?></td>
-  </tr>
-  <tr>
-    <th>個人情報の扱いについて同意する</th>
-    <td><?php echo $privacy; ?></td>
-  </tr>
+<table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
+  <thead>
+    <tr>
+      <td colspan="2" style="text-align: center;">SELECTED PREFERENCE</td>
+    </tr>
+  </thead>
+  <tfoot>
+      <tr>
+        <td colspan="2" align="center">
+          <input type="submit" value = "SHOW" name = "show_btn">
+          <input type="submit" value = "EDIT" name = "edit_btn">
+        </td>
+      </tr>
+  </tfoot>
+  <tbody>
+      <tr>
+          <td align="right" nowrap>
+            <label>Preference</label>
+          </td>
+          <td valign="top">
+            <?php echo $pref; ?>
+          </td>
+      </tr>
+      <tr>
+          <td align="right" nowrap>
+            <label>Maker</label>
+          </td>
+          <td valign="top">
+            <?php echo $makerResult ; ?>
+          </td>
+      </tr>
+      <tr>
+          <td align="right" nowrap>
+            <label>Type</label>
+          </td>
+          <td valign="top">
+            <?php echo $typeResult; ?>
+          </td>
+      </tr>
+      <tr>
+          <td align="right" nowrap>
+            <label>Year</label>
+          </td>
+          <td valign="top">
+            <?php echo $year; ?>
+          </td>
+      </tr>
+      <tr>
+          <td align="right" nowrap>
+            <label>Price</label>
+          </td>
+          <td valign="top">
+            <?php echo $price; ?>
+          </td>
+      </tr>
+  </tbody>
 </table>
 </body>
 </html>

@@ -9,11 +9,10 @@
       <tfoot>
           <tr>
             <td colspan="2" align="center">
-              <input type="submit" value="Confirm" id="send_btn" name = "confirmbtn">
               <input type="submit" value = "SEARCH" name = "search_btn">
             </td>
           </tr>
-        </tfoot>
+      </tfoot>
       <tobody>
         <tr>
           <td align="right" nowrap>
@@ -40,7 +39,7 @@
             <label>Type</label>
           </td>
           <td valign="top">
-            <select name="type" size = "4">
+            <select name="type[]" size = "4" multiple>
               <option value="SUV" <?php if($type == SUV){echo "selected";} ?>>SUV</option>
               <option value="Van" <?php if($type == Van){echo "selected";} ?>>Van</option>
               <option value="Compact" <?php if($type == Compact){echo "selected";} ?>>Compact</option>
@@ -53,7 +52,7 @@
             <label>Year</label>
           </td>
           <td valign="top">
-            <select name="year" size = "2">
+            <select name="year" size = "4">
               <option value="2012" <?php if($year == 2012){echo "selected";} ?>>2012</option>
               <option value="2010" <?php if($year == 2010){echo "selected";} ?>>2010</option>
               <option value="2008" <?php if($year == 2008){echo "selected";} ?>>2008</option>
@@ -63,7 +62,7 @@
         </tr>
         <tr>
           <td align="right" nowrap>
-            <label>Year</label>
+            <label>Price</label>
           </td>
           <td valign="top">
             <label><input type="number" name="price"
