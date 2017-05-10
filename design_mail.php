@@ -3,8 +3,8 @@ session_start();
 
 
 
-var_dump($_SESSION);
-var_dump($_POST);
+//var_dump($_SESSION);
+//var_dump($_POST);
 
 
 
@@ -291,8 +291,8 @@ if (isset($_SESSION["again"])) {
   $again = "AGAIN";
 }
 
-var_dump($edit);
-var_dump($again);
+//var_dump($edit);
+//var_dump($again);
 
 
 
@@ -411,8 +411,45 @@ var_dump($again);
         <div id="page-2" style="height:700px;">
             <h3>NEW</h3>
             <div id="parent">
-
-			</div>
+              <section>
+                <div>
+                  <figure id="red">
+                    <img src="images/red_classic.jpg" alt="Red Classic" width="260" style="margin-bottom: 5px;">
+                    <figcaption>
+                      <h3>Red Classic Car</h3>
+                      <h4>&yen;000,000</h4>
+                    </figcaption>
+                  </figure>
+                </div>
+                <div>
+                  <figure id="red">
+                    <img src="images/blue_classic.jpg" alt="Blue Classic" width="260" style="margin-bottom: 5px;">
+                    <figcaption>
+                      <h3>Blue Classic Car</h3>
+                      <h4>&yen;000,000</h4>
+                    </figcaption>
+                  </figure>
+                </div>
+                <div>
+                  <figure id="red">
+                    <img src="images/purple_classic.jpg" alt="Purple Classic" width="260" style="margin-bottom: 5px;">
+                    <figcaption>
+                      <h3>Purple Classic Car</h3>
+                      <h4>&yen;000,000</h4>
+                    </figcaption>
+                  </figure>
+                </div>
+                <div>
+                  <figure id="red">
+                    <img src="images/silver_sport.jpg" alt="Silver Classic" width="260" style="margin-bottom: 5px;">
+                    <figcaption>
+                      <h3>Silver Classic Car</h3>
+                      <h4>&yen;000,000</h4>
+                    </figcaption>
+                  </figure>
+                </div>
+              </section>
+			     </div>
         </div><!-- ./<div id="page-2 style="height:600px;"> -->
         <div id="page-3" style="height:800px;">
           <h3>SEARCH</h3>

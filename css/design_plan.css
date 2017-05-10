@@ -546,8 +546,8 @@ NEW Page*****************************************************
     width: 100%;
     margin: 0 auto;
 }
-/*
-section{
+
+#page-2 #parent section{
   overflow: hidden;
   border: 2px dotted rgba(0,204,255,0.475);
   width: 90%;
@@ -557,7 +557,7 @@ section{
   margin-top: 20px;
 }
 
-div{
+#page-2 #parent div{
     border: 2px dotted rgba(255,0,204,0.475);
     width: 28%;
     float: left;
@@ -566,38 +566,35 @@ div{
     margin-bottom: 10px;
 }
 
-div:nth-of-type(3n){
+#page-2 #parent div:nth-of-type(3n){
     margin-right: 4%;
 }
 
-div:nth-of-type(3n + 1){
+#page-2 #parent div:nth-of-type(3n + 1){
     clear: left;
     margin-left: 4%;
 }
 
-figure{
+#page-2 #parent figure{
     text-align: center;
     width: 95%;
     margin: 0 auto;
 }
 
-img{
+#page-2 #parent img{
   width: 100%;
   margin-top: 2px;
   margin-bottom: 0px;
 }
 
-figcaption{
+#page-2 #parent figcaption{
   margin-top: 0px;
 }
 
-h3, h4{
+#page-2 #parent h3, h4{
   margin-top: 2.5px;
   margin-bottom: 2.5px;
 }
-*/
-
-
 
 /*
 Layout: min-width: 600px*************************************
@@ -660,60 +657,82 @@ Main > MENU Page*********************************************
     font-size: 1.4rem;
 }
 
-/*
 
 
-#page-3 section{
-    display: none;
-}
-#page-3 section:first-of-type{
-    display: block;
-}
-#page-3 section:first-of-type img{
+
+
+#confirm_page img{
     width: 95%;
     margin-top: 5px;
 }
-#page-3 form{
+#confirm_page form{
     font-size: 1.4rem;
 }
-#page-3 form select{
+#confirm_page form select{
     width:40%;
 }
-#page-3 form input{
+#confirm_page form input{
     padding-right:0;
     padding-left:0;
     width:40%;
 }
-#page-3 form span{
+#confirm_page form span{
     font-size: 1.6rem;
 }
-#page-3 section img{
+#result_show section img{
     width:100%;
     border:5px double #337ab7;
 }
-#page-3 section h4{
+#result_show section h4{
     font-size: 1.7rem;
     font-weight: bold;
 }
 
-#page-3 section h5{
+#result_show section h5{
     font-size: 1.5rem;
     font-weight: bold;
 }
 
-#page-3 section h5 span{
+#result_show section h5 span{
     vertical-align:baseline;
     font-size: 1.2rem;
 }
 
-#page-3 section p{
+#result_show section p{
     font-size: 1.4rem;
 }
-#page-3 section li{
+#result_show section li{
     font-size: 1.3rem;
 }
 
-*/
+
+
+#confirm_page table thead, #confirm_page table tfoot{
+    background-color: #337ab7;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+#confirm_page table tfoot .text-warning{
+    font-size: 1.3rem;
+}
+
+#confirm_page  table,#page-4 #confirm_page section{
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+#confirm_page table thead{
+    color: white;
+}
+
+#confirm_page table tbody{
+    background-color: rgba(102,153,255,0.65);
+    font-size: 1.4rem;
+}
+
+
 
 /*
 MENU Page: min-width: 600px*************************************
@@ -737,49 +756,62 @@ MENU Page: min-width: 600px*************************************
 
 } /* ENDS @media (min-width: @screen-sm-min) {} */
 
-/*
+
 
 @media (min-width: 600px) {
-    #page-3 section:first-of-type img{
+    #confirm_page img{
         width: 62%;
         margin-top: 6px;
     }
-    #page-3 section img{
-        width:90%;
-    }
-    #page-3 form{
+    #confirm_page form{
         font-size: 1.5rem;
     }
-    #page-3 form span{
+    #confirm_page form span{
         font-size: 1.8rem;
     }
-    #page-3 section h4{
+    #confirm_page h4{
         font-size: 2rem;
         }
-    #page-3 section h5{
+    #confirm_page h5{
         font-size: 1.7rem;
     }
-    #page-3 section h5 span{
+    #confirm_page h5 span{
         font-size: 1.3rem;
     }/
-    #page-3 section p{
+    #confirm_page p{
         font-size: 1.6rem;
         margin-bottom: 0;
         margin-top: 0;
     }
-    #page-3 section li{
+    #confirm_page li{
         font-size: 1.5rem;
         margin-bottom: 0;
     }
-    #page-3 section ul{
+    #confirm_page ul{
         margin-bottom: 0;
     }
-    #page-3 form input, #page-3 form select{
-        width:25%;
+    #confirm_page form input, #confirm_page form select{
+        width:35%;
     }
 }
 
-*/
+@media (min-width: 600px) {
+    #confirm_page table,#confirm_page section{
+    width: 98%;
+    }
+    #confirm_page table thead, #confirm_page table tfoot{
+        font-size: 1.7rem;
+    }
+
+    #confirm_page table tfoot .text-warning{
+        font-size: 1.4rem;
+    }
+
+    #confirm_page table tbody{
+    font-size: 1.5rem;
+    }
+
+} /* ENDS @media (min-width: @screen-sm-min) {} */
 
 
 /*
@@ -805,46 +837,59 @@ MENU Page: min-width: 960px*************************************
 } /* ENDS @media (min-width: @screen-sm-min) {} */
 
 
-/*
+
 
 @media (min-width: 960px) {
-    #page-3 section:first-of-type img{
+    #confirm_page img{
         width: 55%;
         margin-top: 10px;
     }
-    #page-3 section img{
-        width:64%;
-        margin-top: 5px;
-    }
-    #page-3 form{
+    #confirm_page form{
         font-size: 1.6rem;
     }
-    #page-3 form span{
+    #confirm_page form span{
         font-size: 1.9rem;
     }
-    #page-3 section h4{
+    #confirm_page h4{
         font-size: 2.2rem;
         margin-right:0.2%;
         }
-    #page-3 section h5{
+    #confirm_page h5{
         font-size: 1.9rem;
     }
-    #page-3 section h5 span{
+    #confirm_page h5 span{
         font-size: 1.4rem;
     }
-    #page-3 section p{
+    #confirm_page p{
         font-size: 1.7rem;
         margin-right:0.2%;
     }
-    #page-3 section li{
+    #confirm_page li{
         font-size: 1.6rem;
         margin-right:10%;
     }
-    #page-3 form input, #page-3 form select{
-        width:15%;
+    #confirm_page form input, #confirm_page form select{
+        width:30%;
     }
 }
-*/
+
+@media (min-width: 960px) {
+    #confirm_page table,#confirm_page section{
+    width: 70%;
+    }
+    #confirm_page table thead, #confirm_page table tfoot{
+        font-size: 1.8rem;
+    }
+
+    #confirm_page table tfoot .text-warning{
+        font-size: 1.5rem;
+    }
+
+
+    #confirm_page table tbody{
+    font-size: 1.6rem;
+    }
+} /* ENDS @media (min-width: @screen-sm-min) {} */
 
 /*
 MENU Page: min-width: 1281px*************************************
@@ -867,47 +912,60 @@ MENU Page: min-width: 1281px*************************************
     font-size: 1.7rem;
 }
 } /* ENDS @media (min-width: @screen-sm-min) {} */
-/*
+
 
 @media (min-width: 1281px) {
-    #page-3 section:first-of-type img{
+    #confirm_page img{
         width: 40%;
         margin-top: 20px;
     }
-    #page-3 section img{
-        width:50%;
-    }
-    #page-3 form{
+    #pconfirm_page form{
         font-size: 1.7rem;
     }
-    #page-3 form span{
+    #pconfirm_page form span{
         font-size: 2rem;
     }
-    #page-3 section h4{
+    #confirm_page h4{
         font-size: 2.4rem;
         margin-right:5%;
         }
-    #page-3 section h5{
+    #confirm_page h5{
         font-size: 2rem;
     }
-    #page-3 section h5 span{
+    #confirm_page h5 span{
         font-size: 1.5rem;
     }
-    #page-3 section p{
+    #confirm_page p{
         font-size: 1.8rem;
         margin-right:5%;
     }
-    #page-3 section li{
+    #confirm_page li{
         font-size: 1.7rem;
         margin-right:10%;
     }
-    #page-3 form input, #page-3 form select{
-        width:20%;
+    #confirm_page form input, #confirm_page form select{
+        width:25%;
     }
 }
 
-*/
 
+@media (min-width: 1281px) {
+    #confirm_page table,#page-4 #confirm_page section{
+    width: 60%;
+    }
+    #confirm_page table thead, #confirm_page table tfoot{
+        font-size: 1.9rem;
+    }
+
+    #confirm_page table tfoot .text-warning{
+        font-size: 1.6rem;
+    }
+
+
+    #confirm_page table tbody{
+    font-size: 1.7rem;
+    }
+} /* ENDS @media (min-width: @screen-sm-min) {} */
 
 
 
@@ -988,7 +1046,7 @@ Contact Form: min-width: 960px*************************************
 
     #contact table tbody{
     font-size: 1.6rem;
-}
+    }
 } /* ENDS @media (min-width: @screen-sm-min) {} */
 /*
 Contact Form: min-width: 1281px*************************************
@@ -1008,7 +1066,7 @@ Contact Form: min-width: 1281px*************************************
 
     #contact table tbody{
     font-size: 1.7rem;
-}
+    }
 } /* ENDS @media (min-width: @screen-sm-min) {} */
 
 

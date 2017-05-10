@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-var_dump($_SESSION);
-var_dump($_POST);
-var_dump($_SESSION["show"]);
-var_dump($show);
+//var_dump($_SESSION);
+//var_dump($_POST);
+//var_dump($_SESSION["show"]);
+//var_dump($show);
 
 require_once "util.inc.php";
 require_once "libs/qd/qdsmtp.php";
@@ -460,7 +460,7 @@ if (isset($_POST["back"])) {
         </div><!-- ./<div id="page-2 style="height:600px;"> -->
         <div id="page-3" style="height:800px;">
           <h3>SEARCH</h3>
-          <section class = "search_page">
+          <section class = "search_page" id = "confirm_page">
             <form action="" method="post" id = "search_click">
               <input type="hidden" name="noprice" value="<?php echo $choose; ?>">
               <input type="hidden" name="show" value="<?php echo $show; ?>">
