@@ -177,77 +177,80 @@ if (isset($_POST["again_btn"])){
   <title>確認画面</title>
 </head>
 <body>
-
-<form action="" method="post" id = "search_click">
-  <input type="hidden" name="noprice" value="<?php echo $choose; ?>">
-  <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
-    <thead>
-      <tr>
-        <td colspan="2" style="text-align: center;">SELECTED PREFERENCE</td>
-      </tr>
-    </thead>
-    <tfoot>
+<section class = "search_page">
+  <form action="" method="post" id = "search_click">
+    <input type="hidden" name="noprice" value="<?php echo $choose; ?>">
+    <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
+      <thead>
         <tr>
-          <td colspan="2" align="center">
-            <input type="submit" value = "SHOW" name = "show_btn" id = "show">
-            <input type="submit" value = "EDIT" name = "edit_btn">
-            <?php if (isset($errorPrice)): ?>
-                <div class="text-warning"><?php echo h($errorPrice); ?></div>
-            <?php endif; ?>
-          </td>
+          <td colspan="2" style="text-align: center;">SELECTED PREFERENCE</td>
         </tr>
-    </tfoot>
-    <tbody>
-        <tr>
-            <td align="right" nowrap>
-              <label>Preference</label>
+      </thead>
+      <tfoot>
+          <tr>
+            <td colspan="2" align="center">
+              <input type="submit" value = "SHOW" name = "show_btn" id = "show">
+              <input type="submit" value = "EDIT" name = "edit_btn">
+              <?php if (isset($errorPrice)): ?>
+                  <div class="text-warning"><?php echo h($errorPrice); ?></div>
+              <?php endif; ?>
             </td>
-            <td valign="top">
-              <?php echo $pref; ?>
-            </td>
-        </tr>
-        <tr>
-            <td align="right" nowrap>
-              <label>Maker</label>
-            </td>
-            <td valign="top">
-              <?php echo $makerResult ; ?>
-            </td>
-        </tr>
-        <tr>
-            <td align="right" nowrap>
-              <label>Type</label>
-            </td>
-            <td valign="top">
-              <?php echo $typeResult; ?>
-            </td>
-        </tr>
-        <tr>
-            <td align="right" nowrap>
-              <label>Year</label>
-            </td>
-            <td valign="top">
-              <?php echo $year; ?>
-            </td>
-        </tr>
-        <tr>
-            <td align="right" nowrap>
-              <label>Price</label>
-            </td>
-            <td valign="top">
-              <?php echo $price; ?>
-            </td>
-        </tr>
-    </tbody>
-  </table>
-</form>
+          </tr>
+      </tfoot>
+      <tbody>
+          <tr>
+              <td align="right" nowrap>
+                <label>Preference</label>
+              </td>
+              <td valign="top">
+                <?php echo $pref; ?>
+              </td>
+          </tr>
+          <tr>
+              <td align="right" nowrap>
+                <label>Maker</label>
+              </td>
+              <td valign="top">
+                <?php echo $makerResult ; ?>
+              </td>
+          </tr>
+          <tr>
+              <td align="right" nowrap>
+                <label>Type</label>
+              </td>
+              <td valign="top">
+                <?php echo $typeResult; ?>
+              </td>
+          </tr>
+          <tr>
+              <td align="right" nowrap>
+                <label>Year</label>
+              </td>
+              <td valign="top">
+                <?php echo $year; ?>
+              </td>
+          </tr>
+          <tr>
+              <td align="right" nowrap>
+                <label>Price</label>
+              </td>
+              <td valign="top">
+                <?php echo $price; ?>
+              </td>
+          </tr>
+      </tbody>
+    </table>
+  </form>
+</section>
 <div id = "result_show" style="display: none;">
   <input type="hidden" name="show" value="<?php echo $show; ?>">
   <h4>
   <?php echo h($condition); ?>
   <i class="fa fa-car" aria-hidden="true"></i>
   </h4>
-  <?php echo "<img src = 'images/di_img_0{$imgNum}.jpg' alt ='Image Picture' >";?>
+  <section>
+    <?php echo "<img src = 'images/di_img_0{$imgNum}.jpg' alt ='Image Picture' >";?>
+  </section>
   <form action="" method = "post">
     <input type="submit" value="AGAIN" id="send_btn" class = "search_back" name = "again_btn">
   </form>

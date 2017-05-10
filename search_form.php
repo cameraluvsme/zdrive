@@ -124,7 +124,7 @@ if (isset($_POST["search_btn"])){
 <body>
 
 
-  <section>
+  <section class = "search_page">
     <form action="" method="post">
       <!--<input type="hidden" name="token2" value="<?php //echo getToken(); ?>">-->
       <input type="hidden" name="again" value="<?php echo $again; ?>">

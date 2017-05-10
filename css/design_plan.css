@@ -635,6 +635,34 @@ Main > MENU Page*********************************************
 */
 
 
+#search table thead, #search table tfoot{
+    background-color: #337ab7;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+#search table tfoot .text-warning{
+    font-size: 1.3rem;
+}
+
+#page-3 #search table,#page-3 #search form#page-3 # section.search_page{
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+#search table thead{
+    color: white;
+}
+
+#search table tbody{
+    background-color: rgba(102,153,255,0.65);
+    font-size: 1.4rem;
+}
+
+/*
+
+
 #page-3 section{
     display: none;
 }
@@ -684,17 +712,41 @@ Main > MENU Page*********************************************
 #page-3 section li{
     font-size: 1.3rem;
 }
+
+*/
+
 /*
 MENU Page: min-width: 600px*************************************
 */
+
+@media (min-width: 600px) {
+    #page-3 #search table,#page-3 #searcht form#page-3 section.search_page{
+    width: 98%;
+    }
+    #search table thead, #search table tfoot{
+        font-size: 1.7rem;
+    }
+
+    #search table tfoot .text-warning{
+        font-size: 1.4rem;
+    }
+
+    #search table tbody{
+    font-size: 1.5rem;
+    }
+
+} /* ENDS @media (min-width: @screen-sm-min) {} */
+
+/*
+
 @media (min-width: 600px) {
     #page-3 section:first-of-type img{
         width: 62%;
         margin-top: 6px;
-    }/* #page-2 section:first-of-type img */
+    }
     #page-3 section img{
         width:90%;
-    }/* #page-2 section img{ */
+    }
     #page-3 form{
         font-size: 1.5rem;
     }
@@ -703,43 +755,67 @@ MENU Page: min-width: 600px*************************************
     }
     #page-3 section h4{
         font-size: 2rem;
-        }/* #page-2 section h4*/
+        }
     #page-3 section h5{
         font-size: 1.7rem;
-    }/* #page-2 section h5*/
+    }
     #page-3 section h5 span{
         font-size: 1.3rem;
-    }/* #page-3 section h5 span{ */
+    }/
     #page-3 section p{
         font-size: 1.6rem;
         margin-bottom: 0;
         margin-top: 0;
-    }/* #page-3 section p{ */
+    }
     #page-3 section li{
         font-size: 1.5rem;
         margin-bottom: 0;
-    }/* #page-3 section li{ */
+    }
     #page-3 section ul{
         margin-bottom: 0;
     }
     #page-3 form input, #page-3 form select{
         width:25%;
     }
-} /* ENDS @media (min-width: @screen-sm-min) {} */
+}
+
+*/
 
 
 /*
 MENU Page: min-width: 960px*************************************
 */
+
+@media (min-width: 960px) {
+    #page-3 #search table,#page-3 #search form#page-3 section.search_page{
+    width: 70%;
+    }
+    #search table thead, #search table tfoot{
+        font-size: 1.8rem;
+    }
+
+    #search table tfoot .text-warning{
+        font-size: 1.5rem;
+    }
+
+
+    #search table tbody{
+    font-size: 1.6rem;
+}
+} /* ENDS @media (min-width: @screen-sm-min) {} */
+
+
+/*
+
 @media (min-width: 960px) {
     #page-3 section:first-of-type img{
         width: 55%;
         margin-top: 10px;
-    }/* #page-2 section:first-of-type img */
+    }
     #page-3 section img{
         width:64%;
         margin-top: 5px;
-    }/* #page-2 section img{ */
+    }
     #page-3 form{
         font-size: 1.6rem;
     }
@@ -749,43 +825,58 @@ MENU Page: min-width: 960px*************************************
     #page-3 section h4{
         font-size: 2.2rem;
         margin-right:0.2%;
-        }/* #page-2 section h4*/
+        }
     #page-3 section h5{
         font-size: 1.9rem;
-    }/* #page-2 section h5*/
+    }
     #page-3 section h5 span{
         font-size: 1.4rem;
-    }/* #page-3 section h5 span{ */
+    }
     #page-3 section p{
         font-size: 1.7rem;
         margin-right:0.2%;
-    }/* #page-3 section p{ */
+    }
     #page-3 section li{
         font-size: 1.6rem;
         margin-right:10%;
-    }/* #page-3 section li{ */
+    }
     #page-3 form input, #page-3 form select{
         width:15%;
     }
-    /*
-    #page-3 section div.description, #page-3 section img{
-        float: left;
-    }
-    */
-} /* ENDS @media (min-width: @screen-sm-min) {} */
-
+}
+*/
 
 /*
 MENU Page: min-width: 1281px*************************************
 */
+
+@media (min-width: 1281px) {
+    #page-3 #search table,#page-3 #search form#page-3 section.search_page{
+    width: 60%;
+    }
+    #search table thead, #search table tfoot{
+        font-size: 1.9rem;
+    }
+
+    #search table tfoot .text-warning{
+        font-size: 1.6rem;
+    }
+
+
+    #search table tbody{
+    font-size: 1.7rem;
+}
+} /* ENDS @media (min-width: @screen-sm-min) {} */
+/*
+
 @media (min-width: 1281px) {
     #page-3 section:first-of-type img{
         width: 40%;
         margin-top: 20px;
-    }/* #page-2 section:first-of-type img */
+    }
     #page-3 section img{
         width:50%;
-    }/* #page-2 section img{ */
+    }
     #page-3 form{
         font-size: 1.7rem;
     }
@@ -795,30 +886,27 @@ MENU Page: min-width: 1281px*************************************
     #page-3 section h4{
         font-size: 2.4rem;
         margin-right:5%;
-        }/* #page-2 section h4*/
+        }
     #page-3 section h5{
         font-size: 2rem;
-    }/* #page-2 section h5*/
+    }
     #page-3 section h5 span{
         font-size: 1.5rem;
-    }/* #page-3 section h5 span{ */
+    }
     #page-3 section p{
         font-size: 1.8rem;
         margin-right:5%;
-    }/* #page-3 section p{ */
+    }
     #page-3 section li{
         font-size: 1.7rem;
         margin-right:10%;
-    }/* #page-3 section li{ */
+    }
     #page-3 form input, #page-3 form select{
         width:20%;
     }
-    /*
-    #page-3 section div.description, #page-3 section img{
-        float: left;
-    }
-    */
-} /* ENDS @media (min-width: @screen-sm-min) {} */
+}
+
+*/
 
 
 

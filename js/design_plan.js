@@ -15,6 +15,8 @@ $(document).ready(function(){
         });// ENDS $("#images_fade").fadeOut(3000, function(){
     }, 9000);//ENDS setInterval(function(){
 //↑TOP画像切替***********************************************
+/*
+
     //$("#search_btn").submit(function(){
     $('#search_btn').on('click', function() {
         $(".search_hide").css("display","none");
@@ -48,6 +50,8 @@ $(document).ready(function(){
         $("section" + "#" + idName).css("display","block");
         return false;
     });//ENDS $("#myform").submit(function(){});
+
+*/
 //↑MENU表示切替***********************************************
 
 
