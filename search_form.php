@@ -50,6 +50,16 @@ if (isset($_SESSION["search"])) {
   $token2   = $search["token2"];
 }
 
+//--------------------
+// セッション変数が登録されている場合は読み出す
+//--------------------
+if (isset($_SESSION["edit"])) {
+  $edit = $_SESSION["edit"];
+  $edit = "EDIT";
+}
+
+
+
 //SEARCH ボタンクリック
 if (isset($_POST["search_btn"])){
 
@@ -189,6 +199,8 @@ if (isset($_POST["search_btn"])){
 <script>
 $(document).ready(function(){
 
+/*
+
     //SEARCH CLICK
     if($("input[name='search']").val() != ""){
       var scrollDown = parseInt($('#page-3').offset().top);
@@ -205,21 +217,6 @@ $(document).ready(function(){
               });
       }
 
-      //EDIT CLICK
-      if($("input[name='edit']").val() != ""){
-        var scrollDown = parseInt($('#page-3').offset().top);
-
-        $(window).scrollTop(scrollDown + 1);
-        $("#result_show").css({
-                display:"none"
-                });
-        $("#search_click").css({
-                display:"none"
-                });
-        $("#search_form").css({
-                display:"block"
-                });
-      }
 
       //SHOW CLICK
       if($("input[name='show']").val() != ""){
@@ -235,6 +232,16 @@ $(document).ready(function(){
         $("#result_show").css({
                 display:"block"
                 });
+      }
+
+
+*/
+
+      //EDIT CLICK
+      if($("input[name='edit']").val() != ""){
+        var scrollDown = parseInt($('#page-3').offset().top);
+
+        $(window).scrollTop(scrollDown + 1);
       }
 
 

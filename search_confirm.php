@@ -87,6 +87,14 @@ if (isset($_SESSION["search"])) {
   //$search = "BEEN SENT";
 //}
 
+//--------------------
+// セッション変数が登録されている場合は読み出す
+//--------------------
+if (isset($_SESSION["show"])) {
+  $show = $_SESSION["show"];
+  $show= "SHOW";
+}
+
 
 //SHOW ボタンクリック
 if (isset($_POST["show_btn"])){
@@ -153,9 +161,10 @@ if (isset($_POST["edit"])){
 </head>
 <body>
 
-<form action="" method="post">
-  <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333" id = "search_click">
-    <input type="hidden" name="edit" value="<?php echo $edit; ?>">
+<form action="" method="post" id = "search_click">
+  <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
+    <!--<input type="hidden" name="edit" value="<?php //echo $edit; ?>">-->
+    <input type="hidden" name="show" value="<?php echo $show; ?>">
     <thead>
       <tr>
         <td colspan="2" style="text-align: center;">SELECTED PREFERENCE</td>
@@ -231,45 +240,42 @@ if (isset($_POST["edit"])){
 $(document).ready(function(){
 
     //SEARCH CLICK
-    if($("input[name='search']").val() != ""){
-      var scrollDown = parseInt($('#page-3').offset().top);
+    //if($("input[name='search']").val() != ""){
+      //var scrollDown = parseInt($('#page-3').offset().top);
 
-      $(window).scrollTop(scrollDown + 1);
-      $("#result_show").css({
-              display:"none"
-              });
-      $("#search_form").css({
-              display:"none"
-              });
-      $("#search_click").css({
-              display:"block"
-              });
-      }
+      //$(window).scrollTop(scrollDown + 1);
+      //$("#result_show").css({
+              //display:"none"
+              //});
+      //$("#search_form").css({
+              //display:"none"
+             // });
+      //$("#search_click").css({
+              //display:"block"
+              //});
+      //}
 
       //EDIT CLICK
-      if($("input[name='edit']").val() != ""){
-        var scrollDown = parseInt($('#page-3').offset().top);
+      //if($("input[name='edit']").val() != ""){
+        //var scrollDown = parseInt($('#page-3').offset().top);
 
-        $(window).scrollTop(scrollDown + 1);
-        $("#result_show").css({
-                display:"none"
-                });
-        $("#search_click").css({
-                display:"none"
-                });
-        $("#search_form").css({
-                display:"block"
-                });
-      }
+        //$(window).scrollTop(scrollDown + 1);
+        //$("#result_show").css({
+                //display:"none"
+                //});
+        //$("#search_click").css({
+                //display:"none"
+                //});
+        //$("#search_form").css({
+               //display:"block"
+                //});
+     // }
 
       //SHOW CLICK
       if($("input[name='show']").val() != ""){
         var scrollDown = parseInt($('#page-3').offset().top);
 
         $(window).scrollTop(scrollDown + 1);
-        $("#search_form").css({
-                display:"none"
-                });
         $("#search_click").css({
                 display:"none"
                 });
