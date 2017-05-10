@@ -273,6 +273,13 @@ if (isset($_POST["confirmbtn"])) {
 
 }
 
+//--------------------
+// セッション変数が登録されている場合は読み出す
+//--------------------
+if (isset($_SESSION["error"])) {
+  $error = $_SESSION["error"];
+  $error = "ERROR";
+}
 
 
 //--------------------
@@ -540,6 +547,7 @@ if (isset($_SESSION["again"])) {
                   <input type="hidden" name="aaa" value="<?php echo $aaa; ?>">
                   <input type="hidden" name="confirm" value="<?php echo $confirm; ?>">
                   <input type="hidden" name="sent" value="<?php echo $sent; ?>">
+                  <input type="hidden" name="error" value="<?php echo $error; ?>">
                   <input type="hidden" name="fstvisit" value="<?php echo $fstvisit; ?>">
                   <!--<input type="hidden" name="token" value="<?php //echo getToken(); ?>">-->
                 <table border="1" cellspacing="0" cellpadding="5" bordercolor="#333333">
@@ -619,7 +627,7 @@ if (isset($_SESSION["again"])) {
                   </form>
                   <div id="shopping_done">
                     <h4>
-                    <!--<span></span>様<br>-->お問い合わせありがとうございました
+                    <!--<span></span>様<br>-->お問い合わせありがとうございます
                     <i class="fa fa-smile-o" aria-hidden="true"></i><br><br>
                     <!--<a href="">戻る</a>-->
                     確認メールを送信いたしましたので、<br>
@@ -630,6 +638,20 @@ if (isset($_SESSION["again"])) {
                       <input type="submit" value="FORM" id="send_btn" class = "form_back" name = "formback">
 					         </form>
                 </div>
+                <div id="error_occur">
+                    <h4>
+                    <!--<span></span>様<br>-->お問い合わせありがとうございます
+                    <i class="fa fa-smile-o" aria-hidden="true"></i><br><br>
+                    <!--<a href="">戻る</a>-->
+                    確認メールを送信中に<br>
+                    エラーが発生しました
+                    <i class="fa fa-inbox" aria-hidden="true"></i>
+                    </h4>
+                    <form action="" method = "post">
+                      <input type="submit" value="TRY AGAIN" id="send_btn" class = "try_again" name = "tryagain">
+                   </form>
+                </div>
+
                 </section>
         </div><!-- ./<div id="page-4" style="height:600px;"> -->
     </main>

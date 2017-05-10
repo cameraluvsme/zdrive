@@ -317,8 +317,11 @@ EOT;
           break;
       }
       // エラー画面へ移動
-      // セッション変数は破棄しない
-      header("Location: contact_error.php");
+      //
+      $_SESSION["error"] = true;
+      unset($_SESSION["search"]);
+      unset($_SESSION["show"]);
+      header("Location: design_mail.php");
       exit;
     }
   }
