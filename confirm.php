@@ -461,7 +461,7 @@ if (isset($_POST["back"])) {
                     <img src="images/red_classic.jpg" alt="Red Classic" width="260" style="margin-bottom: 5px;">
                     <figcaption>
                       <h3>Red Classic Car</h3>
-                      <h4>&yen;000,000</h4>
+                      <h4>&yen;00,000</h4>
                     </figcaption>
                   </figure>
                 </div>
@@ -470,7 +470,7 @@ if (isset($_POST["back"])) {
                     <img src="images/blue_classic.jpg" alt="Blue Classic" width="260" style="margin-bottom: 5px;">
                     <figcaption>
                       <h3>Blue Classic Car</h3>
-                      <h4>&yen;000,000</h4>
+                      <h4>&yen;00,000</h4>
                     </figcaption>
                   </figure>
                 </div>
@@ -479,7 +479,7 @@ if (isset($_POST["back"])) {
                     <img src="images/purple_classic.jpg" alt="Purple Classic" width="260" style="margin-bottom: 5px;">
                     <figcaption>
                       <h3>Purple Classic Car</h3>
-                      <h4>&yen;000,000</h4>
+                      <h4>&yen;00,000</h4>
                     </figcaption>
                   </figure>
                 </div>
@@ -488,7 +488,7 @@ if (isset($_POST["back"])) {
                     <img src="images/silver_sport.jpg" alt="Silver Classic" width="260" style="margin-bottom: 5px;">
                     <figcaption>
                       <h3>Silver Classic Car</h3>
-                      <h4>&yen;000,000</h4>
+                      <h4>&yen;00,000</h4>
                     </figcaption>
                   </figure>
                 </div>
@@ -524,7 +524,7 @@ if (isset($_POST["back"])) {
                         <td align="right" nowrap>
                           <label>Preference</label>
                         </td>
-                        <td valign="top">
+                        <td valign="top" width = "200">
                           <p><?php echo $pref; ?></p>
                         </td>
                     </tr>
@@ -532,7 +532,7 @@ if (isset($_POST["back"])) {
                         <td align="right" nowrap>
                           <label>Maker</label>
                         </td>
-                        <td valign="top">
+                        <td valign="top" width = "200">
                           <p><?php echo $makerResult ; ?></p>
                         </td>
                     </tr>
@@ -540,7 +540,7 @@ if (isset($_POST["back"])) {
                         <td align="right" nowrap>
                           <label>Type</label>
                         </td>
-                        <td valign="top">
+                        <td valign="top" width = "200">
                           <p><?php echo $typeResult; ?></p>
                         </td>
                     </tr>
@@ -548,7 +548,7 @@ if (isset($_POST["back"])) {
                         <td align="right" nowrap>
                           <label>Year</label>
                         </td>
-                        <td valign="top">
+                        <td valign="top" width = "200">
                           <p><?php echo $year; ?></p>
                         </td>
                     </tr>
@@ -556,7 +556,7 @@ if (isset($_POST["back"])) {
                         <td align="right" nowrap>
                           <label>Price</label>
                         </td>
-                        <td valign="top">
+                        <td valign="top" width = "200">
                           <p><?php echo $price; ?></p>
                         </td>
                     </tr>

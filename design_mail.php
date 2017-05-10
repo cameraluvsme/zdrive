@@ -417,7 +417,7 @@ if (isset($_SESSION["again"])) {
                     <img src="images/red_classic.jpg" alt="Red Classic" width="260" style="margin-bottom: 5px;">
                     <figcaption>
                       <h3>Red Classic Car</h3>
-                      <h4>&yen;000,000</h4>
+                      <h4>&yen;00,000</h4>
                     </figcaption>
                   </figure>
                 </div>
@@ -426,7 +426,7 @@ if (isset($_SESSION["again"])) {
                     <img src="images/blue_classic.jpg" alt="Blue Classic" width="260" style="margin-bottom: 5px;">
                     <figcaption>
                       <h3>Blue Classic Car</h3>
-                      <h4>&yen;000,000</h4>
+                      <h4>&yen;00,000</h4>
                     </figcaption>
                   </figure>
                 </div>
@@ -435,7 +435,7 @@ if (isset($_SESSION["again"])) {
                     <img src="images/purple_classic.jpg" alt="Purple Classic" width="260" style="margin-bottom: 5px;">
                     <figcaption>
                       <h3>Purple Classic Car</h3>
-                      <h4>&yen;000,000</h4>
+                      <h4>&yen;00,000</h4>
                     </figcaption>
                   </figure>
                 </div>
@@ -444,7 +444,7 @@ if (isset($_SESSION["again"])) {
                     <img src="images/silver_sport.jpg" alt="Silver Classic" width="260" style="margin-bottom: 5px;">
                     <figcaption>
                       <h3>Silver Classic Car</h3>
-                      <h4>&yen;000,000</h4>
+                      <h4>&yen;00,000</h4>
                     </figcaption>
                   </figure>
                 </div>
