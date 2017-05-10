@@ -163,7 +163,7 @@ if (isset($_POST["edit_btn"])){
 if (isset($_POST["again_btn"])){
     $_SESSION["again"] = $again;
     unset($_SESSION["search"]);
-    //unset($_SESSION["show"]);
+    unset($_SESSION["show"]);
     header("Location: search_form.php");
     exit;
 }
