@@ -45,7 +45,7 @@ $(document).ready(function(){
         else if(priceNum == 0){
             idName = $("#rank00").attr("id");//380
         }//ENDS else{}
-        $(".search_hide" + "#" + idName).css("display","block");
+        $("section" + "#" + idName).css("display","block");
         return false;
     });//ENDS $("#myform").submit(function(){});
 //↑MENU表示切替***********************************************
