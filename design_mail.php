@@ -348,7 +348,7 @@ if (isset($_POST["confirmbtn"])) {
                 <section id="rank00" class = "search_hide">
                     <img src="images/original6.jpg" alt="Menu Item">
                 </section>
-                <section id="rank01">
+                <section id="rank01" class = "search_hide">
                     <div class="description">
                         <h4>
                         <span>
@@ -370,7 +370,7 @@ if (isset($_POST["confirmbtn"])) {
                     </div>
                 <img src="images/original5.jpg"" alt="Menu Item 01">
             </section>
-            <section id="rank02">
+            <section id="rank02" class = "search_hide">
                 <div class="description">
                     <h4>
                         <span>
@@ -392,7 +392,7 @@ if (isset($_POST["confirmbtn"])) {
                 </div>
                 <img src="images/original5.jpg"" alt="Menu Item 02">
             </section>
-            <section id="rankA">
+            <section id="rankA" class = "search_hide">
                 <div class="description">
                     <h4>ジードライブ</h4>
                     <h5>ooo 円</h5>
@@ -401,7 +401,7 @@ if (isset($_POST["confirmbtn"])) {
                 </div>
                 <img src="images/original1.jpg"" alt="Menu Item A">
             </section>
-            <section id="rankB">
+            <section id="rankB" class = "search_hide">
                 <div class="description">
                     <h4>講義ビデオ</h4>
                     <h5>ooo 円</h5>
@@ -410,7 +410,7 @@ if (isset($_POST["confirmbtn"])) {
                 </div>
                 <img src="images/original4.jpg" alt="Menu Item B">
             </section>
-            <section id="rankC">
+            <section id="rankC" class = "search_hide">
                 <div class="description">
                     <h4>最新のPC環境</h4>
                     <h5>ooo 円</h5>
@@ -419,7 +419,7 @@ if (isset($_POST["confirmbtn"])) {
                 </div>
                 <img src="images/original3.jpg" alt="Menu Item C">
             </section>
-            <section id="rankD">
+            <section id="rankD" class = "search_hide">
                 <div class="description">
                     <h4>スマートフォンで復習</h4>
                     <h5>ooo 円</h5>
@@ -428,7 +428,7 @@ if (isset($_POST["confirmbtn"])) {
                 </div>
                 <img src="images/original2.jpg" alt="Menu Item D">
             </section>
-            <section id="rankE">
+            <section id="rankE" class = "search_hide">
                 <div class="description">
                     <h4>ピンポイントで学習</h4>
                     <h5>ooo 円</h5>
