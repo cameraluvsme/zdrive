@@ -184,6 +184,7 @@ if (isset($_SESSION["search"])) {
 }
 
 
+
 //----------------------------------------------
 // セッション変数が登録されている場合は読み出す
 //----------------------------------------------
@@ -321,6 +322,7 @@ EOT;
       $_SESSION["error"] = true;
       unset($_SESSION["search"]);
       unset($_SESSION["show"]);
+      unset($_SESSION["contact"]);
       header("Location: design_mail.php");
       exit;
     }

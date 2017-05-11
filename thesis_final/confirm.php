@@ -318,7 +318,10 @@ EOT;
       }
       // エラー画面へ移動
       // セッション変数は破棄しない
-      header("Location: contact_error.php");
+      unset($_SESSION["search"]);
+      unset($_SESSION["show"]);
+      $_SESSION["error"] = true;
+      header("Location: confirm.php");
       exit;
     }
   }
@@ -331,6 +334,7 @@ EOT;
   $_SESSION["sent"] = $sent;
   unset($_SESSION["edit"]);
   unset($_SESSION["again"]);
+  unset($_SESSION["error"]);
   header("Location: design_mail.php");
   exit;
 }
@@ -345,8 +349,17 @@ if (isset($_POST["back"])) {
   $_SESSION["confirm"] = $confirm;
   unset($_SESSION["edit"]);
   unset($_SESSION["again"]);
+  unset($_SESSION["error"]);
   header("Location: design_mail.php");
   exit;
+}
+
+//--------------------
+// セッション変数が登録されている場合は読み出す
+//--------------------
+if (isset($_SESSION["error"])) {
+  $error = $_SESSION["error"];
+  $errorOccured = "エラー：再送信願います";
 }
 ?>
 
@@ -618,6 +631,9 @@ if (isset($_POST["back"])) {
                             <?php endif; ?>
                             <?php if (isset($errorInquiry)): ?>
                                 <div class="text-warning"><?php echo h($errorInquiry); ?></div>
+                            <?php endif; ?>
+                            <?php if (isset($errorOccured)): ?>
+                                <div class="text-warning"><?php echo h($errorOccured ); ?></div>
                             <?php endif; ?>
                           </td>
                         </tr>

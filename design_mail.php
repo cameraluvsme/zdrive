@@ -44,12 +44,17 @@ if (empty($_POST) && empty($_SESSION)) {
 else {
   $scroll = 1;
 }
-
-
 <input type="hidden" value="<?php echo $scroll ?>">
 
 初回の読み込み時のみの場合
 */
+
+//:::::::::::::FIRST VISIT↓↓:::::::::::::::::::::::::
+
+if(empty($_SESSION) == TRUE){
+  $fstVisit = TRUE;
+  $fstvisit = "1ST";
+}
 
 //:::::::::::::SEARCH↓↓:::::::::::::::::::::::::
 
@@ -93,6 +98,7 @@ if (isset($_POST["search_btn"])){
     unset($_SESSION["edit"]);
     unset($_SESSION["again"]);
     unset($_SESSION["contact"]);
+    unset($_SESSION["tryagain"]);
     header("Location: confirm.php");
     exit;
     }
@@ -127,6 +133,7 @@ if (isset($_SESSION["confirm"])) {
   $sent = "";
   $fstvisit = "";
 }
+/*
 else{
   //Scroll DownせずTOP
   $headerLocated = FALSE;
@@ -136,6 +143,7 @@ else{
   $sent = "";
   //$fstvisit = "";
 }
+*/
 
 //--------------------
 // セッション変数が登録されている場合は読み出す
@@ -173,6 +181,7 @@ if (isset($_POST["formback"])) {
     $_SESSION["confirm"] = "";
     unset($_SESSION["edit"]);
     unset($_SESSION["again"]);
+    unset($_SESSION["tryagain"]);
     header("Location: design_mail.php");
     exit;
 }
@@ -266,11 +275,35 @@ if (isset($_POST["confirmbtn"])) {
     $_SESSION["contact"] = $contact;
     // セッション変数を破棄
     unset($_SESSION["confirm"]);
+    unset($_SESSION["tryagain"]);
     header("Location: confirm.php");
     //header("Location: confirm.php", FALSE);
     exit;
   }
 
+}
+
+//--------------------
+// TRY AGAINボタン
+//--------------------
+if (isset($_POST["tryagain"])) {
+  // 入力ページへ戻る
+  //$_SESSION["contact"] = $contact;
+ // $isConfirmed = FALSE;
+  $_SESSION["tryagain"] = true;
+  unset($_SESSION["edit"]);
+  unset($_SESSION["again"]);
+  unset($_SESSION["error"]);
+  header("Location: design_mail.php");
+  exit;
+}
+
+//--------------------
+// セッション変数が登録されている場合は読み出す
+//--------------------
+if (isset($_SESSION["tryagain"])) {
+  $tryagain = $_SESSION["tryagain"];
+  $tryagain = "TRY AGAIN";
 }
 
 //--------------------
@@ -638,14 +671,14 @@ if (isset($_SESSION["again"])) {
                       <input type="submit" value="FORM" id="send_btn" class = "form_back" name = "formback">
 					         </form>
                 </div>
-                <div id="error_occur">
+                <div id="error_occur" style="display: none;">
                     <h4>
                     <!--<span></span>様<br>-->お問い合わせありがとうございます
-                    <i class="fa fa-smile-o" aria-hidden="true"></i><br><br>
+                    <i class="fa fa-inbox" aria-hidden="true"></i><br><br>
                     <!--<a href="">戻る</a>-->
                     確認メールを送信中に<br>
                     エラーが発生しました
-                    <i class="fa fa-inbox" aria-hidden="true"></i>
+                    <i class="fa fa-meh-o" aria-hidden="true"></i>
                     </h4>
                     <form action="" method = "post">
                       <input type="submit" value="TRY AGAIN" id="send_btn" class = "try_again" name = "tryagain">
@@ -743,11 +776,10 @@ $(document).ready(function(){
         });//$(window).scroll(function(){
 
     //最初から少しスクロールダウン
-    if($("input[name='fstvisit']").val() != ""){
+    if($("input[name='fstvisit']").val() == "1ST"){
     //if($("input[name='aaa']").val() != "" || $("input[name='confirm']").val() != ""){
     $(window).scrollTop(10);
     }
-
 
 
     //When Error => Reload with Scroll to Contact
@@ -761,6 +793,15 @@ $(document).ready(function(){
 
     //From Confirm => Header Location with Scroll to Contact
     if($("input[name='confirm']").val() != ""){
+    //if($("input[name='aaa']").val() != "" || $("input[name='confirm']").val() != ""){
+      var scrollDown = parseInt($('#page-4').offset().top);
+      //var heightNav = parseInt($('nav').height());
+
+    $(window).scrollTop(scrollDown + 1);
+    }
+
+    //ERROR = > TRY AGAIN
+    if($("input[name='tryagain']").val() != ""){
     //if($("input[name='aaa']").val() != "" || $("input[name='confirm']").val() != ""){
       var scrollDown = parseInt($('#page-4').offset().top);
       //var heightNav = parseInt($('nav').height());
@@ -785,6 +826,26 @@ $(document).ready(function(){
             display:"block"
             });
     }
+
+
+    //Mail Sent => ERROR
+    if($("input[name='error']").val() != ""){
+    //if($("input[name='aaa']").val() != "" || $("input[name='confirm']").val() != ""){
+      var scrollDown = parseInt($('#page-4').offset().top);
+      //var heightNav = parseInt($('nav').height());
+
+    $(window).scrollTop(scrollDown + 1);
+    $("#contact").css({
+            display:"none"
+            });
+        //var userName = $("#user").val();
+        //$("#shopping_done span").text(userName);
+        $("#error_occur").css({
+            display:"block"
+            });
+    }
+
+
 
     //フォームを再表示
     $('.form_back').on('click', function() {
