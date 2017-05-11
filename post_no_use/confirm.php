@@ -814,7 +814,10 @@ $(document).ready(function(){
     //if($("input[name='aaa']").val() != "" || $("input[name='confirm']").val() != ""){
       var scrollDown = parseInt($('#page-4').offset().top);
       //var heightNav = parseInt($('nav').height());
-    $("#mail_send").css({
+    $("#error_occur").css({
+                display:"block"
+                });
+    $("#mail_form").css({
                 display:"none"
                 });
     $(window).scrollTop(scrollDown + 1);

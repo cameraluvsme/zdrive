@@ -361,6 +361,21 @@ if (isset($_SESSION["error"])) {
   $error = $_SESSION["error"];
   $errorOccured = "エラー：再送信願います";
 }
+//--------------------
+// TRY AGAINボタン
+//--------------------
+if (isset($_POST["tryagain"])) {
+  // 入力ページへ戻る
+  //$_SESSION["contact"] = $contact;
+ // $isConfirmed = FALSE;
+  $_SESSION["tryagain"] = true;
+  unset($_SESSION["edit"]);
+  unset($_SESSION["again"]);
+  unset($_SESSION["error"]);
+  header("Location: design_mail.php");
+  exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -595,7 +610,7 @@ if (isset($_SESSION["error"])) {
         <div id="page-4" style="height:600px;">
             <h3>CONTACT</h3>
             <section class="contact">
-                  <form action="" method="post"  id="contact" novalidate>
+                  <form action="" method="post"  id="contact" novalidate id = "mail_form">
                   <!--<input type="hidden" name="token" value="<?php //echo getToken(); ?>">-->
                   <input type="hidden" name="confirm" value="<?php echo $confirm; ?>">
                   <input type="hidden" name="tryagain" value="<?php echo $errorOccured; ?>">
@@ -634,7 +649,7 @@ if (isset($_SESSION["error"])) {
                                 <div class="text-warning"><?php echo h($errorInquiry); ?></div>
                             <?php endif; ?>
                             <?php if (isset($errorOccured)): ?>
-                                <div class="text-warning"><?php echo h($errorOccured ); ?></div>
+                                <div class="text-warning"><?php //echo h($errorOccured ); ?></div>
                             <?php endif; ?>
                           </td>
                         </tr>
@@ -683,6 +698,18 @@ if (isset($_SESSION["error"])) {
                       </tbody>
                     </table>
                   </form>
+                  <div id="error_occur" style="display: none;">
+                    <h4>
+                    <!--<span></span>様<br>-->エラーが発生しました
+                    <i class="fa fa-inbox" aria-hidden="true"></i><br><br>
+                    <!--<a href="">戻る</a>-->
+                    再度送信願います
+                    <i class="fa fa-meh-o" aria-hidden="true"></i>
+                    </h4>
+                    <form action="" method = "post">
+                      <input type="submit" value="TRY AGAIN" id="send_btn" class = "try_again" name = "tryagain">
+                   </form>
+                </div>
                 </section>
         </div><!-- ./<div id="page-4" style="height:600px;"> -->
     </main>
@@ -814,7 +841,10 @@ $(document).ready(function(){
     //if($("input[name='aaa']").val() != "" || $("input[name='confirm']").val() != ""){
       var scrollDown = parseInt($('#page-4').offset().top);
       //var heightNav = parseInt($('nav').height());
-    $("#mail_send").css({
+    $("#error_occur").css({
+                display:"block"
+                });
+    $("#mail_form").css({
                 display:"none"
                 });
     $(window).scrollTop(scrollDown + 1);
